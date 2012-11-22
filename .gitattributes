@@ -1,0 +1,5 @@
+* -text
+*.rb text -crlf -binary
+*.rdoc text -crlf -binary
+*.erb text -crlf -binary
+*.xml text -crlf -binary
