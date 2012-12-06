@@ -1,13 +1,22 @@
 module KibanaConfig
+
+  # A Note: While the only option you really have to set is "Elasticsearch" it
+  # is HIGHLY recommended you glance over every option. I personally consider
+  # 'Facet_index_limit' really important.
+
   # Your elastic search server(s). This may be set as an array for round robin
   # load balancing
   # Elasticsearch = ["elasticsearch1:9200","elasticsearch2:9200"]
   Elasticsearch = "<%= node['kibana']['elasticsearch']['host'] %>:<%= node['kibana']['elasticsearch']['port'] %>"
 
+  #Set the Net::HTTP read/open timeouts for the connection to the ES backend
+  ElasticsearchTimeout = 500
+
   # The port Kibana should listen on
   KibanaPort = <%= node['kibana']['port'] %>
 
-  # The adress ip Kibana should listen on
+  # The adress ip Kibana should listen on. Comment out or set to
+  # 0.0.0.0 to listen on all interfaces.
   KibanaHost = '<%= node['kibana']['interface'] %>'
 
   # The record type as defined in your logstash configuration.
@@ -30,7 +39,7 @@ module KibanaConfig
   Time_format = 'mm/dd HH:MM:ss'
 
   # Change which fields are shown by default. Must be set as an array
-  # Default_fields = ['vhost','response','request']
+  # Default_fields = ['@fields.vhost','@fields.response','@fields.request']
   Default_fields = ['@message']
 
   # The default operator used if no explicit operator is specified.
@@ -44,11 +53,11 @@ module KibanaConfig
   # results for user's query
   Analyze_limit = 2000
 
-  # Show this many results in analyze/ mode
+  # Show this many results in analyze/trend/terms/stats modes
   Analyze_show = 25
 
   # Show this many results in an rss feed
-  Rss_show = 20
+  Rss_show = 25
 
   # Show this many results in an exported file
   Export_show = 2000
@@ -68,16 +77,28 @@ module KibanaConfig
   # turn this behavior off if you use something other than daily
   # indexing
   Smart_index = true
-
-  # You can define your custom pattern here for index names if you
-  # use something other than daily indexing. Pattern needs to have
-  # date formatting like '%Y.%m.%d'
+  
+  # You can define your custom pattern here for index names if you 
+  # use something other than daily indexing. Pattern needs to have 
+  # date formatting like '%Y.%m.%d'.  Will accept an array of smart 
+  # indexes.  
+  # Smart_index_pattern = ['logstash-web-%Y.%m.%d', 'logstash-mail-%Y.%m.%d'] 
   Smart_index_pattern = 'logstash-%Y.%m.%d'
 
   # ElasticSearch has a default limit on URL size for REST calls,
   # so Kibana will fall back to _all if a search spans too many
-  # indices. Use this to set that 'too many' number.
+  # indices. Use this to set that 'too many' number. By default this
+  # is set really high, ES might not like this
   Smart_index_limit = 60
+
+  # Elasticsearch has an internal mechanism called "faceting" for performing
+  # analysis that we use for the "Stats" and "Terms" modes. However, on large
+  # data sets/queries facetting can cause ES to crash if there isn't enough 
+  # memory available. It is suggested that you limit the number of indices that
+  # Kibana will use for the "Stats" and "Terms" to prevent ES crashes. For very
+  # large data sets and undersized ES clusers, a limit of 1 is not unreasonable.
+  # Default is 0 (unlimited)
+  Facet_index_limit = 0
 
   # You probably don't want to touch anything below this line
   # unless you really know what you're doing
@@ -95,4 +116,10 @@ module KibanaConfig
   # Prevent wildcard search terms which result in extremely slow queries
   # See: http:#www.elasticsearch.org/guide/reference/query-dsl/wildcard-query.html
   Disable_fullscan = false
+
+  # Set headers to allow kibana to be loaded in an iframe from a different origin.
+  Allow_iframed = false
+
+  # Use this interval as fallback.
+  Fallback_interval = 900
 end
