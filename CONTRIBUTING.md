@@ -17,6 +17,8 @@ Pester us if we don't get your Pull Requests merged in a timely fashion. :)
 * Make commits of logical units.
 * Ensure your commit messages help others understand what you are doing and why.
 * Check for unnecessary whitespace with `git diff --check` before committing.
+* Maintain the same code style.
+* Maintain the same level of test coverage or improve it.
 
 ## Additional Resources
 
