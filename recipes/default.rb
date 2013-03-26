@@ -26,12 +26,11 @@ git node['kibana']['base_dir'] do
   action :checkout
 end
 
-%w[libcurl4-gnutls-dev ruby1.9.1-full].each do |pkg|
-  apt_package pkg
-end
+apt_package "libcurl4-gnutls-dev"
+apt_package "ruby#{node['kibana']['rubyversion']}-full"
 
 gem_package 'bundler' do
-  gem_binary '/usr/bin/gem1.9.1'
+  gem_binary "/usr/bin/gem#{node['kibana']['rubyversion']}"
 end
 
 bash 'kibana bundle install' do
