@@ -52,6 +52,8 @@ end
 
 template "#{node['kibana']['base_dir']}/KibanaConfig.rb" do
   source 'KibanaConfig.rb.erb'
+  user node['kibana']['user']
+  group node['kibana']['group']
   mode '0600'
   notifies :restart, 'service[kibana]', :delayed
 end
