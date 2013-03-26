@@ -16,4 +16,4 @@ pre-start script
 end script
 
 chdir <%= node['kibana']['base_dir'] %>
-exec <%= node['kibana']['port'] < 1024 ? "/usr/bin/authbind --deep " : "" %>ruby kibana.rb
+exec <%= node['kibana']['port'] < 1024 ? "/usr/bin/authbind --deep " : "" %>ruby1.9.1 kibana.rb
