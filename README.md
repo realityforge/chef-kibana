@@ -23,6 +23,7 @@ Attributes
 * `node['kibana']['apache']['host']` - The host to create apache vhost for. Defaults to `node['fqdn']`
 * `node['kibana']['apache']['interface']` - The interface on which to bind apache. Defaults to `node['ipaddress']`
 * `node['kibana']['apache']['port']` - The port on which to bind apache. Defaults to 80.
+* `node['kibana']['rubyversion']` - The version of Ruby and Gems to use for Kibana.
 
 
 Recipes
