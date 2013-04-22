@@ -1,5 +1,7 @@
 ## v0.1.4:
 
+* Use https rather than the git protocol to define the kibana repository as
+  many enterprises firewall out the git protocol.
 * Adjusting command to ensure the proper version of ruby is used to execute
   Kibana in the init script.  gems are installed for ruby1.9.1, so the daemon
   startup command will force using ruby1.9.1 too now, but 1.9.1 is an attribute

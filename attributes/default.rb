@@ -1,7 +1,7 @@
 default['kibana']['base_dir'] = '/opt/kibana'
 default['kibana']['user'] = 'kibana'
 default['kibana']['group'] = 'kibana'
-default['kibana']['git']['url'] = 'git://github.com/rashidkpc/Kibana.git'
+default['kibana']['git']['url'] = 'https://github.com/rashidkpc/Kibana.git'
 default['kibana']['git']['reference'] = 'v0.2.0'
 default['kibana']['interface'] = node['ipaddress']
 default['kibana']['port'] = 5601
