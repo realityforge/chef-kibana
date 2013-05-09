@@ -1,5 +1,7 @@
 ## v0.1.4:
 
+* include build-essential recipe to ensure bundle install works. Reported
+  by Max Stepanov.
 * Stop declaring the apache template twice.
 * Use https rather than the git protocol to define the kibana repository as
   many enterprises firewall out the git protocol.

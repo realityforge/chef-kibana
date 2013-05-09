@@ -33,6 +33,10 @@ gem_package 'bundler' do
   gem_binary "/usr/bin/gem#{node['kibana']['rubyversion']}"
 end
 
+# kibana requires eventmachine which requires a gem with native extensions. Thus we need
+# to include build-essentials prior to installing kibana
+include_recipe 'build-essential::default'
+
 bash 'kibana bundle install' do
   cwd node['kibana']['base_dir']
   code 'bundle install'
