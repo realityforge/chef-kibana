@@ -1,6 +1,6 @@
 ## v0.1.4:
 
-* Stop declaraing the apache template twice.
+* Stop declaring the apache template twice.
 * Use https rather than the git protocol to define the kibana repository as
   many enterprises firewall out the git protocol.
 * Adjusting command to ensure the proper version of ruby is used to execute
