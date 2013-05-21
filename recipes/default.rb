@@ -26,11 +26,24 @@ git node['kibana']['base_dir'] do
   action :checkout
 end
 
-apt_package "libcurl4-gnutls-dev"
-apt_package "ruby#{node['kibana']['rubyversion']}-full"
+if node['platform']["ubuntu"]
+  package "libcurl4-gnutls-dev"
+end
+
+if node['kibana']['rubyversion'] == '1.8' or node['kibana']['rubyversion'] == '1.9.1'
+  package "ruby#{node['kibana']['rubyversion']}-full"
+else
+  package "ruby#{node['kibana']['rubyversion']}"
+end
+
+#gem1.8 doesn't get brought in with ruby1.8.x
+if  node['kibana']['rubyversion'] == '1.8'
+    package "rubygems#{node['kibana']['rubyversion']}"
+end
 
 gem_package 'bundler' do
-  gem_binary "/usr/bin/gem#{node['kibana']['rubyversion']}"
+    gem_binary "/usr/bin/gem#{node['kibana']['rubyversion']}"
+  action :install
 end
 
 # kibana requires eventmachine which requires a gem with native extensions. Thus we need

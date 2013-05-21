@@ -3,6 +3,10 @@ Description
 
 A cookbook that installs [Kibana](https://github.com/rashidkpc/Kibana).
 
+Platforms
+=========
+- `ubuntu`
+
 Requirements
 ============
 
@@ -15,7 +19,7 @@ Attributes
 * `node['kibana']['user']` - The user under which Kibana is installed. Defaults to 'kibana'.
 * `node['kibana']['group']` - The group under which Kibana is installed. Defaults to 'kibana'.
 * `node['kibana']['git']['url']` - The URL to Kibana repository. Defaults to 'git://github.com/rashidkpc/Kibana.git'.
-* `node['kibana']['git']['reference']` - The git reference in the Kibana repository. Defaults to 'v0.2.0b2'.
+* `node['kibana']['git']['reference']` - The git reference in the Kibana repository. Defaults to 'v0.2.0'.
 * `node['kibana']['interface']` - The interface on which to bind. Defaults to node['ipaddress'].
 * `node['kibana']['port']` - The port on which to bind. Defaults to 5601.
 * `node['kibana']['elasticsearch']['host']` - The host of the elasticsearch service. Defaults to '127.0.0.1'.
@@ -23,7 +27,7 @@ Attributes
 * `node['kibana']['apache']['host']` - The host to create apache vhost for. Defaults to `node['fqdn']`
 * `node['kibana']['apache']['interface']` - The interface on which to bind apache. Defaults to `node['ipaddress']`
 * `node['kibana']['apache']['port']` - The port on which to bind apache. Defaults to 80.
-* `node['kibana']['rubyversion']` - The version of Ruby and Gems to use for Kibana.
+* `node['kibana']['rubyversion']` - The version of Ruby and Gems to use for Kibana.Defaults to `1.9.1`
 
 
 Recipes
