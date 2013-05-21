@@ -1,3 +1,9 @@
+## v0.1.5:
+
+* add additional logic to decide which apt package to install based on the version of ruby specified. `1.8, 1.9.1, 1.9.3` are supported. (doublerr)
+* Update README to reflect above (doublerr)
+* Add Berkshelf support (doublerr)
+
 ## v0.1.4:
 
 * include build-essential recipe to ensure bundle install works. Reported
