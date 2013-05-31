@@ -22,7 +22,7 @@ Attributes
 * `node['kibana']['git']['reference']` - The git reference in the Kibana repository. Defaults to 'v0.2.0'.
 * `node['kibana']['interface']` - The interface on which to bind. Defaults to node['ipaddress'].
 * `node['kibana']['port']` - The port on which to bind. Defaults to 5601.
-* `node['kibana']['elasticsearch']['host']` - The host of the elasticsearch service. Defaults to '127.0.0.1'.
+* `node['kibana']['elasticsearch']['hosts']` - An Array of the elasticsearch service hosts. Defaults to ['127.0.0.1'].
 * `node['kibana']['elasticsearch']['port']` - The port of the elasticsearch http service. Defaults to 9200.
 * `node['kibana']['apache']['host']` - The host to create apache vhost for. Defaults to `node['fqdn']`
 * `node['kibana']['apache']['interface']` - The interface on which to bind apache. Defaults to `node['ipaddress']`
