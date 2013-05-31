@@ -7,7 +7,4 @@ default['kibana']['interface'] = node['ipaddress']
 default['kibana']['port'] = 5601
 default['kibana']['elasticsearch']['host'] = '127.0.0.1'
 default['kibana']['elasticsearch']['port'] = 9200
-default['kibana']['apache']['host'] = node['fqdn']
-default['kibana']['apache']['interface'] = node['ipaddress']
-default['kibana']['apache']['port'] = 80
 default['kibana']['rubyversion'] = '1.9.1'
