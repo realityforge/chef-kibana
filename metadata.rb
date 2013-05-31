@@ -8,5 +8,4 @@ version          '0.1.5'
 
 depends 'build-essential'
 suggests 'authbind'
-suggests 'apache2'
 suggests 'apt'

@@ -1,3 +1,5 @@
+package 'git'
+
 group node['kibana']['group'] do
 end
 
@@ -15,8 +17,6 @@ directory node['kibana']['base_dir'] do
   group node['kibana']['group']
   recursive true
 end
-
-package 'git'
 
 git node['kibana']['base_dir'] do
   repository node['kibana']['git']['url']
