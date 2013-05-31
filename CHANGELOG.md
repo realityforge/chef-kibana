@@ -1,3 +1,7 @@
+## v0.1.6:
+* Make Elasticsearch Kibana config an array by default - this will make it easier 
+  to supply multiple ES nodes by simply overriding ```node['kibana']['elasticsearch']['host']``` attribute
+
 ## v0.1.5:
 
 * add additional logic to decide which apt package to install based on the version of ruby specified. `1.8, 1.9.1, 1.9.3` are supported. (doublerr)
