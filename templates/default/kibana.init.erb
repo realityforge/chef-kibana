@@ -1,0 +1,24 @@
+#! /bin/sh
+# /etc/init.d/kibana
+#
+# created by chef
+#
+
+
+case "$1" in
+    start)
+        ruby -C/opt/kibana kibana.rb
+        ;;
+    stop)
+        exit 1
+        ;;
+    restart)
+        exit 1
+        ;;
+    *)
+        echo "Usage: /etc/init.d/kibana {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
