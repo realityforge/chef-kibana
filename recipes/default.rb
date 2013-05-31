@@ -27,7 +27,6 @@ git node['kibana']['base_dir'] do
 end
 
 gem_package 'bundler' do
-    gem_binary "/usr/bin/gem#{node['kibana']['rubyversion']}"
   action :install
 end
 
@@ -41,7 +40,6 @@ bash 'kibana bundle install' do
 end
 
 service 'kibana' do
-  provider Chef::Provider::Service::Upstart
   supports :start => true, :restart => true, :stop => true, :status => true
   action :nothing
 end
