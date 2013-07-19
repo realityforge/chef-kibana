@@ -5,7 +5,7 @@ A cookbook that installs [Kibana](https://github.com/rashidkpc/Kibana).
 
 Platforms
 =========
-- `ubuntu`
+- `ubuntu`, tested on `ubuntu-12.04` only
 
 Requirements
 ============
