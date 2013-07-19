@@ -1,4 +1,6 @@
-## v0.1.8:
+## v0.1.7:
+* Add test-ktichen support for 12.04
+* Re-order default attributes file for future changes
 
 ## v0.1.6:
 * Make Elasticsearch Kibana config an array by default - this will make it easier 
