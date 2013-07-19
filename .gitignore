@@ -22,3 +22,5 @@ bin/*
 
 # Ignore the patch file generated when integrating changes
 /patch.*
+.kitchen/
+.kitchen.local.yml
