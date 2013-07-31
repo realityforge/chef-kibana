@@ -11,6 +11,7 @@ default['kibana']['interface'] = node['ipaddress']
 default['kibana']['port'] = 5601
 default['kibana']['elasticsearch']['hosts'] = ['127.0.0.1']
 default['kibana']['elasticsearch']['port'] = 9200
+default['kibana']['default_operator'] = 'OR'
 
 #Apache Config Options
 default['kibana']['apache']['host'] = node['fqdn']

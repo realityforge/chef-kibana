@@ -68,7 +68,7 @@ module KibanaConfig
   # Hungary is translated to capital OR of OR Hungary, and with default
   # operator of AND, the same query is translated to capital AND of AND
   # Hungary. The default value is OR.
-  Default_operator = 'OR'
+  Default_operator = '<%= node['kibana']['default_operator'] %>'
 
   # When using analyze, use this many of the most recent
   # results for user's query
