@@ -31,6 +31,7 @@ Attributes
 * `node['kibana']['elasticsearch']['hosts']` - An Array of the elasticsearch service hosts. Defaults to ['127.0.0.1'].
 * `node['kibana']['elasticsearch']['port']` - The port of the elasticsearch http service. Defaults to 9200.
 * `node['kibana']['default_fields']` - The which fields are shown by default. Defaults to `["@message"]`.
+* `node['kibana']['default_operator']` - The operator used if no explicit operator is specified. Defaults to `"NO"`.
 
 ### Apache Config Options ###
 
