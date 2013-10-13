@@ -1,3 +1,9 @@
+=begin
+#<
+Setup vhost for apache that rewrites to Kibana.
+#>
+=end
+
 include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 

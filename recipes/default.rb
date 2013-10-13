@@ -1,3 +1,9 @@
+=begin
+#<
+Install Kibana.
+#>
+=end
+
 group node['kibana']['group'] do
 end
 
