@@ -30,6 +30,14 @@ suites:
   attributes:
     kibana:
       version: '3'
+- name: kibana3_nginx
+  run_list:
+    - 'recipe[kibana]'
+    - 'recipe[nginx]'
+    - 'recipe[kibana::nginx]'
+  attributes:
+    kibana:
+      version: '3'
 - name: kibana3_source
   run_list:
     - 'recipe[kibana]'

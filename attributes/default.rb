@@ -12,6 +12,8 @@ default['kibana']['group'] = 'kibana'
 default['kibana']['install_method'] = 'release'
 #<> Url of tarball
 default['kibana']['url'] = "https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz"
+#<> Checksum of the tarball
+default['kibana']['checksum'] = '3ebaac69439aa1925c7918e008978b8424840f3bd3910379d4f2bcf5fdfd2118'
 #<> The URL to Kibana repository.
 default['kibana']['git']['url'] = if node['kibana']['version'] > '2'
                                     'https://github.com/elasticsearch/kibana.git'
@@ -46,3 +48,5 @@ default['kibana']['apache']['host'] = node['fqdn']
 default['kibana']['apache']['interface'] = node['ipaddress']
 #<> The port on which to bind apache.
 default['kibana']['apache']['port'] = 80
+#<> The port on which to bind nginx
+default['kibana']['nginx']['port'] = 80
