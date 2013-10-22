@@ -12,13 +12,15 @@ platforms:
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
   run_list:
   - recipe[apt]
+- name: centos-6.4
+  driver_config:
+    box: opscode-centos-6.4
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
 
 suites:
 - name: default
   run_list:
     - 'recipe[kibana]'
-    - 'recipe[apache2]'
-    - 'recipe[kibana::apache]'
   attributes: {}
 - name: kibana3
   run_list:
@@ -28,3 +30,12 @@ suites:
   attributes:
     kibana:
       version: '3'
+- name: kibana3_source
+  run_list:
+    - 'recipe[kibana]'
+    - 'recipe[apache2]'
+    - 'recipe[kibana::apache]'
+  attributes:
+    kibana:
+      version: '3'
+      install_method: 'source'
