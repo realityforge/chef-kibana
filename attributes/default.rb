@@ -1,13 +1,29 @@
+#<> Kibana version
+default['kibana']['version'] = '2'
+#<> Kibana3 exact version
+default['kibana']['kibana3_version'] = '3.0.0milestone4'
 #<> The base directory of kibana.
 default['kibana']['base_dir'] = '/opt/kibana'
 #<> The user under which Kibana is installed.
 default['kibana']['user'] = 'kibana'
 #<> The group under which Kibana is installed.
 default['kibana']['group'] = 'kibana'
+#<> Install method. Can be source or release
+default['kibana']['install_method'] = 'release'
+#<> Url of tarball
+default['kibana']['url'] = "https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz"
 #<> The URL to Kibana repository.
-default['kibana']['git']['url'] = 'https://github.com/rashidkpc/Kibana.git'
+default['kibana']['git']['url'] = if node['kibana']['version'] > '2'
+                                    'https://github.com/elasticsearch/kibana.git'
+                                  else
+                                    'https://github.com/rashidkpc/Kibana.git'
+                                  end
 #<> The git reference in the Kibana repository.
-default['kibana']['git']['reference'] = 'v0.2.0'
+default['kibana']['git']['reference'] = if node['kibana']['version'] > '2'
+                                          'v' + node['kibana']['kibana3_version']
+                                        else
+                                          'v0.2.0'
+                                        end
 #<> The version of Ruby and Gems to use for Kibana.
 default['kibana']['rubyversion'] = '1.9.1'
 
