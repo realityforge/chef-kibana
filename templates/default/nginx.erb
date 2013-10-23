@@ -1,0 +1,14 @@
+server {
+  listen   <%= node['kibana']['nginx']['port'] %>;
+  server_name  kibana;
+  client_max_body_size 50M;
+
+  error_log   /var/log/nginx/kibana-errors.log;
+  access_log  /var/log/nginx/kibana.log;
+
+
+location / {
+    root <%= @root %>;
+    index index.html index.htm;
+  }
+}

@@ -7,6 +7,8 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.7'
 
 depends 'build-essential'
+depends 'ark'
 suggests 'authbind'
 suggests 'apache2'
 suggests 'apt'
+suggests 'nginx'

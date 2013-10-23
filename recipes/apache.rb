@@ -8,7 +8,8 @@ include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 
 template "#{node['apache']['dir']}/sites-available/kibana" do
-  source 'vhost.conf.erb'
+  source 'vhost.conf.erb' if node['kibana']['version'] =~ /^2/
+  source 'vhost3.conf.erb' if node['kibana']['version'] =~ /^3/
   owner node['apache']['user']
   group node['apache']['group']
   mode 00644
