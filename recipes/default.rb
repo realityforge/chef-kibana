@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 =begin
 #<
 Install Kibana.

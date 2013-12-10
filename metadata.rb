@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 name             'kibana'
 maintainer       'Peter Donald'
 maintainer_email 'peter@realityforge.org'
