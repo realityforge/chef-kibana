@@ -9,11 +9,13 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "kibana"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "Ubuntu_12.04_vagrant_omnibus"
+  config.vm.box = "opscode-precise64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://grahamc.com/vagrant/ubuntu-12.04-omnibus-chef.box"
+  config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box"
+
+  config.omnibus.chef_version = '11.6.2'
 
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
@@ -31,6 +33,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network :forwarded_port, guest: 5601, host: 5601
+  config.vm.network :forwarded_port, guest: 80, host: 8080
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -53,11 +56,8 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
 
-  config.ssh.max_tries = 40
-  config.ssh.timeout   = 120
-
   # The path to the Berksfile to use with Vagrant Berkshelf
-  # config.berkshelf.berksfile_path = "./Berksfile"
+  config.berkshelf.berksfile_path = "./Berksfile"
 
   # Enabling the Berkshelf plugin. To enable this globally, add this configuration
   # option to your ~/.vagrant.d/Vagrantfile file
@@ -74,13 +74,16 @@ Vagrant.configure("2") do |config|
   config.vm.provision :chef_solo do |chef|
     chef.json = {
       "kibana" => {
-
+        "apache" => {
+          "basic_auth" => 'on'
+        }
       }
     }
 
     chef.run_list = [
         "recipe[apt::default]",
-        "recipe[kibana::default]"
+        "recipe[kibana::default]",
+        "recipe[kibana::apache]"
     ]
   end
 end
