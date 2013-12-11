@@ -10,10 +10,26 @@ NameVirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana'][
   ServerAlias <%= node['kibana']['apache']['host'] %>
   DocumentRoot "<%= "#{node['kibana']['base_dir']}/current" %>"
 
-  <Location "/">
-    Order allow,deny
-    Allow from all
-    SetHandler None
-  </Location>
+  <% if node['kibana']['apache']['basic_auth'] == 'on' %>
+
+    <Location "/">
+      Order allow,deny
+      Allow from all
+      AuthType basic
+      AuthName "Kibana"
+      AuthBasicProvider file
+      AuthUserFile <%= node['apache']['dir'] %>/htpasswd
+      require valid-user
+    </Location>
+
+  <% else %>
+
+    <Location "/">
+      Order allow,deny
+      Allow from all
+      SetHandler None
+    </Location>
+
+  <% end %>
 
 </VirtualHost>
