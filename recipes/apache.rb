@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 =begin
 #<
 Setup vhost for apache that rewrites to Kibana.

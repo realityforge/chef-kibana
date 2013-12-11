@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 include_recipe 'kibana'
 
 package 'git'
@@ -10,11 +12,9 @@ git node['kibana']['base_dir'] do
   action :checkout
 end
 
-if node['platform']["ubuntu"]
-  package "libcurl4-gnutls-dev"
-end
+package 'libcurl4-gnutls-dev' if node['platform']['ubuntu']
 
-if node['kibana']['rubyversion'] == '1.8' or node['kibana']['rubyversion'] == '1.9.1'
+if node['kibana']['rubyversion'] == '1.8' || node['kibana']['rubyversion'] == '1.9.1'
   package "ruby#{node['kibana']['rubyversion']}-full"
 else
   package "ruby#{node['kibana']['rubyversion']}"
@@ -22,11 +22,11 @@ end
 
 #gem1.8 doesn't get brought in with ruby1.8.x
 if  node['kibana']['rubyversion'] == '1.8'
-    package "rubygems#{node['kibana']['rubyversion']}"
+  package "rubygems#{node['kibana']['rubyversion']}"
 end
 
 gem_package 'bundler' do
-    gem_binary "/usr/bin/gem#{node['kibana']['rubyversion']}"
+  gem_binary "/usr/bin/gem#{node['kibana']['rubyversion']}"
   action :install
 end
 
@@ -41,7 +41,7 @@ end
 
 service 'kibana' do
   provider Chef::Provider::Service::Upstart
-  supports :start => true, :restart => true, :stop => true, :status => true
+  supports start: true, restart: true, stop: true, status: true
   action :nothing
 end
 

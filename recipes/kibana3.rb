@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 include_recipe 'kibana'
 
 if node['kibana']['install_method'] == 'source'
@@ -12,7 +14,7 @@ if node['kibana']['install_method'] == 'source'
   end
   config_path = 'current/src/config.js'
 else
-  ark "kibana" do
+  ark 'kibana' do
     url node['kibana']['url']
     version node['kibana']['kibana3_version']
     checksum node['kibana']['checksum']
@@ -21,7 +23,6 @@ else
   end
   config_path = 'current/config.js'
 end
-
 
 template File.join(node['kibana']['base_dir'], config_path) do
   owner node['kibana']['user']

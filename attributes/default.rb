@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 #<> Kibana version
 default['kibana']['version'] = '2'
 #<> Kibana3 exact version

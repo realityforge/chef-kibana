@@ -1,0 +1,17 @@
+# Encoding: utf-8
+
+require 'rake'
+require 'rake/testtask'
+
+require 'rubocop/rake_task'
+desc 'Run RuboCop on the lib directory'
+Rubocop::RakeTask.new(:rubocop) do |task|
+  task.fail_on_error = true
+end
+
+desc 'Foodcritic linter'
+task :foodcritic do
+  sh 'foodcritic -f any -t ~FC007 .'
+end
+
+task default:  [:rubocop, :foodcritic]
