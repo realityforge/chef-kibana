@@ -41,7 +41,7 @@ end
 
 service 'kibana' do
   provider Chef::Provider::Service::Upstart
-  supports start: true, restart: true, stop: true, status: true
+  supports supports :start => true, :restart => true, :stop => true, :status => true
   action :nothing
 end
 
