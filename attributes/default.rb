@@ -48,6 +48,12 @@ default['kibana']['default_operator'] = 'OR'
 default['kibana']['apache']['host'] = node['fqdn']
 #<> The interface on which to bind apache.
 default['kibana']['apache']['interface'] = node['ipaddress']
+#<> Enable http auth for Apache
+default['kibana']['apache']['basic_auth'] = 'off'
+#<> Apache http auth username
+default['kibana']['apache']['basic_auth_username'] = 'admin'
+#<> Apache http auth password
+default['kibana']['apache']['basic_auth_password'] = 'PLEASEchangeme'
 #<> The port on which to bind apache.
 default['kibana']['apache']['port'] = 80
 #<> The port on which to bind nginx

@@ -9,11 +9,27 @@ NameVirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana'][
   ServerName <%= node['kibana']['apache']['host'] %>
   ServerAlias <%= node['kibana']['apache']['host'] %>
 
-  <Location "/">
-    Order allow,deny
-    Allow from all
-    SetHandler None
-  </Location>
+  <% if node['kibana']['apache']['basic_auth'] == 'on' %>
+
+    <Location "/">
+      Order allow,deny
+      Allow from all
+      AuthType basic
+      AuthName "Kibana"
+      AuthBasicProvider file
+      AuthUserFile <%= node['apache']['dir'] %>/htpasswd
+      require valid-user
+    </Location>
+
+  <% else %>
+
+    <Location "/">
+      Order allow,deny
+      Allow from all
+      SetHandler None
+    </Location>
+
+  <% end %>
 
   ProxyPass              /  http://<%= node['kibana']['interface'] %>:<%= node['kibana']['port'] %>/
   ProxyPassReverse       /  http://<%= node['kibana']['interface'] %>:<%= node['kibana']['port'] %>/
