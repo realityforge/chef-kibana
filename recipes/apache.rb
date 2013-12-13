@@ -11,8 +11,8 @@ include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 
 template "#{node['apache']['dir']}/htpasswd" do
-  variables( :username => node['kibana']['apache']['basic_auth_username'],
-             :password => node['kibana']['apache']['basic_auth_password'])
+  variables(username: node['kibana']['apache']['basic_auth_username'],
+            password: node['kibana']['apache']['basic_auth_password'])
   owner node['apache']['user']
   group node['apache']['group']
   mode 00644
