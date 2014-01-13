@@ -28,7 +28,5 @@ template File.join(node['kibana']['base_dir'], config_path) do
   owner node['kibana']['user']
   group node['kibana']['group']
   mode '0644'
-  variables({
-    'es_port' => node['kibaka']['elasticsearch']['port'],
-  })
+  variables('es_port' => node['kibaka']['elasticsearch']['port'])
 end
