@@ -3,7 +3,7 @@
 * Re-order default attributes file for future changes
 
 ## v0.1.6:
-* Make Elasticsearch Kibana config an array by default - this will make it easier 
+* Make Elasticsearch Kibana config an array by default - this will make it easier
   to supply multiple ES nodes by simply overriding ```node['kibana']['elasticsearch']['host']``` attribute
 
 ## v0.1.5:
@@ -33,3 +33,4 @@
 ## v0.1.0:
 
 * Initial release
+

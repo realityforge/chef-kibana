@@ -99,10 +99,10 @@ module KibanaConfig
   # indexing
   Smart_index = true
 
-  # You can define your custom pattern here for index names if you 
-  # use something other than daily indexing. Pattern needs to have 
-  # date formatting like '%Y.%m.%d'.  Will accept an array of smart 
-  # indexes.  
+  # You can define your custom pattern here for index names if you
+  # use something other than daily indexing. Pattern needs to have
+  # date formatting like '%Y.%m.%d'.  Will accept an array of smart
+  # indexes.
   # Smart_index_pattern = ['logstash-web-%Y.%m.%d', 'logstash-mail-%Y.%m.%d']
   # Smart_index_pattern = 'logstash-%Y.%m.%d'
   # here is an example of how to set the pattern using an environment variable
@@ -120,7 +120,7 @@ module KibanaConfig
 
   # Elasticsearch has an internal mechanism called "faceting" for performing
   # analysis that we use for the "Stats" and "Terms" modes. However, on large
-  # data sets/queries facetting can cause ES to crash if there isn't enough 
+  # data sets/queries facetting can cause ES to crash if there isn't enough
   # memory available. It is suggested that you limit the number of indices that
   # Kibana will use for the "Stats" and "Terms" to prevent ES crashes. For very
   # large data sets and undersized ES clusers, a limit of 1 is not unreasonable.
@@ -150,3 +150,4 @@ module KibanaConfig
   # Use this interval as fallback.
   Fallback_interval = 900
 end
+
