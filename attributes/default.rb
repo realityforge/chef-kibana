@@ -43,6 +43,10 @@ default['kibana']['elasticsearch']['port'] = 9200
 default['kibana']['default_fields'] = '["@message"]'
 #<> The operator used if no explicit operator is specified.
 default['kibana']['default_operator'] = 'OR'
+#<> The cookbook from which config.js template is taken
+default['kibana']['config']['cookbook'] = nil
+#<> The template from which config.js is generated from
+default['kibana']['config']['source'] = nil
 
 #<> The host to create apache vhost for.
 default['kibana']['apache']['host'] = node['fqdn']
