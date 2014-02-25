@@ -25,6 +25,8 @@ else
 end
 
 template File.join(node['kibana']['base_dir'], config_path) do
+  cookbook node['kibana']['config']['cookbook']
+  source   node['kibana']['config']['source']
   owner node['kibana']['user']
   group node['kibana']['group']
   mode '0644'
