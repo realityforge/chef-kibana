@@ -3,6 +3,10 @@
 require 'rake'
 require 'rake/testtask'
 
+# Rainbow require is due to incompatibilities between version of
+# rubocop and rainbow breaking the build. May be able to be removed
+# at some future time
+require 'rainbow/ext/string'
 require 'rubocop/rake_task'
 desc 'Run RuboCop on the lib directory'
 Rubocop::RakeTask.new(:rubocop) do |task|
