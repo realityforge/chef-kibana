@@ -10,6 +10,7 @@ Berksfile.lock
 
 # Bundler
 Gemfile.lock
+.rakeTasks
 bin/*
 .bundle/*
 # Ignore IDEA project files
