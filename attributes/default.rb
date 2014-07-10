@@ -47,6 +47,10 @@ default['kibana']['default_operator'] = 'OR'
 default['kibana']['config']['cookbook'] = nil
 #<> The template from which config.js is generated from
 default['kibana']['config']['source'] = nil
+#<> Fields specifiers which default to @message (may need to be changed for newer logstash)
+default['kibana']['highlighted_field'] = '@message'
+default['kibana']['primary_field'] = '@message'
+default['kibana']['default_index'] = '@message'
 
 #<> The host to create apache vhost for.
 default['kibana']['apache']['host'] = node['fqdn']

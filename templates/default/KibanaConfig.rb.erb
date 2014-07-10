@@ -58,7 +58,7 @@ module KibanaConfig
   # A field needs to be specified for the highlight feature. By default,
   # Elasticsearch doesn't allow highlighting on _all because the field has to
   # be either stored or part of the _source field.
-  Highlighted_field = "@message"
+  Highlighted_field = "<%= node['kibana']['highlighted_field'] %>"
 
   # Make URLs clickable in detailed view
   Clickable_URLs = true
@@ -134,10 +134,10 @@ module KibanaConfig
   # field called _all that is searched when no field is specified.
   # Dropping _all can reduce index size significantly. If you do that
   # you'll need to change primary_field to be '@message'
-  Primary_field = '@message'
+  Primary_field = '<%= node['kibana']['primary_field'] %>'
 
   # Default Elastic Search index to query
-  Default_index = '@message'
+  Default_index = '<%= node['kibana']['default_index'] %>'
 
   # TODO: This isn't functional yet
   # Prevent wildcard search terms which result in extremely slow queries
