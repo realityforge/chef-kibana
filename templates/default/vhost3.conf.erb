@@ -28,6 +28,7 @@ NameVirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana'][
     <Location "/">
       Order allow,deny
       Allow from all
+      Require all granted
       SetHandler None
     </Location>
 
