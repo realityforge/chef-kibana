@@ -18,7 +18,7 @@ template "#{node['apache']['dir']}/htpasswd" do
   mode 00644
 end
 
-template "#{node['apache']['dir']}/sites-available/kibana" do
+template "#{node['apache']['dir']}/sites-available/kibana.conf" do
   source 'vhost.conf.erb' if node['kibana']['version'] =~ /^2/
   source 'vhost3.conf.erb' if node['kibana']['version'] =~ /^3/
   owner node['apache']['user']
