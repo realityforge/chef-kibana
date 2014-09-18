@@ -1,4 +1,4 @@
-## v0.1.7:
+## v0.1.8:
 * Add test-ktichen support for 12.04
 * Re-order default attributes file for future changes
 
