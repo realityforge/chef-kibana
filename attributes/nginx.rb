@@ -2,6 +2,8 @@
 default['kibana']['nginx']['listen_http']  = 80
 default['kibana']['nginx']['listen_https'] = 443
 
+default['kibana']['nginx']['client_max_body'] = '50M'
+
 default['kibana']['nginx']['ssl'] = false
 
 # BYOC - bring your own certificates

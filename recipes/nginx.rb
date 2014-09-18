@@ -11,6 +11,7 @@ template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
     'log_dir' => node['nginx']['log_dir'],
     'listen_http' => node['kibana']['nginx']['listen_http'],
     'listen_https' => node['kibana']['nginx']['listen_https'],
+    'client_max_body' => node['kibana']['nginx']['client_max_body'],
     'server_name' => node['kibana']['nginx']['server_name'],
     'ssl' => node['kibana']['nginx']['ssl'],
     'ssl_certificate' => node['kibana']['nginx']['ssl_certificate'],
