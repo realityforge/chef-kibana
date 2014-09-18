@@ -1,4 +1,7 @@
 ## v0.1.8:
+* nginx support. Submitted by Gregoire Seux and Jonathon W. Marshall.
+* Add initial support for centos. Submitted by Gregoire Seux.
+* Support configuration of the default operator, default fields, highlighted\_field, primary\_field and default\_index. Submitted by Joseph Anthony Pasquale Holsten.
 * Add test-ktichen support for 12.04
 * Re-order default attributes file for future changes
 
