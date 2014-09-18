@@ -66,3 +66,31 @@ default['kibana']['apache']['basic_auth_password'] = 'PLEASEchangeme'
 default['kibana']['apache']['port'] = 80
 #<> The port on which to bind nginx
 default['kibana']['nginx']['port'] = 80
+
+#<> The port on which to bind nginx.
+default['kibana']['nginx']['listen_http']  = 80
+#<> The HTTPS port on which to bind nginx.
+default['kibana']['nginx']['listen_https'] = 443
+
+default['kibana']['nginx']['client_max_body'] = '50M'
+
+#<> Boolean switch to enable SSL configuration.
+default['kibana']['nginx']['ssl'] = false
+
+#<> The path to the SSL certificate file.
+default['kibana']['nginx']['ssl_certificate']     = nil
+#<> The path to the SSL certificate key.
+default['kibana']['nginx']['ssl_certificate_key'] = nil
+
+# nginx ssl boilerplate
+#<> The SSL protocols.
+default['kibana']['nginx']['ssl_protocols']       = 'TLSv1 TLSv1.1 TLSv1.2'
+#<> The SSL ciphers.
+default['kibana']['nginx']['ssl_ciphers']         = 'ECDHE-RSA-RC4-SHA:ECDHE-RSA-AES128-SHA:AES256-CGM-SHA256:ECDHE-RSA-AES256-SHA256:RC4:HIGH:!aNULL:!MD5:-LOW:-SSLv2:-EXP'
+#<> The SSL session cache.
+default['kibana']['nginx']['ssl_session_cache']   = 'shared:SSL:10m'
+#<> The SSL session timeout.
+default['kibana']['nginx']['ssl_session_timeout'] = '10m'
+
+#<> The virtualhost server name.
+default['kibana']['nginx']['server_name'] = 'kibana'
