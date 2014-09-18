@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 # ports to listen on for http/https
 default['kibana']['nginx']['listen_http']  = 80
 default['kibana']['nginx']['listen_https'] = 443
