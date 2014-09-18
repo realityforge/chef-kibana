@@ -36,6 +36,16 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * `node['kibana']['apache']['host']` - The host to create apache vhost for. Defaults to `node['fqdn']`.
 * `node['kibana']['apache']['interface']` - The interface on which to bind apache. Defaults to `node['ipaddress']`.
 * `node['kibana']['apache']['port']` - The port on which to bind apache. Defaults to `80`.
+* `node['kibana']['nginx']['listen_http']` - The port on which to bind nginx. Defaults to `80`
+* `node['kibana']['nginx']['listen_https']` - The HTTPS port on which to bind nginx. Defaults to `443`
+* `node['kibana']['nginx']['ssl']` - Boolean switch to enable SSL configuration. Defaults to `false`
+* `node['kibana']['nginx']['ssl_certificate']` - The path to the SSL certificate file. Defaults to `nil`
+* `node['kibana']['nginx']['ssl_certificate_key']` - The path to the SSL certificate key. Defaults to `nil`
+* `node['kibana']['nginx']['ssl_protocols']` - The SSL protocols - Defaults to `SSLv3 TLSv1 TLSv1.1 TLSv1.2`
+* `node['kibana']['nginx']['ssl_ciphers']` - The SSL ciphers. Defaults to `HIGH:!aNULL:!MD5:!EXP:!kEDH`
+* `node['kibana']['nginx']['ssl_session_cache']` - The SSL session cache. Defaults to `shared:SSL:10m`
+* `node['kibana']['nginx']['ssl_session_timeout']` - The SSL session timeout. Defaults to `10m`
+* `node['kibana']['nginx']['server_name']` - The virtualhost server name. Defaults to `kibana`
 
 # Recipes
 
