@@ -76,6 +76,8 @@ default['kibana']['nginx']['client_max_body'] = '50M'
 
 #<> Boolean switch to enable SSL configuration.
 default['kibana']['nginx']['ssl'] = false
+#<> Boolean switch to enable nginx search query proxy
+default['kibana']['nginx']['proxy'] = false
 
 #<> The path to the SSL certificate file.
 default['kibana']['nginx']['ssl_certificate']     = nil
