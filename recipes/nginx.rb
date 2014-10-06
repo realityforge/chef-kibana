@@ -7,7 +7,7 @@ template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
   owner node['nginx']['user']
   mode '0644'
   variables(
-    'root' => File.join(node['kibana']['base_dir'], 'current', 'src'),
+    'root' => File.join(node['kibana']['base_dir'], 'current'),
     'log_dir' => node['nginx']['log_dir'],
     'listen_http' => node['kibana']['nginx']['listen_http'],
     'listen_https' => node['kibana']['nginx']['listen_https'],
