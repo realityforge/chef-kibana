@@ -22,7 +22,7 @@ template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
     'ssl_session_timeout' => node['kibana']['nginx']['ssl_session_timeout'],
     'proxy'               => node['kibana']['nginx']['proxy'],
     'auth'                => node['kibana']['nginx']['auth'],
-    'auth_path'           => node['kibana']['auth_path']
+    'auth_file'           => node['kibana']['auth_file']
   )
 end
 

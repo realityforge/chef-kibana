@@ -31,7 +31,7 @@ server {
     index index.html index.htm;
     <% if @auth %>
     auth_basic "Kibana Auth";
-    auth_basic_user_file <%= @auth_path %>;
+    auth_basic_user_file <%= @auth_file %>;
     <% end %>
   }
 

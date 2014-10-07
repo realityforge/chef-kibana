@@ -82,7 +82,7 @@ default['kibana']['nginx']['proxy'] = false
 default['kibana']['nginx']['auth'] = false
 
 #<> The path to auth basic file
-default['kibana']['nginx']['auth_path'] = '/etc/nginx/htpasswd.users'
+default['kibana']['auth_file'] = '/etc/nginx/htpasswd.users'
 
 #<> The path to the SSL certificate file.
 default['kibana']['nginx']['ssl_certificate']     = nil
