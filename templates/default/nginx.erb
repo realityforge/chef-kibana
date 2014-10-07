@@ -29,6 +29,10 @@ server {
   location / {
     root <%= @root %>;
     index index.html index.htm;
+    <% if @auth %>
+    auth_basic "Kibana Auth";
+    auth_basic_user_file <%= @auth_path %>;
+    <% end %>
   }
 
   <% if @proxy %>

@@ -20,10 +20,13 @@ template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
     'ssl_ciphers'         => node['kibana']['nginx']['ssl_ciphers'],
     'ssl_session_cache'   => node['kibana']['nginx']['ssl_session_cache'],
     'ssl_session_timeout' => node['kibana']['nginx']['ssl_session_timeout'],
-    'proxy'               => node['kibana']['nginx']['proxy']
+    'proxy'               => node['kibana']['nginx']['proxy'],
+    'auth'                => node['kibana']['nginx']['auth'],
+    'auth_path'           => node['kibana']['auth_path']
   )
 end
 
 nginx_site 'kibana' do
   enable true
 end
+
