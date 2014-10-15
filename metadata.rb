@@ -10,7 +10,7 @@ version          '0.1.8'
 
 depends 'build-essential'
 depends 'ark'
-depends 'apache2', '>= 2.0'
+suggests 'apache2', '>= 2.0'
 suggests 'authbind'
 suggests 'apt'
 suggests 'nginx'
