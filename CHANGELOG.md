@@ -1,4 +1,5 @@
 ## v0.1.10:
+* Replace depends with suggest for the apache cookbook as it is not needed when using nginx. Submitted by Bryan Casey.
 
 ## v0.1.8:
 * nginx support. Submitted by Gregoire Seux and Jonathon W. Marshall.
