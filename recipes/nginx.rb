@@ -29,4 +29,3 @@ end
 nginx_site 'kibana' do
   enable true
 end
-
