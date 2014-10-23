@@ -20,7 +20,7 @@ default['kibana']['checksum'] = 'df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0
 default['kibana']['git']['url'] = if node['kibana']['version'] > '2'
                                     'https://github.com/elasticsearch/kibana.git'
                                   else
-                                    'https://github.com/rashidkpc/Kibana.git'
+                                    'https://github.com/rashidkpc/kibana2.git'
                                   end
 #<> The git reference in the Kibana repository.
 default['kibana']['git']['reference'] = if node['kibana']['version'] > '2'
