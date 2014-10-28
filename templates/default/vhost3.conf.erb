@@ -12,23 +12,25 @@ NameVirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana'][
   DocumentRoot "<%= "#{node['kibana']['base_dir']}/current" %>"
 
   <% if node['kibana']['apache']['proxy'] %>
+  <% node['kibana']['elasticsearch']['hosts'].each do |ip| %>
   # Set global proxy timeouts
-  <Proxy http://<%= node['kibana']['elasticsearch']['hosts'] %>:9200>
+  <Proxy http://<%= ip %>:9200>
     ProxySet connectiontimeout=5 timeout=90
   </Proxy>
 
   # Proxy for _aliases and .*/_search
   <LocationMatch "^(/_aliases|.*/_aliases|.*/_search|.*/_mapping|/_nodes)$">
-    ProxyPassMatch http://<%= node['kibana']['elasticsearch']['hosts'] %>:9200
-    ProxyPassReverse http://<%= node['kibana']['elasticsearch']['hosts'] %>:9200
+    ProxyPassMatch http://<%= ip %>:9200
+    ProxyPassReverse http://<%= ip %>:9200
   </LocationMatch>
 
   # Proxy for kibana-int/{dashboard,temp} stuff (if you don't want auth on /, then you will want these to be protected)
   <LocationMatch "^(/kibana-int/dashboard/|/kibana-int/temp).*$">
-    ProxyPassMatch http://<%= node['kibana']['elasticsearch']['hosts'] %>:9200
-    ProxyPassReverse http://<%= node['kibana']['elasticsearch']['hosts'] %>:9200
+    ProxyPassMatch http://<%= ip %>:9200
+    ProxyPassReverse http://<%= ip %>:9200
   </LocationMatch>
-  <%end%>
+  <% end %>
+  <% end %>
 
   <% if node['kibana']['apache']['basic_auth'] == 'on' %>
 
