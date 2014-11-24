@@ -65,7 +65,7 @@ default['kibana']['apache']['basic_auth_password'] = 'PLEASEchangeme'
 #<> The port on which to bind apache.
 default['kibana']['apache']['port'] = 80
 #<> Boolean switch to enable apache search query proxy
-default['kibana']['apache']['port'] = false
+default['kibana']['apache']['proxy'] = false
 #<> The port on which to bind nginx
 default['kibana']['nginx']['port'] = 80
 
