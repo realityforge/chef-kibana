@@ -16,7 +16,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 
 * build-essential
 * ark
-* apache2 (>= 2.0)
+* apache2 (>= 2.0, Suggested but not required)
 * authbind (Suggested but not required)
 * apt (Suggested but not required)
 * nginx (Suggested but not required)
