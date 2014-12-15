@@ -16,7 +16,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 
 * build-essential
 * ark
-* apache2 (>= 2.0, Suggested but not required)
+* apache2 (>= 2.0) (Suggested but not required)
 * authbind (Suggested but not required)
 * apt (Suggested but not required)
 * nginx (Suggested but not required)
@@ -51,11 +51,15 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * `node['kibana']['apache']['basic_auth_username']` - Apache http auth username. Defaults to `admin`.
 * `node['kibana']['apache']['basic_auth_password']` - Apache http auth password. Defaults to `PLEASEchangeme`.
 * `node['kibana']['apache']['port']` - The port on which to bind apache. Defaults to `80`.
+* `node['kibana']['apache']['proxy']` - Boolean switch to enable apache search query proxy. Defaults to `false`.
 * `node['kibana']['nginx']['port']` - The port on which to bind nginx. Defaults to `80`.
 * `node['kibana']['nginx']['listen_http']` - The port on which to bind nginx. Defaults to `80`.
 * `node['kibana']['nginx']['listen_https']` - The HTTPS port on which to bind nginx. Defaults to `443`.
 * `node['kibana']['nginx']['client_max_body']` -  Defaults to `50M`.
 * `node['kibana']['nginx']['ssl']` - Boolean switch to enable SSL configuration. Defaults to `false`.
+* `node['kibana']['nginx']['proxy']` - Boolean switch to enable nginx search query proxy. Defaults to `false`.
+* `node['kibana']['nginx']['auth']` - Boolean switch to enable auth basic. Defaults to `false`.
+* `node['kibana']['auth_file']` - The path to auth basic file. Defaults to `/etc/nginx/htpasswd.users`.
 * `node['kibana']['nginx']['ssl_certificate']` - The path to the SSL certificate file. Defaults to `nil`.
 * `node['kibana']['nginx']['ssl_certificate_key']` - The path to the SSL certificate key. Defaults to `nil`.
 * `node['kibana']['nginx']['ssl_protocols']` - The SSL protocols. Defaults to `TLSv1 TLSv1.1 TLSv1.2`.
