@@ -103,3 +103,7 @@ default['kibana']['nginx']['ssl_session_timeout'] = '10m'
 
 #<> The virtualhost server name.
 default['kibana']['nginx']['server_name'] = 'kibana'
+
+#<> The kibana service configuration source
+default['kibana']['service']['source'] = 'upstart.conf.erb'
+default['kibana']['service']['cookbook'] = 'kibana'

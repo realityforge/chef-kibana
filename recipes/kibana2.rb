@@ -39,17 +39,7 @@ bash 'kibana bundle install' do
   code 'bundle install'
 end
 
-service 'kibana' do
-  provider Chef::Provider::Service::Upstart
-  supports start: true, restart: true, stop: true, status: true
-  action :nothing
-end
-
-template '/etc/init/kibana.conf' do
-  source 'upstart.conf.erb'
-  mode '0600'
-  notifies :restart, 'service[kibana]', :delayed
-end
+include_recipe 'kibana::_service'
 
 template "#{node['kibana']['base_dir']}/KibanaConfig.rb" do
   source 'KibanaConfig.rb.erb'
