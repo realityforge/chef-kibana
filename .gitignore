@@ -25,3 +25,4 @@ bin/*
 /patch.*
 .kitchen/
 .kitchen.local.yml
+.kitchen.list.yml

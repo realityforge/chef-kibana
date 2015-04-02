@@ -1,11 +1,13 @@
 # Encoding: utf-8
 
 #<> Kibana version
-default['kibana']['version'] = '2'
+default['kibana']['version'] = '4.0.2'
 #<> Kibana3 exact version
-default['kibana']['kibana3_version'] = '3.0.0'
+# should be only one such variable
+#default['kibana']['kibana3_version'] = '3.0.0'
 #<> The base directory of kibana.
 default['kibana']['base_dir'] = '/opt/kibana'
+default['kibana']['log_file'] = '/var/log/kibana.log'
 #<> The user under which Kibana is installed.
 default['kibana']['user'] = 'kibana'
 #<> The group under which Kibana is installed.
@@ -13,9 +15,18 @@ default['kibana']['group'] = 'kibana'
 #<> Install method. Can be source or release
 default['kibana']['install_method'] = 'release'
 #<> Url of tarball
-default['kibana']['url'] = "https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz"
+if node['kibana']['version'].to_i < 4
+  default['kibana']['url'] = "https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['version']}.tar.gz"
+else
+  if node['kernel']['machine'] == 'x86_64'
+    default['kibana']['url'] = "https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['version']}-linux-x64.tar.gz"
+  else
+    default['kibana']['url'] = "https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['version']}-linux-x86.tar.gz"
+  end
+end
 #<> Checksum of the tarball
-default['kibana']['checksum'] = 'df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8'
+#default['kibana']['checksum'] = 'df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8'
+default['kibana']['checksum'] = nil
 #<> The URL to Kibana repository.
 default['kibana']['git']['url'] = if node['kibana']['version'] > '2'
                                     'https://github.com/elasticsearch/kibana.git'
@@ -24,7 +35,7 @@ default['kibana']['git']['url'] = if node['kibana']['version'] > '2'
                                   end
 #<> The git reference in the Kibana repository.
 default['kibana']['git']['reference'] = if node['kibana']['version'] > '2'
-                                          'v' + node['kibana']['kibana3_version']
+                                          'v' + node['kibana']['version']
                                         else
                                           'v0.2.0'
                                         end
