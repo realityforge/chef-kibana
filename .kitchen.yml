@@ -29,7 +29,7 @@ suites:
     - 'recipe[kibana::apache]'
   attributes:
     kibana:
-      version: '3'
+      version: '3.1.2'
 - name: kibana3_nginx
   run_list:
     - 'recipe[kibana]'
@@ -37,7 +37,7 @@ suites:
     - 'recipe[kibana::nginx]'
   attributes:
     kibana:
-      version: '3'
+      version: '3.1.2'
 - name: kibana3_source
   run_list:
     - 'recipe[kibana]'
@@ -45,7 +45,7 @@ suites:
     - 'recipe[kibana::apache]'
   attributes:
     kibana:
-      version: '3'
+      version: '3.1.2'
       install_method: 'source'
 - name: kibana4_nginx
   run_list:
