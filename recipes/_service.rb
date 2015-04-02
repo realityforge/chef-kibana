@@ -9,6 +9,11 @@ end
 template '/etc/init/kibana.conf' do
   cookbook node['kibana']['service']['cookbook']
   source node['kibana']['service']['source']
+  variables(
+    version: node['kibana']['version'],
+    options: '', # TODO
+    recent_upstart: (node['platform_family'] != 'rhel'),
+  )
   mode '0600'
   notifies :restart, 'service[kibana]', :delayed
 end

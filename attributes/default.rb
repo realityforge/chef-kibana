@@ -12,8 +12,10 @@ default['kibana']['user'] = 'kibana'
 default['kibana']['group'] = 'kibana'
 #<> Install method. Can be source or release
 default['kibana']['install_method'] = 'release'
+
+url_version = node['kibana']["kibana#{node['kibana']['version']}_version"] || node['kibana']['version']
 #<> Url of tarball
-default['kibana']['url'] = "https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz"
+default['kibana']['url'] = Kibana::Url.new(node, url_version).get
 #<> Checksum of the tarball
 default['kibana']['checksum'] = 'df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8'
 #<> The URL to Kibana repository.
@@ -43,9 +45,9 @@ default['kibana']['elasticsearch']['port'] = 9200
 default['kibana']['default_fields'] = '["@message"]'
 #<> The operator used if no explicit operator is specified.
 default['kibana']['default_operator'] = 'OR'
-#<> The cookbook from which config.js template is taken
+#<> The cookbook from which configuration template is taken
 default['kibana']['config']['cookbook'] = nil
-#<> The template from which config.js is generated from
+#<> The template from which configuration is generated from
 default['kibana']['config']['source'] = nil
 #<> Fields specifiers which default to @message (may need to be changed for newer logstash)
 default['kibana']['highlighted_field'] = '@message'
@@ -103,6 +105,12 @@ default['kibana']['nginx']['ssl_session_timeout'] = '10m'
 
 #<> The virtualhost server name.
 default['kibana']['nginx']['server_name'] = 'kibana'
+
+#<> Redirect requests to kibana service
+default['kibana']['nginx']['kibana_service'] = nil
+unless node['kibana']['version'] =~ /^3\./
+  default['kibana']['nginx']['kibana_service'] = "http://localhost:#{node['kibana']['port']}"
+end
 
 #<> The kibana service configuration source
 default['kibana']['service']['source'] = 'upstart.conf.erb'
