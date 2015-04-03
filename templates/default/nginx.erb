@@ -33,6 +33,9 @@ server {
     auth_basic "Kibana Auth";
     auth_basic_user_file <%= @auth_file %>;
     <% end %>
+    <% if @kibana_service %>
+    proxy_pass <%= @kibana_service %>;
+    <% end %>
   }
 
   <% if @proxy %>

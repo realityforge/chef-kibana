@@ -47,3 +47,14 @@ suites:
     kibana:
       version: '3'
       install_method: 'source'
+- name: kibana4_nginx
+  run_list:
+    - 'recipe[kibana]'
+    - 'recipe[nginx]'
+    - 'recipe[kibana::nginx]'
+  attributes:
+    kibana:
+      version: '4.0.2'
+      checksum: 4cc36e5c6ca7c495667319df75feda1facb7c43a3d9686841f07a2522adec294
+      nginx:
+        server_name: localhost
