@@ -3,7 +3,8 @@
 include_recipe 'nginx'
 
 template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
-  source 'nginx.erb'
+  source 'nginx.erb' if node['kibana']['version'].to_i < 4
+  source 'nginx4.erb' if node['kibana']['version'].to_i >= 4
   owner node['nginx']['user']
   mode '0644'
   variables(
