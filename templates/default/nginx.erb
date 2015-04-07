@@ -27,11 +27,16 @@ server {
 
 
   location / {
-    root <%= @root %>;
-    index index.html index.htm;
-    <% if @auth %>
-    auth_basic "Kibana Auth";
-    auth_basic_user_file <%= @auth_file %>;
+    <% if node['kibana']['version'].to_i < 4 %>
+      root <%= @root %>;
+      index index.html index.htm;
+      <% if @auth %>
+      auth_basic "Kibana Auth";
+      auth_basic_user_file <%= @auth_file %>;
+      <% end %>
+    <% else %>
+      proxy_pass http://<%= node['kibana']['interface'] %>:<%= node['kibana']['port'] %>;
+      proxy_read_timeout 300;
     <% end %>
   }
 

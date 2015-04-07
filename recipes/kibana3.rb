@@ -16,8 +16,8 @@ if node['kibana']['install_method'] == 'source'
 else
   ark 'kibana' do
     url node['kibana']['url']
-    version node['kibana']['kibana3_version']
-    checksum node['kibana']['checksum']
+    version node['kibana']['version']
+    checksum node['kibana']['checksum'] unless node['kibana']['checksum']
     path node['kibana']['base_dir']
     home_dir File.join(node['kibana']['base_dir'], 'current')
   end
