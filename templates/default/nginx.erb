@@ -37,10 +37,6 @@ server {
     <% else %>
       proxy_pass http://<%= node['kibana']['interface'] %>:<%= node['kibana']['port'] %>;
       proxy_read_timeout 300;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection 'upgrade';
-      proxy_set_header Host $host;
-      proxy_cache_bypass $http_upgrade;
     <% end %>
   }
 
