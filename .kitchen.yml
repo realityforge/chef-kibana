@@ -3,7 +3,7 @@ driver_plugin: vagrant
 driver_config:
   require_chef_omnibus: true
   network:
-    - ["forwarded_port", {guest: 80, host: 8080}]
+    - ["forwarded_port", {guest: 8080, host: 8080}]
 
 platforms:
 - name: ubuntu-12.04
@@ -30,6 +30,8 @@ suites:
   attributes:
     kibana:
       version: '3'
+      nginx:
+        listen_http: 8080
 - name: kibana3_nginx
   run_list:
     - 'recipe[kibana]'
@@ -46,4 +48,31 @@ suites:
   attributes:
     kibana:
       version: '3'
+      nginx:
+        listen_http: 8080
+      install_method: 'source'
+- name: kibana4
+  run_list:
+    - 'recipe[kibana]'
+  attributes:
+    kibana:
+      version: '4'
+- name: kibana4_nginx
+  run_list:
+    - 'recipe[kibana]'
+    - 'recipe[nginx]'
+    - 'recipe[kibana::nginx]'
+    - 'recipe[java]'
+    - 'recipe[elasticsearch]'
+  attributes:
+    kibana:
+      version: '4'
+      nginx:
+        listen_http: 8080
+- name: kibana4_source
+  run_list:
+    - 'recipe[kibana]'
+  attributes:
+    kibana:
+      version: '4'
       install_method: 'source'
