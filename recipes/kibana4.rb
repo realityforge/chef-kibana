@@ -23,10 +23,11 @@ template File.join(node['kibana']['base_dir'], config_path) do
   group    node['kibana']['group']
   mode     '0644'
   variables(
-    es_port: node['kibana']['elasticsearch']['port'],
-    port:    node['kibana']['port'],
-    bind:    node['kibana']['interface'],
-    es_host: node['kibana']['elasticsearch']['hosts'].first,
+    bind:       node['kibana']['interface'],
+    port:       node['kibana']['port'],
+    es_host:    node['kibana']['elasticsearch']['hosts'].first,
+    es_port:    node['kibana']['elasticsearch']['port'],
+    defaultapp: node['kibana']['defaultapp']
   )
   notifies :restart, 'service[kibana]'
 end

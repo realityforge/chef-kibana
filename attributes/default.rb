@@ -121,3 +121,6 @@ end
 #<> The kibana service configuration source
 default['kibana']['service']['source'] = 'upstart.conf.erb'
 default['kibana']['service']['cookbook'] = 'kibana'
+
+#<> The kibana 4 default application on load
+default['kibana']['defaultapp'] = 'discover'
