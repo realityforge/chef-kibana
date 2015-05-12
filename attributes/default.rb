@@ -40,9 +40,6 @@ default['kibana']['rubyversion'] = '1.9.1'
 
 #<> The interface on which to bind.
 default['kibana']['interface'] = '127.0.0.1'
-unless node['kibana']['version'] =~ /^3/
-    default['kibana']['interface'] = node['ipaddress']
-end
 
 #<> The port on which to bind.
 default['kibana']['port'] = 5601
