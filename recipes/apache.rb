@@ -19,6 +19,7 @@ template "#{node['apache']['dir']}/htpasswd" do
 end
 
 template "#{node['apache']['dir']}/sites-available/kibana.conf" do
+  variables(index: node['kibana']['index'])
   source 'vhost.conf.erb' if node['kibana']['version'] =~ /^2/
   source 'vhost3.conf.erb' if node['kibana']['version'] =~ /^3/
   owner node['apache']['user']

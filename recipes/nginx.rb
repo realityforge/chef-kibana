@@ -23,7 +23,8 @@ template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
     'proxy'               => node['kibana']['nginx']['proxy'],
     'kibana_service'      => node['kibana']['nginx']['kibana_service'],
     'auth'                => node['kibana']['nginx']['auth'],
-    'auth_file'           => node['kibana']['auth_file']
+    'auth_file'           => node['kibana']['auth_file'],
+    'index'               => node['kibana']['index']
   )
 end
 
