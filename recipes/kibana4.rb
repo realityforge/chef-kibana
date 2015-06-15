@@ -27,6 +27,7 @@ template File.join(node['kibana']['base_dir'], config_path) do
     port:       node['kibana']['port'],
     es_host:    node['kibana']['elasticsearch']['hosts'].first,
     es_port:    node['kibana']['elasticsearch']['port'],
+    index:      node['kibana']['index'],
     defaultapp: node['kibana']['defaultapp']
   )
   notifies :restart, 'service[kibana]'

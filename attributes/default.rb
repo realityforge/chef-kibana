@@ -5,7 +5,7 @@ default['kibana']['version'] = '2'
 #<> Kibana3 exact version
 default['kibana']['kibana3_version'] = '3.0.0'
 #<> Kibana4 exact version
-default['kibana']['kibana4_version'] = '4.0.2'
+default['kibana']['kibana4_version'] = '4.1.0'
 #<> The base directory of kibana.
 default['kibana']['base_dir'] = '/opt/kibana'
 #<> The user under which Kibana is installed.
@@ -21,7 +21,7 @@ default['kibana']['url'] = Kibana::Url.new(node, url_version).get
 #<> Checksum of the tarball
 default['kibana']['checksum'] = 'df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8'
 #<> Checksum of the tarball (for Kibana4)
-default['kibana']['kibana4_checksum'] = '4cc36e5c6ca7c495667319df75feda1facb7c43a3d9686841f07a2522adec294'
+default['kibana']['kibana4_checksum'] = '597e1b1e381b9a9ed9f8a66e115ec4d7a0258fa36c81fe74f1e91b651fcd567a'
 
 #<> The URL to Kibana repository.
 default['kibana']['git']['url'] = if node['kibana']['version'] > '2'
@@ -47,6 +47,13 @@ default['kibana']['port'] = 5601
 default['kibana']['elasticsearch']['hosts'] = ['127.0.0.1']
 #<> The port of the elasticsearch http service.
 default['kibana']['elasticsearch']['port'] = 9200
+
+default['kibana']['index'] = if node['kibana']['version'] > '3'
+                               '.kibana'
+                             else
+                               'kibana-int'
+                             end
+
 #<> The which fields are shown by default.
 default['kibana']['default_fields'] = '["@message"]'
 #<> The operator used if no explicit operator is specified.

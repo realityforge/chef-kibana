@@ -24,8 +24,8 @@ NameVirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana'][
     ProxyPassReverse http://<%= ip %>:9200
   </LocationMatch>
 
-  # Proxy for kibana-int/{dashboard,temp} stuff (if you don't want auth on /, then you will want these to be protected)
-  <LocationMatch "^(/kibana-int/dashboard/|/kibana-int/temp).*$">
+  # Proxy for <%= @index %>/{dashboard,temp} stuff (if you don't want auth on /, then you will want these to be protected)
+  <LocationMatch "^(/<%= @index %>/dashboard/|/<%= @index %>/temp).*$">
     ProxyPassMatch http://<%= ip %>:9200
     ProxyPassReverse http://<%= ip %>:9200
   </LocationMatch>
