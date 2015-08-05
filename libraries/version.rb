@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 class Kibana
   # All to find correct url to download kibana
   class Url

@@ -6,53 +6,38 @@
 NameVirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana']['apache']['port'] %>
 <% end -%>
 <VirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana']['apache']['port'] %>>
-
   ServerName <%= node['kibana']['apache']['host'] %>
   ServerAlias <%= node['kibana']['apache']['host'] %>
   DocumentRoot "<%= "#{node['kibana']['base_dir']}/current" %>"
+<% if node['kibana']['apache']['proxy'] %>
 
-  <% if node['kibana']['apache']['proxy'] %>
-  <% node['kibana']['elasticsearch']['hosts'].each do |ip| %>
+<% node['kibana']['elasticsearch']['hosts'].each do |ip| %>
   # Set global proxy timeouts
   <Proxy http://<%= ip %>:9200>
     ProxySet connectiontimeout=5 timeout=90
   </Proxy>
-
   # Proxy for _aliases and .*/_search
   <LocationMatch "^(/_aliases|.*/_aliases|.*/_search|.*/_mapping|/_nodes)$">
     ProxyPassMatch http://<%= ip %>:9200
     ProxyPassReverse http://<%= ip %>:9200
   </LocationMatch>
-
   # Proxy for <%= @index %>/{dashboard,temp} stuff (if you don't want auth on /, then you will want these to be protected)
   <LocationMatch "^(/<%= @index %>/dashboard/|/<%= @index %>/temp).*$">
     ProxyPassMatch http://<%= ip %>:9200
     ProxyPassReverse http://<%= ip %>:9200
   </LocationMatch>
-  <% end %>
-  <% end %>
+<% end %>
+<% end %>
 
-  <% if node['kibana']['apache']['basic_auth'] == 'on' %>
-
-    <Location "/">
-      Order allow,deny
-      Allow from all
-      AuthType basic
-      AuthName "Kibana"
-      AuthBasicProvider file
-      AuthUserFile <%= node['apache']['dir'] %>/htpasswd
-      require valid-user
-    </Location>
-
-  <% else %>
-
-    <Location "/">
-      Order allow,deny
-      Allow from all
-      Require all granted
-      SetHandler None
-    </Location>
-
-  <% end %>
-
+  <Location "/">
+    Order allow,deny
+    Allow from all
+<% if node['kibana']['apache']['basic_auth'] == 'on' %>
+    AuthType basic
+    AuthName "Kibana"
+    AuthBasicProvider file
+    AuthUserFile <%= node['apache']['dir'] %>/htpasswd
+    require valid-user
+<% end %>
+  </Location>
 </VirtualHost>

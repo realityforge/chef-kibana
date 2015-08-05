@@ -54,9 +54,18 @@ suites:
 - name: kibana4
   run_list:
     - 'recipe[kibana]'
+    - 'recipe[apache2]'
+    - 'recipe[kibana::apache]'
+    - 'recipe[java]'
+    - 'recipe[elasticsearch]'
   attributes:
+    apache:
+      listen_ports:
+       - 8080
     kibana:
       version: '4'
+      apache:
+        port: 8080
 - name: kibana4_nginx
   run_list:
     - 'recipe[kibana]'

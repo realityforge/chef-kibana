@@ -12,7 +12,7 @@ if node['kibana']['install_method'] == 'release'
   end
   config_path = 'current/config/kibana.yml'
 else
-    Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release'")
+  Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release'")
 end
 
 # Apply config template
