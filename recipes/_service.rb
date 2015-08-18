@@ -12,7 +12,7 @@ template '/etc/init/kibana.conf' do
   variables(
     version: node['kibana']['version'],
     options: '', # TODO
-    recent_upstart: (node['platform_family'] != 'rhel'),
+    recent_upstart: (node['platform_family'] != 'rhel')
   )
   notifies :restart, 'service[kibana]', :delayed
 end
