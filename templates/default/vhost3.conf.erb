@@ -30,8 +30,12 @@ NameVirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana'][
 <% end %>
 
   <Location "/">
+    <% if node['apache']['version'] == '2.4' %>
+    Require all granted
+    <% else %>
     Order allow,deny
     Allow from all
+    <% end %>
 <% if node['kibana']['apache']['basic_auth'] == 'on' %>
     AuthType basic
     AuthName "Kibana"

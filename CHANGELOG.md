@@ -1,6 +1,7 @@
 ## v0.1.10:
 * Support proxying elasticsearch through apache. Submitted by Dmitry (cyberflow).
 * Replace depends with suggest for the apache cookbook as it is not needed when using nginx. Submitted by Bryan Casey.
+* Correct apache configuration to work with apache < 2.4. Submitted by Olivier Dolbeau (odolbeau).
 
 ## v0.1.8:
 * nginx support. Submitted by Gregoire Seux and Jonathon W. Marshall.
