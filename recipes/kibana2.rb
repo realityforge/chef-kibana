@@ -21,7 +21,7 @@ else
 end
 
 #gem1.8 doesn't get brought in with ruby1.8.x
-if  node['kibana']['rubyversion'] == '1.8'
+if node['kibana']['rubyversion'] == '1.8'
   package "rubygems#{node['kibana']['rubyversion']}"
 end
 
