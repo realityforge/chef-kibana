@@ -9,7 +9,7 @@ class Kibana
     end
 
     def get
-      prefix = 'https://download.elasticsearch.org/kibana/kibana/kibana-'
+      prefix = 'https://download.elastic.co/kibana/kibana/kibana-'
       suffix = case @version
                when /^3\./
                  "#{@version}.#{ext}"
