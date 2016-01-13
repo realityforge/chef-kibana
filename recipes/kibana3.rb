@@ -20,6 +20,7 @@ else
     checksum node['kibana']['checksum']
     path node['kibana']['base_dir']
     home_dir File.join(node['kibana']['base_dir'], 'current')
+    owner node['kibana']['user']
   end
   config_path = 'current/config.js'
 end
