@@ -14,3 +14,7 @@ end
 group :development do
   gem 'knife-cookbook-doc', '~> 0.7.0'
 end
+
+group :integration_docker do
+  gem 'kitchen-docker', '~> 2.3'
+end
