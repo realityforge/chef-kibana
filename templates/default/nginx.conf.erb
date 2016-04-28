@@ -1,0 +1,78 @@
+upstream elasticsearch {
+  <% node['kibana']['elasticsearch']['hosts'].each do |ip| %>
+  server <%= ip %>:<%= @port %> fail_timeout=0;
+  <% end %>
+}
+
+<% if @ssl %>
+server {
+  listen      <%= @listen_http %>;
+  server_name <%= @server_name %>;
+  rewrite     ^(.*) https://<%= @server_name %><% unless @listen_https == 443 %>:<%= @listen_https %><% end %>/;
+}
+<% end %>
+
+server {
+  listen       <% if @ssl %><%= @listen_https %><% else %><%= @listen_http %><% end %>;
+  server_name  <%= @server_name %>;
+
+  <% if @ssl %>
+  ssl on;
+  ssl_certificate     <%= @ssl_certificate %>;
+  ssl_certificate_key <%= @ssl_certificate_key %>;
+  ssl_protocols       <%= @ssl_protocols %>;
+  ssl_ciphers         <%= @ssl_ciphers %>;
+  ssl_session_cache   <%= @ssl_session_cache %>;
+  ssl_session_timeout <%= @ssl_session_timeout %>;
+  <% end %>
+
+  client_max_body_size <%= @client_max_body %>;
+
+  error_log   <%= @log_dir %>/<%= @server_name %>-errors.log;
+  access_log  <%= @log_dir %>/<%= @server_name %>.log;
+
+
+  location / {
+    root <%= @root %>;
+    index index.html index.htm;
+    <% if @auth %>
+    auth_basic "Kibana Auth";
+    auth_basic_user_file <%= @auth_file %>;
+    <% end %>
+    <% if @kibana_service %>
+    proxy_pass <%= @kibana_service %>;
+    <% end %>
+  }
+
+  <% if @proxy %>
+  location ~ ^/_aliases$ {
+    proxy_pass http://elasticsearch;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/.*/_aliases$ {
+    proxy_pass http://elasticsearch;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/_nodes$ {
+    proxy_pass http://elasticsearch;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/.*/_search$ {
+    proxy_pass http://elasticsearch;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/.*/_mapping {
+    proxy_pass http://elasticsearch;
+    proxy_read_timeout 90;
+  }
+
+  location ~ ^/<%= @index %>/dashboard/.*$ {
+    proxy_pass http://elasticsearch;
+    proxy_read_timeout 90;
+  }
+  location ~ ^/<%= @index %>/temp.*$ {
+    proxy_pass http://elasticsearch;
+    proxy_read_timeout 90;
+  }
+  <% end %>
+}

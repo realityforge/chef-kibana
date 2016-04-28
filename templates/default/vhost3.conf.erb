@@ -13,18 +13,18 @@ NameVirtualHost <%= node['kibana']['apache']['interface'] %>:<%= node['kibana'][
 
 <% node['kibana']['elasticsearch']['hosts'].each do |ip| %>
   # Set global proxy timeouts
-  <Proxy http://<%= ip %>:9200>
+  <Proxy http://<%= ip %>:<%= @port %>>
     ProxySet connectiontimeout=5 timeout=90
   </Proxy>
   # Proxy for _aliases and .*/_search
   <LocationMatch "^(/_aliases|.*/_aliases|.*/_search|.*/_mapping|/_nodes)$">
-    ProxyPassMatch http://<%= ip %>:9200
-    ProxyPassReverse http://<%= ip %>:9200
+    ProxyPassMatch http://<%= ip %>:<%= @port %>
+    ProxyPassReverse http://<%= ip %>:<%= @port %>
   </LocationMatch>
   # Proxy for <%= @index %>/{dashboard,temp} stuff (if you don't want auth on /, then you will want these to be protected)
   <LocationMatch "^(/<%= @index %>/dashboard/|/<%= @index %>/temp).*$">
-    ProxyPassMatch http://<%= ip %>:9200
-    ProxyPassReverse http://<%= ip %>:9200
+    ProxyPassMatch http://<%= ip %>:<%= @port %>
+    ProxyPassReverse http://<%= ip %>:<%= @port %>
   </LocationMatch>
 <% end %>
 <% end %>
