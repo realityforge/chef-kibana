@@ -36,7 +36,12 @@ default['kibana']['git']['reference'] = if node['kibana']['version'] > '2'
                                           'v0.2.0'
                                         end
 #<> The version of Ruby and Gems to use for Kibana.
-default['kibana']['rubyversion'] = '1.9.1'
+case node['platform_family']
+when 'debian'
+  default['kibana']['rubyversion'] = '1.9.1'
+when 'rhel'
+  default['kibana']['rubyversion'] = nil
+end
 
 #<> The interface on which to bind.
 default['kibana']['interface'] = '127.0.0.1'
