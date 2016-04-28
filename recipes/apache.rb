@@ -22,7 +22,8 @@ end
 template "#{node['apache']['dir']}/sites-available/kibana.conf" do
   variables(
     'index' => node['kibana']['index'],
-    'kibana_service' => node['kibana']['kibana_service']
+    'kibana_service' => node['kibana']['kibana_service'],
+    'port' => node['kibana']['elasticsearch']['port']
   )
   source 'vhost.conf.erb' if node['kibana']['version'] =~ /^2/
   source 'vhost3.conf.erb' if node['kibana']['version'] =~ /^3/

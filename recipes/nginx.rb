@@ -3,7 +3,7 @@
 include_recipe 'nginx'
 
 template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
-  source 'nginx.erb'
+  source node['kibana']['version'] == 4 ? 'nginx4.conf.erb' : 'nginx.conf.erb'
   cookbook node['kibana']['nginx']['cookbook']
   owner node['nginx']['user']
   mode '0644'
@@ -25,7 +25,9 @@ template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
     'auth'                => node['kibana']['nginx']['auth'],
     'auth_file'           => node['kibana']['auth_file'],
     'index'               => node['kibana']['index'],
-    'kibana_service'      => node['kibana']['kibana_service']
+    'kibana_service'      => node['kibana']['kibana_service'],
+    'elasticserach_hosts' => node['kibana']['elasticsearch']['hosts'],
+    'elasticserach_port'  => node['kibana']['elasticsearch']['port']
   )
 end
 
