@@ -26,9 +26,7 @@ if node['kibana']['rubyversion'] == '1.8'
 end
 
 # install rubygems package for centos 6
-if node['platform_family'] == 'rhel'
-  package 'rubygems'
-end
+package 'rubygems' if node['platform_family'] == 'rhel'
 
 gem_package 'bundler' do
   gem_binary "/usr/bin/gem#{node['kibana']['rubyversion']}"
