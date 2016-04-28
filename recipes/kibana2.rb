@@ -20,9 +20,14 @@ else
   package "ruby#{node['kibana']['rubyversion']}"
 end
 
-#gem1.8 doesn't get brought in with ruby1.8.x
+# gem1.8 doesn't get brought in with ruby1.8.x
 if node['kibana']['rubyversion'] == '1.8'
   package "rubygems#{node['kibana']['rubyversion']}"
+end
+
+# install rubygems package for centos 6
+if node['platform_family'] == 'rhel'
+  package 'rubygems'
 end
 
 gem_package 'bundler' do

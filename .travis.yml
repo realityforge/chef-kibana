@@ -8,8 +8,10 @@ services: docker
 
 env:
   matrix:
-  - INSTANCE=default-ubuntu-1204
-  - INSTANCE=default-centos-64
+  - TESTS="rubocop"
+  - TESTS="foodcritic"
+  - TESTS="integration:docker[default-ubuntu-1204]"
+  - TESTS="integration:docker[default-centos-64]"
 
 before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 0.9.0
 install: chef exec bundle install --jobs=3 --retry=3 --without='vagrant'
@@ -17,4 +19,4 @@ install: chef exec bundle install --jobs=3 --retry=3 --without='vagrant'
 # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
 before_script: sudo iptables -L DOCKER || sudo iptables -N DOCKER
 
-script: travis_retry chef exec bundle exec rake integration:docker[${INSTANCE}]
+script: travis_retry chef exec bundle exec rake ${TESTS}

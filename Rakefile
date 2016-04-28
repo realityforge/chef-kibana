@@ -41,4 +41,4 @@ namespace :integration do
   end
 end
 
-task default: [:rubocop, :foodcritic, :docker]
+task default: [:rubocop, :foodcritic]
