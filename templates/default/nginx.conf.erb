@@ -1,6 +1,6 @@
 upstream elasticsearch {
   <% node['kibana']['elasticsearch']['hosts'].each do |ip| %>
-  server <%= ip %>:<%= @port %> fail_timeout=0;
+  server <%= ip %>:<%= @elasticserach_port %> fail_timeout=0;
   <% end %>
 }
 

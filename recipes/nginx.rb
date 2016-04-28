@@ -3,7 +3,7 @@
 include_recipe 'nginx'
 
 template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
-  source node['kibana']['version'] == 4 ? 'nginx4.conf.erb' : 'nginx.conf.erb'
+  source node['kibana']['version'] == '4' ? 'nginx4.conf.erb' : 'nginx.conf.erb'
   cookbook node['kibana']['nginx']['cookbook']
   owner node['nginx']['user']
   mode '0644'
