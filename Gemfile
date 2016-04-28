@@ -4,11 +4,14 @@ gem 'berkshelf',            '~> 2.0.10'
 
 group :test do
   gem 'rake',               '~> 10.1.0'
-  gem 'test-kitchen',       '~> 1.0.0'
-  gem 'kitchen-vagrant',    '~> 0.11'
+  gem 'test-kitchen',       '~> 1.2'
   gem 'foodcritic',         '~> 3.0.3'
   gem 'rubocop',            '~> 0.23.0'
   gem 'chefspec',           '~> 3.0'
+end
+
+group :vagrant do
+  gem 'kitchen-vagrant',    '~> 0.11'
 end
 
 group :development do
