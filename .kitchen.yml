@@ -12,34 +12,27 @@ platforms:
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
   run_list:
   - recipe[apt]
+- name: ubuntu-14.04
+  run_list:
+    - recipe[apt]
 - name: centos-6.4
   driver_config:
     box: opscode-centos-6.4
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
 
 suites:
-- name: default
-  run_list:
-    - 'recipe[kibana]'
-  attributes: {}
-- name: kibana3
+- name: kibana3_apache
   run_list:
     - 'recipe[kibana]'
     - 'recipe[apache2]'
     - 'recipe[kibana::apache]'
-  attributes:
-    kibana:
-      version: '3'
-      nginx:
-        listen_http: 8080
+  attributes: {}
 - name: kibana3_nginx
   run_list:
     - 'recipe[kibana]'
     - 'recipe[nginx]'
     - 'recipe[kibana::nginx]'
-  attributes:
-    kibana:
-      version: '3'
+  attributes: {}
 - name: kibana3_source
   run_list:
     - 'recipe[kibana]'
@@ -47,9 +40,6 @@ suites:
     - 'recipe[kibana::apache]'
   attributes:
     kibana:
-      version: '3'
-      nginx:
-        listen_http: 8080
       install_method: 'source'
 - name: kibana4
   run_list:
@@ -78,10 +68,3 @@ suites:
       version: '4'
       nginx:
         listen_http: 8080
-- name: kibana4_source
-  run_list:
-    - 'recipe[kibana]'
-  attributes:
-    kibana:
-      version: '4'
-      install_method: 'source'

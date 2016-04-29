@@ -1,3 +1,7 @@
+## v.0.1.11:
+* removed support for kibana2 ( use 0.1.10 releases )
+* added serverspec tests
+
 ## v0.1.10:
 * Support proxying elasticsearch through apache. Submitted by Dmitry (cyberflow).
 * Replace depends with suggest for the apache cookbook as it is not needed when using nginx. Submitted by Bryan Casey.
