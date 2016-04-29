@@ -10,11 +10,6 @@ env:
   matrix:
   - TESTS="rubocop"
   - TESTS="foodcritic"
-  - TESTS="integration:docker[kibana3-apache-ubuntu-1204]"
-  - TESTS="integration:docker[kibana3-nginx-ubuntu-1204]"
-  - TESTS="integration:docker[kibana3-source-ubuntu-1204]"
-  - TESTS="integration:docker[kibana4-ubuntu-1204]"
-  - TESTS="integration:docker[kibana4-nginx-ubuntu-1204]"
   - TESTS="integration:docker[kibana3-apache-ubuntu-1404]"
   - TESTS="integration:docker[kibana3-nginx-ubuntu-1404]"
   - TESTS="integration:docker[kibana3-source-ubuntu-1404]"
