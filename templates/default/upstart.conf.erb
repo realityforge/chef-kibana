@@ -20,8 +20,6 @@ end script
 chdir <%= node['kibana']['base_dir'] %>
 <%
   command = case @version
-            when /^2/
-              "ruby#{node['kibana']['rubyversion']} kibana.rb"
             when /^3/
               raise "kibana 3 cannot be started as a service"
             when /^4/
