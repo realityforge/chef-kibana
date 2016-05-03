@@ -7,7 +7,6 @@ describe 'kibana' do
   end
   describe service('kibana') do
     it { should be_enabled }
-    it { should be_running.under('upstart') }
   end
 end
 
