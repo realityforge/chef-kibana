@@ -31,8 +31,8 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * `node['kibana']['install_method']` - Install method. Can be source or release. Defaults to `release`.
 * `node['kibana']['url']` - Url of tarball. Defaults to `https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz`.
 * `node['kibana']['checksum']` - Checksum of the tarball. Defaults to `df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8`.
-* `node['kibana']['git']['url']` - The URL to Kibana repository. Defaults to `if node['kibana']['version'] > '2`.
-* `node['kibana']['git']['reference']` - The git reference in the Kibana repository. Defaults to `if node['kibana']['version'] > '2`.
+* `node['kibana']['git']['url']` - The URL to Kibana repository. Defaults to `https://github.com/elasticsearch/kibana.git`.
+* `node['kibana']['git']['reference']` - The git reference in the Kibana repository. Defaults to `'v' + node['kibana']['kibana3_version']`.
 * `node['kibana']['rubyversion']` - The version of Ruby and Gems to use for Kibana. Defaults to `1.9.1`.
 * `node['kibana']['interface']` - The interface on which to bind. Defaults to `node['ipaddress']`.
 * `node['kibana']['port']` - The port on which to bind. Defaults to `5601`.
@@ -72,7 +72,6 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 
 * [kibana::apache](#kibanaapache) - Setup vhost for apache that rewrites to Kibana.
 * [kibana::default](#kibanadefault) - Install Kibana.
-* kibana::kibana2
 * kibana::kibana3
 * kibana::kibana4
 * kibana::nginx
