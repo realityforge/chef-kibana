@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'berkshelf',            '~> 4.0'
+gem 'berkshelf'
 
 group :test do
   gem 'rake',               '~> 10.1.0'

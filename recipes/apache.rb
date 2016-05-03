@@ -25,7 +25,6 @@ template "#{node['apache']['dir']}/sites-available/kibana.conf" do
     'kibana_service' => node['kibana']['kibana_service'],
     'port' => node['kibana']['elasticsearch']['port']
   )
-  source 'vhost.conf.erb' if node['kibana']['version'] =~ /^2/
   source 'vhost3.conf.erb' if node['kibana']['version'] =~ /^3/
   source 'vhost4.conf.erb' if node['kibana']['version'] =~ /^4/
   cookbook node['kibana']['apache']['cookbook']

@@ -1,7 +1,7 @@
 # Encoding: utf-8
 
 #<> Kibana major version
-default['kibana']['version'] = '2'
+default['kibana']['version'] = '3'
 #<> Kibana3 exact version
 default['kibana']['kibana3_version'] = '3.0.0'
 #<> Kibana4 exact version
@@ -24,17 +24,11 @@ default['kibana']['checksum'] = 'df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0
 default['kibana']['kibana4_checksum'] = '67d586e43a35652adeb6780eaa785d3d785ce60cc74fbf3b6a9a53b753c8f985'
 
 #<> The URL to Kibana repository.
-default['kibana']['git']['url'] = if node['kibana']['version'] > '2'
-                                    'https://github.com/elasticsearch/kibana.git'
-                                  else
-                                    'https://github.com/rashidkpc/kibana2.git'
-                                  end
+default['kibana']['git']['url'] = 'https://github.com/elasticsearch/kibana.git'
+
 #<> The git reference in the Kibana repository.
-default['kibana']['git']['reference'] = if node['kibana']['version'] > '2'
-                                          'v' + node['kibana']['kibana3_version']
-                                        else
-                                          'v0.2.0'
-                                        end
+default['kibana']['git']['reference'] = 'v' + node['kibana']['kibana3_version']
+
 #<> The version of Ruby and Gems to use for Kibana.
 case node['platform_family']
 when 'debian'
