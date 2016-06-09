@@ -1,3 +1,7 @@
+## v.0.1.12:
+* Add package install method for kibana v4
+* Add lib for determinate upstart usage
+
 ## v.0.1.11:
 * removed support for kibana2 ( use 0.1.10 releases )
 * added serverspec tests

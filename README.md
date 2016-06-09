@@ -28,7 +28,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * `node['kibana']['base_dir']` - The base directory of kibana. Defaults to `/opt/kibana`.
 * `node['kibana']['user']` - The user under which Kibana is installed. Defaults to `kibana`.
 * `node['kibana']['group']` - The group under which Kibana is installed. Defaults to `kibana`.
-* `node['kibana']['install_method']` - Install method. Can be source or release. Defaults to `release`.
+* `node['kibana']['install_method']` - Install method. Can be source, package or release. Defaults to `release`.
 * `node['kibana']['url']` - Url of tarball. Defaults to `https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz`.
 * `node['kibana']['checksum']` - Checksum of the tarball. Defaults to `df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8`.
 * `node['kibana']['git']['url']` - The URL to Kibana repository. Defaults to `https://github.com/elasticsearch/kibana.git`.

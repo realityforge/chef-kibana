@@ -16,6 +16,10 @@ default['kibana']['group'] = 'kibana'
 default['kibana']['install_method'] = 'release'
 
 url_version = node['kibana']["kibana#{node['kibana']['version']}_version"] || node['kibana']['version']
+#<> kibana package repository url
+default['kibana']['repository'] = 'http://packages.elastic.co/kibana/4.4/debian'
+#<> kibana package repository key url
+default['kibana']['repository_key'] = 'https://packages.elastic.co/GPG-KEY-elasticsearch'
 #<> Url of tarball
 default['kibana']['url'] = Kibana::Url.new(node, url_version).get
 #<> Checksum of the tarball

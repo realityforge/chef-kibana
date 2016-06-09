@@ -15,3 +15,12 @@ LeadingCommentSpace:
 
 LineLength:
   Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/MethodLength:
+  Enabled: false

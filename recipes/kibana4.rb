@@ -2,7 +2,8 @@
 
 include_recipe 'kibana'
 
-if node['kibana']['install_method'] == 'release'
+case node['kibana']['install_method']
+when 'release'
   ark 'kibana' do
     url node['kibana']['url']
     version node['kibana']['kibana4_version']
@@ -12,8 +13,26 @@ if node['kibana']['install_method'] == 'release'
     owner node['kibana']['user']
   end
   config_path = 'current/config/kibana.yml'
+when 'package'
+  apt_repository 'kibana' do
+    uri node['kibana']['repository']
+    distribution ''
+    components ['stable', 'main']
+    key node['kibana']['repository_key']
+  end
+
+  package 'kibana' do
+    notifies :run, 'execute[kibana_init]', :immediately
+  end
+
+  execute 'kibana_init' do
+    command '/bin/systemctl daemon-reload'
+    action :nothing
+  end
+
+  config_path = 'config/kibana.yml'
 else
-  Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release'")
+  Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release' or 'package'")
 end
 
 # Apply config template
