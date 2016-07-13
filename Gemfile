@@ -3,15 +3,15 @@ source 'https://rubygems.org'
 gem 'berkshelf'
 
 group :test do
-  gem 'rake',               '~> 10.1.0'
-  gem 'test-kitchen',       '~> 1.4'
-  gem 'foodcritic',         '~> 3.0.3'
-  gem 'rubocop',            '~> 0.23.0'
-  gem 'chefspec',           '~> 3.0'
+  gem 'rake',               '~> 11.2.2'
+  gem 'test-kitchen',       '~> 1.10.2'
+  gem 'foodcritic',         '~> 7.0.1'
+  gem 'rubocop',            '~> 0.41.2'
+  gem 'chefspec',           '~> 4.7.0'
 end
 
 group :vagrant do
-  gem 'kitchen-vagrant',    '~> 0.11'
+  gem 'kitchen-vagrant',    '~> 0.20.0'
 end
 
 group :development do
