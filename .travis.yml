@@ -7,6 +7,7 @@ services: docker
 
 env:
   matrix:
+  - TESTS="unit"
   - TESTS="rubocop"
   - TESTS="foodcritic"
   - TESTS="integration:docker[kibana3-apache-ubuntu-1204]"
