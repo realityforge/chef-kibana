@@ -18,8 +18,8 @@ describe 'kibana::kibana3' do
     expect(chef_run).to create_template('/opt/kibana/current/config.js').with(
       owner: 'kibana',
       group: 'kibana',
-      mode:  '0644',
-   )
+      mode:  '0644'
+    )
   end
 end
 
@@ -29,7 +29,7 @@ describe 'kibana::kibana3' do
 
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
-      node.set['kibana']['install_method'] = 'source'
+      node.override['kibana']['install_method'] = 'source'
     end.converge(described_recipe)
   end
 
@@ -44,7 +44,7 @@ describe 'kibana::kibana3' do
     expect(chef_run).to create_template('/opt/kibana/current/src/config.js').with(
       owner: 'kibana',
       group: 'kibana',
-      mode:  '0644',
-   )
+      mode:  '0644'
+    )
   end
 end

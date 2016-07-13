@@ -21,7 +21,7 @@ describe 'kibana::_service' do
   end
 end
 
-# TODO enable for CentOS 6 initscript
+# TODO: enable for CentOS 6 initscript
 #describe 'kibana::_service' do
 #  before { stub_resources }
 #  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'redhat', version: '6.0').converge(described_recipe) }
@@ -36,4 +36,4 @@ end
 #  end
 #end
 
-# TODO enable for CentOS/RHEL 7 systemd
+# TODO: enable for CentOS/RHEL 7 systemd

@@ -5,7 +5,4 @@ describe 'kibana::nginx' do
   before { stub_resources }
 
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
-
-# create template /etc/nginx/site-available/kibana
-
 end

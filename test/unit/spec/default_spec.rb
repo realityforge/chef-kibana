@@ -13,13 +13,13 @@ describe 'kibana::default' do
     expect(chef_run).to create_user('kibana').with(
       gid: 'kibana',
       home: '/opt/kibana',
-      shell: '/bin/bash',
+      shell: '/bin/bash'
     )
   end
   it 'creates kibana base directory' do
     expect(chef_run).to create_directory('/opt/kibana').with(
       owner: 'kibana',
-      group: 'kibana',
+      group: 'kibana'
     )
   end
 end

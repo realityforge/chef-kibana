@@ -6,8 +6,6 @@ describe 'kibana::apache' do
 
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
-# creates a template /etc/apache2/htpasswd
-
-# creates a template /etc/apache2/sites-available/kibana.conf
-
+  # TODO: creates a template /etc/apache2/htpasswd
+  # TODO: creates a template /etc/apache2/sites-available/kibana.conf
 end
