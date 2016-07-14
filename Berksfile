@@ -8,5 +8,6 @@ group :vagrant do
     cookbook 'elasticsearch'
     cookbook 'java'
     cookbook 'ohai'
+    cookbook 'netstat'
     cookbook 'nginx', '~ 2.7.6'
 end

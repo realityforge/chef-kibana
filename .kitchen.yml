@@ -32,12 +32,14 @@ platforms:
 suites:
 - name: kibana3_apache
   run_list:
+    - 'recipe[netstat]'
     - 'recipe[kibana]'
     - 'recipe[apache2]'
     - 'recipe[kibana::apache]'
   attributes: {}
 - name: kibana3_nginx
   run_list:
+    - 'recipe[netstat]'
     - 'recipe[kibana]'
     - 'recipe[nginx]'
     - 'recipe[kibana::nginx]'
