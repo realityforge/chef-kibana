@@ -2,7 +2,7 @@
 
 require 'rake'
 require 'rake/testtask'
-
+require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'bundler/setup'
 
@@ -37,4 +37,13 @@ namespace :integration do
   end
 end
 
-task default: [:rubocop, :foodcritic]
+desc 'Run chefspec unit tests'
+RSpec::Core::RakeTask.new(:unit) do |t|
+  t.rspec_opts = [].tap do |a|
+    a.push('--color')
+    a.push('--format progress')
+  end.join(' ')
+  t.pattern = 'test/unit/spec/*_spec.rb'
+end
+
+task default: [:rubocop, :foodcritic, :unit]
