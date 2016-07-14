@@ -15,7 +15,7 @@ template "#{node['apache']['dir']}/htpasswd" do
             password: node['kibana']['apache']['basic_auth_password'])
   owner node['apache']['user']
   group node['apache']['group']
-  mode 00644
+  mode 0o0644
   not_if { node['kibana']['apache']['basic_auth'] == 'off' }
 end
 
@@ -30,7 +30,7 @@ template "#{node['apache']['dir']}/sites-available/kibana.conf" do
   cookbook node['kibana']['apache']['cookbook']
   owner node['apache']['user']
   group node['apache']['group']
-  mode 00644
+  mode 0o0644
   notifies :restart, 'service[apache2]'
 end
 

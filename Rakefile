@@ -3,10 +3,6 @@
 require 'rake'
 require 'rake/testtask'
 
-# Rainbow require is due to incompatibilities between version of
-# rubocop and rainbow breaking the build. May be able to be removed
-# at some future time
-require 'rainbow/ext/string'
 require 'rubocop/rake_task'
 require 'bundler/setup'
 
@@ -31,7 +27,7 @@ namespace :integration do
 
   desc 'Run integration tests with kitchen-docker'
   task :docker, [:instance] do |_t, args|
-    args.with_defaults(instance: 'default-ubuntu-1204')
+    args.with_defaults(instance: 'default-ubuntu-1404')
     require 'kitchen'
     Kitchen.logger = Kitchen.default_file_logger
     loader = Kitchen::Loader::YAML.new(local_config: '.kitchen.docker.yml')

@@ -1,7 +1,6 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - 2.0.0
+  - 2.2.4
 
 sudo: required
 services: docker
@@ -10,18 +9,19 @@ env:
   matrix:
   - TESTS="rubocop"
   - TESTS="foodcritic"
+  - TESTS="integration:docker[kibana3-apache-ubuntu-1204]"
+  - TESTS="integration:docker[kibana3-nginx-ubuntu-1204]"
   - TESTS="integration:docker[kibana3-apache-ubuntu-1404]"
   - TESTS="integration:docker[kibana3-nginx-ubuntu-1404]"
   - TESTS="integration:docker[kibana3-source-ubuntu-1404]"
   - TESTS="integration:docker[kibana4-ubuntu-1404]"
   - TESTS="integration:docker[kibana4-nginx-ubuntu-1404]"
+  - TESTS="integration:docker[kibana3-apache-centos-64]"
+  - TESTS="integration:docker[kibana3-nginx-centos-64]"
+  - TESTS="integration:docker[kibana4-centos-64]"
+  - TESTS="integration:docker[kibana4-nginx-centos-64]"
 
-
-matrix:
-  exclude:
-  - rvm: 1.9.3
-
-before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 0.9.0
+before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 0.15.16
 install: chef exec bundle install --jobs=3 --retry=3 --without='vagrant'
 
 # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
