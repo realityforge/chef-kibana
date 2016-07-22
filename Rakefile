@@ -6,6 +6,9 @@ require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'bundler/setup'
 
+require 'stove/rake_task'
+Stove::RakeTask.new
+
 desc 'Run RuboCop on the lib directory'
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
