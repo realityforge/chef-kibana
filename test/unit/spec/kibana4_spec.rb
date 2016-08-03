@@ -7,7 +7,7 @@ describe 'kibana::kibana4' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04') do |node|
       node.default['kibana']['install_method'] = 'release'
-    end.converge(described_recipe,'kibana::_service')
+    end.converge(described_recipe, 'kibana::_service')
   end
   let(:template) { chef_run.template('/opt/kibana/current/config/kibana.yml') }
 

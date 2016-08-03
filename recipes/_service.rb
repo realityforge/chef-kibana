@@ -21,7 +21,6 @@ end
 #  action :nothing
 #end
 
-
 template node['kibana']['service']['template_file'] do
   cookbook node['kibana']['service']['cookbook']
   source node['kibana']['service']['source']

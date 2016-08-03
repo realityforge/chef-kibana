@@ -132,21 +132,27 @@ end
 
 # kibana service configurations - defaults to settings for Ubuntu 14.04
 case node['platform']
-  when 'centos'
-    if node['platform_version'] < '6.9'
-      default['kibana']['service']['provider'] = Chef::Provider::Service::Init::Redhat
-      default['kibana']['service']['source'] = 'initd.kibana.erb'
-      default['kibana']['service']['template_file'] = '/etc/init.d/kibana'
-    else
-      default['kibana']['service']['provider'] = Chef::Provider::Service::Systemd
-      default['kibana']['service']['source'] = 'systemd.service.erb'
-      default['kibana']['service']['template_file'] = '/usr/lib/systemd/system/kibana.service'
-    end
-  when 'ubuntu'
-  default['kibana']['service']['provider'] = Chef::Provider::Service::Upstart
-  default['kibana']['service']['source'] = 'upstart.conf.erb'
-  default['kibana']['service']['template_file'] = '/etc/init/kibana.conf'
-  default['kibana']['service']['upstart'] = true
+when 'centos'
+  if node['platform_version'] < '6.9'
+    default['kibana']['service']['provider'] = Chef::Provider::Service::Init::Redhat
+    default['kibana']['service']['source'] = 'initd.kibana.erb'
+    default['kibana']['service']['template_file'] = '/etc/init.d/kibana'
+  else
+    default['kibana']['service']['provider'] = Chef::Provider::Service::Systemd
+    default['kibana']['service']['source'] = 'systemd.service.erb'
+    default['kibana']['service']['template_file'] = '/usr/lib/systemd/system/kibana.service'
+  end
+when 'ubuntu'
+  if node['platform_version'] < '16.04'
+    default['kibana']['service']['provider'] = Chef::Provider::Service::Upstart
+    default['kibana']['service']['source'] = 'upstart.conf.erb'
+    default['kibana']['service']['template_file'] = '/etc/init/kibana.conf'
+    default['kibana']['service']['upstart'] = true
+  else
+    default['kibana']['service']['provider'] = Chef::Provider::Service::Systemd
+    default['kibana']['service']['source'] = 'systemd.service.erb'
+    default['kibana']['service']['template_file'] = '/usr/lib/systemd/system/kibana.service'
+  end
 end
 default['kibana']['service']['cookbook'] = 'kibana'
 
