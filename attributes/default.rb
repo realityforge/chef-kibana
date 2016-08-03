@@ -131,7 +131,15 @@ unless node['kibana']['version'] =~ /^3/
 end
 
 #<> The kibana service configuration source
-default['kibana']['service']['source'] = 'upstart.conf.erb'
+if node['platform_family'] == 'rhel' && node['platform_version'].to_f >= 6.9 # Service with Systemd
+  default['kibana']['service']['source'] = 'systemd.service.erb'
+  default['kibana']['template_file'] = '/usr/lib/systemd/system/kibana.service'
+else # Using Upstart
+  default['kibana']['service']['source'] = 'upstart.conf.erb'
+  default['kibana']['template_file'] = '/etc/init/kibana.conf'
+  default['kibana']['service']['upstart'] = true
+end
+
 default['kibana']['service']['cookbook'] = 'kibana'
 
 #<> The kibana 4 default application on load

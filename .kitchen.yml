@@ -22,6 +22,10 @@ platforms:
   driver_config:
     box: opscode-centos-6.4
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+- name: centos-7.2
+  driver_config:
+    box: opscode-centos-7.2
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box
   attributes:
     yum:
       epel:
@@ -68,6 +72,8 @@ suites:
       apache:
         port: 8080
       interface: '0.0.0.0'
+    java:
+      jdk_version: '8'
 - name: kibana4_nginx
   run_list:
     - 'recipe[kibana]'
@@ -81,3 +87,6 @@ suites:
       interface: '0.0.0.0'
       nginx:
         listen_http: 8080
+    java:
+      jdk_version: '8'
+      

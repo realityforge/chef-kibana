@@ -5,7 +5,7 @@ describe 'kibana::_service' do
   before { stub_resources }
 
   let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) }
-  let(:template) { chef_run.template('/etc/init/kibana.conf') }
+  let(:template) { chef_run.template(node['kibana']['template_file']) }
 
   it 'expects service kibana to do nothing' do
     kibana_service = chef_run.service('kibana')
@@ -13,7 +13,7 @@ describe 'kibana::_service' do
   end
 
   it 'creates an upstart template at /etc/init/kibana.conf' do
-    expect(chef_run).to create_template('/etc/init/kibana.conf')
+    expect(chef_run).to create_template(node['kibana']['template_file'])
   end
 
   it 'sends a restart notification to the service' do
