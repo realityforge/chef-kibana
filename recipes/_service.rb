@@ -1,12 +1,14 @@
 # Encoding: utf-8
 
 service 'kibana' do
-  provider Chef::Provider::Service::Upstart
+  if node['kibana']['service']['upstart']
+    provider Chef::Provider::Service::Upstart
+  end
   supports start: true, restart: true, stop: true, status: true
   action :nothing
 end
 
-template '/etc/init/kibana.conf' do
+template node['kibana']['template_file'] do
   cookbook node['kibana']['service']['cookbook']
   source node['kibana']['service']['source']
   variables(
