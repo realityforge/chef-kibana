@@ -1,10 +1,13 @@
 require 'chefspec'
 require_relative 'spec_helper'
 
+# for upstart init
 describe 'kibana::_service' do
   before { stub_resources }
 
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) }
+  let(:chef_run) { 
+      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) 
+    }
   let(:template) { chef_run.template('/etc/init/kibana.conf') }
 
   it 'expects service kibana to do nothing' do
@@ -21,19 +24,32 @@ describe 'kibana::_service' do
   end
 end
 
-# TODO: enable for CentOS 6 initscript
-#describe 'kibana::_service' do
-#  before { stub_resources }
-#  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'redhat', version: '6.0').converge(described_recipe) }
-#  let(:template) { chef_run.template('/etc/init.d/kibana') }
-#
-#  it 'creates an init.d template at /etc/init.d/kibana' do
-#    expect(chef_run).to create_template('/etc/init.d/kibana')
-#  end
-#
-#  it 'sends a restart notification to the service' do
-#    expect(template).to notify('service[kibana]').to(:restart)
-#  end
-#end
+# for init.d startup script
+describe 'kibana::_service' do
+  before { stub_resources }
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '6.0').converge(described_recipe) }
+  let(:template) { chef_run.template('/etc/init.d/kibana') }
 
-# TODO: enable for CentOS/RHEL 7 systemd
+  it 'creates an init.d template at /etc/init.d/kibana' do
+    expect(chef_run).to create_template('/etc/init.d/kibana')
+  end
+
+  it 'sends a restart notification to the service' do
+    expect(template).to notify('service[kibana]').to(:restart)
+  end
+end
+
+# for systemd on centos
+describe 'kibana::_service' do
+  before { stub_resources }
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '7.0').converge(described_recipe) }
+  let(:template) { chef_run.template('/usr/lib/systemd/system/kibana.service') }
+
+  it 'creates an init.d template at /usr/lib/systemd/system/kibana.service' do
+    expect(chef_run).to create_template('/usr/lib/systemd/system/kibana.service')
+  end
+
+  it 'sends a restart notification to the service' do
+    expect(template).to notify('service[kibana]').to(:restart)
+  end
+end
