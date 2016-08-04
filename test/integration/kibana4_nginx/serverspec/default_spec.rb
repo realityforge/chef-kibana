@@ -5,11 +5,11 @@ describe 'kibana' do
   describe file('/opt/kibana') do
     it { should be_directory }
   end
-  describe service('kibana'), if: os[:family] == 'debian' do
+  describe service('kibana'), if: os[:family] == 'ubuntu' do
     it { should be_enabled }
     it { should be_running }
   end
-  describe service('kibana'), if: os[:family] == 'rhel' do
+  describe service('kibana'), if: os[:family] == 'redhat' do
     it { should be_enabled }
     it { should be_running }
   end

@@ -10,11 +10,6 @@ describe 'kibana::_service' do
   end
   let(:template) { chef_run.template('/etc/init/kibana.conf') }
 
-  it 'expects service kibana to do nothing' do
-    kibana_service = chef_run.service('kibana')
-    expect(kibana_service).to do_nothing
-  end
-
   it 'creates an upstart template at /etc/init/kibana.conf' do
     expect(chef_run).to create_template('/etc/init/kibana.conf')
   end
@@ -32,11 +27,6 @@ describe 'kibana::_service' do
     ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge(described_recipe)
   end
   let(:template) { chef_run.template('/lib/systemd/system/kibana.service') }
-
-  it 'expects service kibana to do nothing' do
-    kibana_service = chef_run.service('kibana')
-    expect(kibana_service).to do_nothing
-  end
 
   it 'creates an upstart template at /lib/systemd/system/kibana.service' do
     expect(chef_run).to create_template('/lib/systemd/system/kibana.service')
