@@ -31,15 +31,15 @@ describe 'kibana::_service' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge(described_recipe)
   end
-  let(:template) { chef_run.template('/usr/lib/systemd/system/kibana.service') }
+  let(:template) { chef_run.template('/lib/systemd/system/kibana.service') }
 
   it 'expects service kibana to do nothing' do
     kibana_service = chef_run.service('kibana')
     expect(kibana_service).to do_nothing
   end
 
-  it 'creates an upstart template at /usr/lib/systemd/system/kibana.service' do
-    expect(chef_run).to create_template('/usr/lib/systemd/system/kibana.service')
+  it 'creates an upstart template at /lib/systemd/system/kibana.service' do
+    expect(chef_run).to create_template('/lib/systemd/system/kibana.service')
   end
 
   it 'sends a restart notification to the service' do
