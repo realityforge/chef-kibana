@@ -134,7 +134,6 @@ end
 case node['platform']
 when 'centos'
   if node['platform_version'] < '6.9'
-    default['kibana']['service']['provider'] = Chef::Provider::Service::Init::Redhat
     default['kibana']['service']['source'] = 'initd.kibana.erb'
     default['kibana']['service']['template_file'] = '/etc/init.d/kibana'
   else
@@ -144,12 +143,10 @@ when 'centos'
   end
 when 'ubuntu'
   if node['platform_version'] < '16.04'
-    default['kibana']['service']['provider'] = Chef::Provider::Service::Upstart
     default['kibana']['service']['source'] = 'upstart.conf.erb'
     default['kibana']['service']['template_file'] = '/etc/init/kibana.conf'
     default['kibana']['service']['upstart'] = true
   else
-    default['kibana']['service']['provider'] = Chef::Provider::Service::Systemd
     default['kibana']['service']['source'] = 'systemd.service.erb'
     default['kibana']['service']['template_file'] = '/lib/systemd/system/kibana.service'
   end
