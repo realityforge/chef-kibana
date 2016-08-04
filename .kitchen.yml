@@ -44,6 +44,7 @@ suites:
   attributes: {}
 - name: kibana3_source
   run_list:
+    - 'recipe[netstat]'
     - 'recipe[kibana]'
     - 'recipe[apache2]'
     - 'recipe[kibana::apache]'
@@ -52,6 +53,7 @@ suites:
       install_method: 'source'
 - name: kibana4_apache
   run_list:
+    - 'recipe[netstat]'
     - 'recipe[kibana]'
     - 'recipe[apache2]'
     - 'recipe[kibana::apache]'
@@ -70,6 +72,7 @@ suites:
       jdk_version: '8'
 - name: kibana4_nginx
   run_list:
+    - 'recipe[netstat]'
     - 'recipe[kibana]'
     - 'recipe[nginx]'
     - 'recipe[kibana::nginx]'
