@@ -9,7 +9,7 @@ describe 'kibana' do
     it { should be_enabled }
     it { should be_running }
   end
-  describe service('kibana'), :if => os[:family] == 'rhel' do
+  describe service('kibana'), if: os[:family] == 'rhel' do
     it { should be_enabled }
     it { should be_running }
   end
