@@ -9,11 +9,10 @@ describe 'kibana' do
     it { should be_enabled }
     it { should be_running }
   end
-  # TODO: add support for a rhel service init script
-  #  describe service('kibana'), :if => os[:family] == 'rhel' do
-  #    it { should be_enabled }
-  #    it { should be_running }
-  #  end
+  describe service('kibana'), :if => os[:family] == 'rhel' do
+    it { should be_enabled }
+    it { should be_running }
+  end
 end
 
 describe 'nginx' do

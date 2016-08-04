@@ -151,7 +151,7 @@ when 'ubuntu'
   else
     default['kibana']['service']['provider'] = Chef::Provider::Service::Systemd
     default['kibana']['service']['source'] = 'systemd.service.erb'
-    default['kibana']['service']['template_file'] = '/usr/lib/systemd/system/kibana.service'
+    default['kibana']['service']['template_file'] = '/lib/systemd/system/kibana.service'
   end
 end
 default['kibana']['service']['cookbook'] = 'kibana'

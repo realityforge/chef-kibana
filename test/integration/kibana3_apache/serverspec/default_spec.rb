@@ -15,7 +15,7 @@ describe 'apache' do
     it { should be_enabled }
     it { should be_running }
   end
-  describe service('httpd'), if: os[:family] == 'redhat' do
+  describe service('httpd'), if: os[:family] == 'rhel' do
     it { should be_enabled }
     it { should be_running }
   end
