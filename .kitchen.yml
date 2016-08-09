@@ -31,22 +31,22 @@ suites:
 - name: kibana3_apache
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[kibana]'
     - 'recipe[apache2]'
+    - 'recipe[kibana]'
     - 'recipe[kibana::apache]'
   attributes: {}
 - name: kibana3_nginx
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[kibana]'
     - 'recipe[nginx]'
+    - 'recipe[kibana]'
     - 'recipe[kibana::nginx]'
   attributes: {}
 - name: kibana3_source
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[kibana]'
     - 'recipe[apache2]'
+    - 'recipe[kibana]'
     - 'recipe[kibana::apache]'
   attributes:
     kibana:
@@ -54,15 +54,15 @@ suites:
 - name: kibana4_apache
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[kibana]'
     - 'recipe[apache2]'
-    - 'recipe[kibana::apache]'
     - 'recipe[java]'
     - 'recipe[elasticsearch]'
+    - 'recipe[kibana]'
+    - 'recipe[kibana::apache]'
   attributes:
     apache:
-      listen_ports:
-       - 8080
+      listen:
+       - '*:8080'
     kibana:
       version: '4'
       apache:
@@ -73,11 +73,11 @@ suites:
 - name: kibana4_nginx
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[kibana]'
     - 'recipe[nginx]'
-    - 'recipe[kibana::nginx]'
     - 'recipe[java]'
     - 'recipe[elasticsearch]'
+    - 'recipe[kibana]'
+    - 'recipe[kibana::nginx]'
   attributes:
     kibana:
       version: '4'
