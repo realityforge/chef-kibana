@@ -9,19 +9,13 @@ function (Settings) {
   return new Settings({
 
     /**
-     * URL to your elasticsearch server. You almost certainly don't
-     * want 'http://localhost:9200' here. Even if Kibana and ES are on
-     * the same host
-     *
-     * By default this will attempt to reach ES at the same host you have
-     * elasticsearch installed on. You probably want to set it to the FQDN of your
-     * elasticsearch host
+     * The Elasticsearch instance to use for all your queries
      * @type {String}
      */
-    <% if node['kibana']['apache']['proxy'] or node['kibana']['nginx']['proxy'] %>
-    elasticsearch: window.location.protocol + "//" + window.location.hostname,
-    <% else %>
+    <% if ['127.0.0.1', '0.0.0.0'].include? node['kibana']['elasticsearch']['hosts'].first %>
     elasticsearch: "http://" + window.location.hostname + ":<%= @es_port %>",
+    <% else %>
+    elasticsearch: "http://<%= @es_host %>:<%= @es_port %>",
     <% end %>
 
     /**

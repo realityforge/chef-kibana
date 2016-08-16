@@ -31,5 +31,9 @@ template File.join(node['kibana']['base_dir'], config_path) do
   owner node['kibana']['user']
   group node['kibana']['group']
   mode '0644'
-  variables('es_port' => node['kibana']['elasticsearch']['port'], 'index' => node['kibana']['index'])
+  variables(
+    'es_host' => node['kibana']['elasticsearch']['hosts'].first,
+    'es_port' => node['kibana']['elasticsearch']['port'],
+    'index'   => node['kibana']['index']
+  )
 end
