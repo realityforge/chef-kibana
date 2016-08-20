@@ -3,6 +3,7 @@
 template node['kibana']['service']['template_file'] do
   cookbook node['kibana']['service']['cookbook']
   source node['kibana']['service']['source']
+  mode '0755'
   variables(
     version: node['kibana']['version'],
     options: '', # TODO
