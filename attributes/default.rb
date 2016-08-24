@@ -158,3 +158,12 @@ default['kibana']['service']['cookbook'] = 'kibana'
 
 #<> The kibana 4 default application on load
 default['kibana']['defaultapp'] = 'discover'
+
+# Logging options. Logs to stdout by default.
+default['kibana']['log_to_file'] = 'false'
+default['kibana']['logfile'] = "#{node['kibana']['base_dir']}/kibana.log"
+default['kibana']['logging_option'] = ''
+
+if node['kibana']['log_to_file'] == 'true'
+  default['kibana']['logging_option'] = "log_file: #{node['kibana']['logfile']}"
+end
