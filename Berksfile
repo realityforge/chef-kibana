@@ -4,7 +4,7 @@ metadata
 
 group :vagrant do
     cookbook 'apt'
-    cookbook 'apache2', '= 3.1'
+    cookbook 'apache2'
     cookbook 'elasticsearch'
     cookbook 'java'
     cookbook 'ohai'

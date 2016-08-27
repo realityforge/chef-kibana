@@ -16,8 +16,6 @@ supports 'debian'
 depends 'build-essential'
 depends 'ark'
 
-conflicts 'apache2', '>= 3.2'
-
 # Suggests is not officially valid, that is why these are commented out
 # suggests 'apache2', '>= 2.0'
 # suggests 'authbind'
