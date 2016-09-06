@@ -12,8 +12,12 @@ default['kibana']['base_dir'] = '/opt/kibana'
 default['kibana']['user'] = 'kibana'
 #<> The group under which Kibana is installed.
 default['kibana']['group'] = 'kibana'
-#<> Install method. Can be source or release
+#<> Install method. Can be source, release or package
 default['kibana']['install_method'] = 'release'
+#<> Kibana repository url for package method install
+default['kibana']['repository_url'] = 'http://packages.elastic.co/kibana/4.5/debian'
+#<> Kibana repository Public Signing Key
+default['kibana']['repository_key'] = 'https://packages.elastic.co/GPG-KEY-elasticsearch'
 
 url_version = node['kibana']["kibana#{node['kibana']['version']}_version"] || node['kibana']['version']
 #<> Url of tarball
@@ -130,9 +134,33 @@ unless node['kibana']['version'] =~ /^3/
   default['kibana']['kibana_service'] = "http://#{node['kibana']['interface']}:#{node['kibana']['port']}"
 end
 
-#<> The kibana service configuration source
-default['kibana']['service']['source'] = 'upstart.conf.erb'
+# kibana service configurations - defaults to settings for Ubuntu 14.04
+case node['platform']
+when 'centos'
+  if node['platform_version'] < '6.9'
+    default['kibana']['service']['provider'] = Chef::Provider::Service::Init::Redhat
+    default['kibana']['service']['source'] = 'initd.kibana.erb'
+    default['kibana']['service']['template_file'] = '/etc/init.d/kibana'
+  else
+    default['kibana']['service']['provider'] = Chef::Provider::Service::Systemd
+    default['kibana']['service']['source'] = 'systemd.service.erb'
+    default['kibana']['service']['template_file'] = '/usr/lib/systemd/system/kibana.service'
+  end
+when 'ubuntu'
+  if node['platform_version'] < '16.04'
+    default['kibana']['service']['provider'] = Chef::Provider::Service::Upstart
+    default['kibana']['service']['source'] = 'upstart.conf.erb'
+    default['kibana']['service']['template_file'] = '/etc/init/kibana.conf'
+    default['kibana']['service']['upstart'] = true
+  else
+    default['kibana']['service']['provider'] = Chef::Provider::Service::Systemd
+    default['kibana']['service']['source'] = 'systemd.service.erb'
+    default['kibana']['service']['template_file'] = '/lib/systemd/system/kibana.service'
+  end
+end
 default['kibana']['service']['cookbook'] = 'kibana'
+default['kibana']['service']['bin_path'] = 'current/bin'
+default['kibana']['service']['options'] = ''
 
 #<> The kibana 4 default application on load
 default['kibana']['defaultapp'] = 'discover'

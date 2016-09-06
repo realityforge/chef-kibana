@@ -9,13 +9,10 @@ provisioner:
   name: chef_zero
 
 platforms:
-- name: ubuntu-12.04
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
-  run_list:
-  - recipe[apt]
 - name: ubuntu-14.04
+  run_list:
+    - recipe[apt]
+- name: ubuntu-16.04
   run_list:
     - recipe[apt]
 - name: centos-6.4
@@ -28,56 +25,82 @@ platforms:
         mirrorlist: http://mirrors.fedoraproject.org/metalink?repo=epel-6&arch=$basearch
         gpgkey: http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6
         sslverify: false
+- name: centos-7.2
 
 suites:
 - name: kibana3_apache
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[kibana]'
     - 'recipe[apache2]'
+    - 'recipe[kibana]'
     - 'recipe[kibana::apache]'
   attributes: {}
 - name: kibana3_nginx
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[kibana]'
     - 'recipe[nginx]'
+    - 'recipe[kibana]'
     - 'recipe[kibana::nginx]'
   attributes: {}
 - name: kibana3_source
   run_list:
-    - 'recipe[kibana]'
+    - 'recipe[netstat]'
     - 'recipe[apache2]'
+    - 'recipe[kibana]'
     - 'recipe[kibana::apache]'
   attributes:
     kibana:
       install_method: 'source'
-- name: kibana4
+- name: kibana4_apache
   run_list:
-    - 'recipe[kibana]'
+    - 'recipe[netstat]'
     - 'recipe[apache2]'
-    - 'recipe[kibana::apache]'
     - 'recipe[java]'
     - 'recipe[elasticsearch]'
+    - 'recipe[kibana]'
+    - 'recipe[kibana::apache]'
   attributes:
     apache:
-      listen_ports:
-       - 8080
+      listen:
+       - '*:8080'
     kibana:
       version: '4'
       apache:
         port: 8080
       interface: '0.0.0.0'
+    java:
+      jdk_version: '8'
 - name: kibana4_nginx
   run_list:
-    - 'recipe[kibana]'
+    - 'recipe[netstat]'
     - 'recipe[nginx]'
-    - 'recipe[kibana::nginx]'
     - 'recipe[java]'
     - 'recipe[elasticsearch]'
+    - 'recipe[kibana]'
+    - 'recipe[kibana::nginx]'
   attributes:
     kibana:
       version: '4'
       interface: '0.0.0.0'
       nginx:
         listen_http: 8080
+    java:
+      jdk_version: '8'
+- name: kibana4_package
+  run_list:
+    - 'recipe[kibana]'
+    - 'recipe[apache2]'
+    - 'recipe[kibana::apache]'
+  attributes:
+    apache:
+      listen:
+       - '*:8080'
+    kibana:
+      install_method: 'package'
+      version: '4'
+      apache:
+        port: 8080
+      interface: '0.0.0.0'
+      service:
+        bin_path: 'bin'
+        options: '--max-old-space-size=100'
