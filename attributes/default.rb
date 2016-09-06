@@ -12,8 +12,12 @@ default['kibana']['base_dir'] = '/opt/kibana'
 default['kibana']['user'] = 'kibana'
 #<> The group under which Kibana is installed.
 default['kibana']['group'] = 'kibana'
-#<> Install method. Can be source or release
+#<> Install method. Can be source, release or package
 default['kibana']['install_method'] = 'release'
+#<> Kibana repository url for package method install
+default['kibana']['repository_url'] = 'http://packages.elastic.co/kibana/4.5/debian'
+#<> Kibana repository Public Signing Key
+default['kibana']['repository_key'] = 'https://packages.elastic.co/GPG-KEY-elasticsearch'
 
 url_version = node['kibana']["kibana#{node['kibana']['version']}_version"] || node['kibana']['version']
 #<> Url of tarball
@@ -155,6 +159,8 @@ when 'ubuntu'
   end
 end
 default['kibana']['service']['cookbook'] = 'kibana'
+default['kibana']['service']['bin_path'] = 'current/bin'
+default['kibana']['service']['options'] = ''
 
 #<> The kibana 4 default application on load
 default['kibana']['defaultapp'] = 'discover'

@@ -6,7 +6,8 @@ template node['kibana']['service']['template_file'] do
   mode '0o0755'
   variables(
     version: node['kibana']['version'],
-    options: '', # TODO
+    bin_path: node['kibana']['service']['bin_path'],
+    options: node['kibana']['service']['options'],
     recent_upstart: (node['platform_family'] != 'rhel')
   )
   notifies :restart, 'service[kibana]', :delayed

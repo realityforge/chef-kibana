@@ -9,6 +9,7 @@ group :test do
   gem 'foodcritic',         '~> 7.0.1'
   gem 'rubocop',            '~> 0.41.2'
   gem 'chefspec',           '~> 4.7.0'
+  gem 'buff-extensions',    '~> 1.0.0'
 end
 
 group :vagrant do
@@ -17,6 +18,8 @@ end
 
 group :development do
   gem 'knife-cookbook-doc', '~> 0.7.0'
+  gem 'kitchen-openstack'
+  gem 'kitchen-transport-rsync'
 end
 
 group :integration_docker do
