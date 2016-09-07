@@ -86,7 +86,7 @@ suites:
         listen_http: 8080
     java:
       jdk_version: '8'
-- name: kibana4_package
+- name: kibana4_apache_package
   run_list:
     - 'recipe[kibana]'
     - 'recipe[apache2]'
