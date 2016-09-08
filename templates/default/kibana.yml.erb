@@ -66,7 +66,7 @@ verify_ssl: true
 # If you would like to send the log output to a file you can set the path below.
 # This will also turn off the STDOUT log output.
 # log_file: ./kibana.log
-<%= @logging_option %>
+<%= @logging_option -%>
 
 # Plugins that are included in the build, and no longer found in the plugins/ folder
 bundled_plugin_ids:
