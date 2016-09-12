@@ -12,9 +12,26 @@ if node['kibana']['install_method'] == 'release'
     owner node['kibana']['user']
   end
   config_path = 'current/config/kibana.yml'
+elsif node['kibana']['install_method'] == 'package'
+  if node.platform_family? 'debian'
+    apt_repository 'kibana' do
+      uri node['kibana']['repository_url']
+      distribution ''
+      components %w(stable main)
+      key node['kibana']['repository_key']
+    end
+  else
+    Chef::Log.warn "I do not support your platform: #{node['platform_family']}"
+  end
+
+  package 'kibana'
+  config_path = 'config/kibana.yml'
 else
-  Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release'")
+  Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release' or 'package'")
 end
+
+# Install service
+include_recipe 'kibana::_service'
 
 # Apply config template
 template File.join(node['kibana']['base_dir'], config_path) do
@@ -33,6 +50,3 @@ template File.join(node['kibana']['base_dir'], config_path) do
   )
   notifies :restart, 'service[kibana]'
 end
-
-# Install service
-include_recipe 'kibana::_service'

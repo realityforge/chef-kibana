@@ -23,7 +23,7 @@ chdir <%= node['kibana']['base_dir'] %>
             when /^3/
               raise "kibana 3 cannot be started as a service"
             when /^4/
-              "current/bin/kibana #{@options}"
+              "#{@bin_path}/kibana #{@options}"
             end
   if node['kibana']['port'] < 1024
     command = "/usr/bin/authbind --deep " + command

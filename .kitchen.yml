@@ -86,3 +86,21 @@ suites:
         listen_http: 8080
     java:
       jdk_version: '8'
+- name: kibana4_apache_package
+  run_list:
+    - 'recipe[kibana]'
+    - 'recipe[apache2]'
+    - 'recipe[kibana::apache]'
+  attributes:
+    apache:
+      listen:
+       - '*:8080'
+    kibana:
+      install_method: 'package'
+      version: '4'
+      apache:
+        port: 8080
+      interface: '0.0.0.0'
+      service:
+        bin_path: 'bin'
+        options: '--max-old-space-size=100'
