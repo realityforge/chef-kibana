@@ -41,12 +41,13 @@ template File.join(node['kibana']['base_dir'], config_path) do
   group node['kibana']['group']
   mode '0644'
   variables(
-    bind:       node['kibana']['interface'],
-    port:       node['kibana']['port'],
-    es_host:    node['kibana']['elasticsearch']['hosts'].first,
-    es_port:    node['kibana']['elasticsearch']['port'],
-    index:      node['kibana']['index'],
-    defaultapp: node['kibana']['defaultapp']
+    bind:           node['kibana']['interface'],
+    port:           node['kibana']['port'],
+    es_host:        node['kibana']['elasticsearch']['hosts'].first,
+    es_port:        node['kibana']['elasticsearch']['port'],
+    index:          node['kibana']['index'],
+    defaultapp:     node['kibana']['defaultapp'],
+    logging_option: node['kibana']['logging_option']
   )
   notifies :restart, 'service[kibana]'
 end
