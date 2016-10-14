@@ -5,7 +5,7 @@ describe 'kibana::kibana4' do
   before { stub_resources }
 
   let(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04') do |node|
+    ChefSpec::SoloRunner.new(UBUNTU_OPTS) do |node|
       node.default['kibana']['install_method'] = 'release'
     end.converge(described_recipe, 'kibana::_service')
   end

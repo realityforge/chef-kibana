@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 # for ubuntu 14.04 upstart
 describe 'kibana::_service' do
   before { stub_resources }
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new((UBUNTU_OPTS)).converge(described_recipe) }
   let(:template) { chef_run.template('/etc/init/kibana.conf') }
   it 'creates an upstart template at /etc/init/kibana.conf' do
     expect(chef_run).to create_template('/etc/init/kibana.conf')
@@ -20,7 +20,7 @@ end
 # for ubuntu 16.04 systemd
 describe 'kibana::_service' do
   before { stub_resources }
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '16.04').converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new(UBUNTU_1604_OPTS).converge(described_recipe) }
   let(:template) { chef_run.template('/lib/systemd/system/kibana.service') }
   it 'creates an upstart template at /lib/systemd/system/kibana.service' do
     expect(chef_run).to create_template('/lib/systemd/system/kibana.service')
@@ -36,7 +36,7 @@ end
 # for centos 6.x init
 describe 'kibana::_service' do
   before { stub_resources }
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '6.0').converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new(CENTOS_OPTS).converge(described_recipe) }
   let(:template) { chef_run.template('/etc/init.d/kibana') }
 
   it 'creates an init.d template at /etc/init.d/kibana' do
@@ -53,7 +53,7 @@ end
 # for centos 7.x systemd
 describe 'kibana::_service' do
   before { stub_resources }
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '7.0').converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new(CENTOS7_OPTS).converge(described_recipe) }
   let(:template) { chef_run.template('/usr/lib/systemd/system/kibana.service') }
   it 'creates an init.d template at /usr/lib/systemd/system/kibana.service' do
     expect(chef_run).to create_template('/usr/lib/systemd/system/kibana.service')
