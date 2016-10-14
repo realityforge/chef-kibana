@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 # for ubuntu 14.04 upstart
 describe 'kibana::_service' do
   before { stub_resources }
-  let(:chef_run) { ChefSpec::SoloRunner.new((UBUNTU_OPTS)).converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new(UBUNTU_OPTS).converge(described_recipe) }
   let(:template) { chef_run.template('/etc/init/kibana.conf') }
   it 'creates an upstart template at /etc/init/kibana.conf' do
     expect(chef_run).to create_template('/etc/init/kibana.conf')
