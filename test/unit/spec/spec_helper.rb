@@ -14,6 +14,18 @@ require 'support/matchers'
   platform: 'ubuntu',
   version: '14.04'
 }.freeze
+::UBUNTU_1604_OPTS = {
+  platform: 'ubuntu',
+  version: '16.04'
+}.freeze
+::CENTOS_OPTS = {
+  platform: 'centos',
+  version: '6.0'
+}.freeze
+::CENTOS7_OPTS = {
+  platform: 'centos',
+  version: '7.0'
+}.freeze
 
 def stub_resources
 end

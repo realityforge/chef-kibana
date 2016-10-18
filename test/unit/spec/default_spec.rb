@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 describe 'kibana::default' do
   before { stub_resources }
 
-  let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
+  let(:chef_run) { ChefSpec::SoloRunner.new(UBUNTU_OPTS).converge(described_recipe) }
 
   it 'creates kibana group' do
     expect(chef_run).to create_group('kibana')
