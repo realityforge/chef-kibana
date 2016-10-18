@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-include_recipe 'nginx'
+include_recipe 'chef_nginx'
 
 template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
   source node['kibana']['version'] == '4' ? 'nginx4.conf.erb' : 'nginx.conf.erb'

@@ -9,5 +9,5 @@ group :vagrant do
     cookbook 'java'
     cookbook 'ohai'
     cookbook 'netstat'
-    cookbook 'nginx', '~ 2.7.6'
+    cookbook 'chef_nginx', '~ 2.9.0'
 end
