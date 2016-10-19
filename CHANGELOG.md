@@ -1,3 +1,14 @@
+## 0.2.0:
+* Added stove support (@drenalin23)
+* Added better startup script support for CentOS6 and CentOS7 (@drenalin23)
+* Add systemd startup support for Ubuntu 16.04 (@drenalin23)
+* updates to integration tests, travis matrix, and rubocop fixes (@drenalin23)
+* change kibana service default action to enable and start (@g.fediere and @drenalin23)
+* updates to better support recent versions of the upstream apache2 cookbook (@drenalin23)
+* add logging options for Kibana4 (@sT331h0rs3)
+* add package install method for deb (@cyberflow)
+* [possibly breaking] Switch to chef_nginx cookbook as default (@drenalin23)
+
 ## 0.1.11:
 * removed support for kibana2 ( use 0.1.10 release if Kibana2 is needed )
 * added serverspec tests. Submitted by Dmitry and Scott (cyberflow and drenalin23).
