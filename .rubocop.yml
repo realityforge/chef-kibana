@@ -9,6 +9,8 @@ AllCops:
 
 BlockComments:
   Enabled: false
+BlockLength:
+  Enabled: false
 
 LeadingCommentSpace:
   Enabled: false
