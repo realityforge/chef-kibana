@@ -13,7 +13,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 ## Platform:
 
 * Ubuntu 12.04, 14.04.
-* CentOS 6 (does not include a startup script)
+* CentOS 6, 7
 
 ## Cookbooks:
 
@@ -22,7 +22,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * apache2 (>= 2.0) (Suggested but not required)
 * authbind (Suggested but not required)
 * apt (Suggested but not required)
-* nginx (Suggested but not required)
+* chef_nginx (Suggested but not required)
 
 # Attributes
 
@@ -89,8 +89,8 @@ Setup vhost for apache that rewrites to Kibana.
 
 Install Kibana.
 
-# License and Maintainer
+# License and Maintainers
 
-Maintainer:: Peter Donald (<peter@realityforge.org>)
+Maintainers:: Peter Donald (<peter@realityforge.org>), Dimitry Ryobryshkin (@cyberflow), Scott Nelson Windels (<scott@drenalin.com>)
 
 License:: Apache 2.0
