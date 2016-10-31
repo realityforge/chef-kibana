@@ -1,3 +1,8 @@
+## 0.2.1:
+* fix issue with bin_path for package installs (@drenalin23)
+* update the nginx source attribute so it is easier to override in wrapper cookbooks (@drenalin23)
+* rubocop fixes, updated README (@drenalin23)
+
 ## 0.2.0:
 * Added stove support (@drenalin23)
 * Added better startup script support for CentOS6 and CentOS7 (@drenalin23)
