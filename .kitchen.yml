@@ -102,5 +102,21 @@ suites:
         port: 8080
       interface: '0.0.0.0'
       service:
-        bin_path: 'bin'
         options: '--max-old-space-size=100'
+- name: kibana4_nginx_package
+  run_list:
+    - 'recipe[netstat]'
+    - 'recipe[chef_nginx]'
+    - 'recipe[java]'
+    - 'recipe[elasticsearch]'
+    - 'recipe[kibana]'
+    - 'recipe[kibana::nginx]'
+  attributes:
+    kibana:
+      install_method: 'package'
+      version: '4'
+      interface: '0.0.0.0'
+      nginx:
+        listen_http: 8080
+    java:
+      jdk_version: '8'
