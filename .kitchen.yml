@@ -28,29 +28,21 @@ platforms:
 - name: centos-7.2
 
 suites:
-- name: kibana3_apache
+- name: default
   run_list:
-    - 'recipe[netstat]'
-    - 'recipe[apache2]'
     - 'recipe[kibana]'
-    - 'recipe[kibana::apache]'
-  attributes: {}
-- name: kibana3_nginx
-  run_list:
-    - 'recipe[netstat]'
-    - 'recipe[chef_nginx]'
-    - 'recipe[kibana]'
-    - 'recipe[kibana::nginx]'
-  attributes: {}
-- name: kibana3_source
-  run_list:
-    - 'recipe[netstat]'
-    - 'recipe[apache2]'
-    - 'recipe[kibana]'
-    - 'recipe[kibana::apache]'
   attributes:
     kibana:
-      install_method: 'source'
+      version: '4.6.3'
+- name: tarball_default
+  run_list:
+    - 'recipe[kibana]'
+  attributes:
+    kibana:
+      version: '4.6.3'
+      install_method: 'tarball'
+      service:
+        bin_path: 'kibana/bin'
 - name: kibana4_apache
   run_list:
     - 'recipe[netstat]'

@@ -6,22 +6,16 @@ Install Kibana.
 #>
 =end
 
-group node['kibana']['group'] do
+kibana_user 'kibana'
+
+kibana_install 'kibana' do
+  type node['kibana']['install_method'].to_sym
+  action :install
 end
 
-user node['kibana']['user'] do
-  comment 'Kibana Server'
-  gid node['kibana']['group']
-  home node['kibana']['base_dir']
-  shell '/bin/bash'
-  system true
-end
+kibana_configure 'kibana'
 
-directory node['kibana']['base_dir'] do
-  mode '0755'
-  owner node['kibana']['user']
-  group node['kibana']['group']
-  recursive true
+kibana_service 'kibana' do
+  bin_path node['kibana']['service']['bin_path']
+  action [:configure, :start]
 end
-
-include_recipe "kibana::kibana#{node['kibana']['version'][0]}"

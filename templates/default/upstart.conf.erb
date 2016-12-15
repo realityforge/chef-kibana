@@ -7,17 +7,17 @@ start on filesystem or runlevel [2345]
 stop on runlevel [!2345]
 
 <% if @recent_upstart %>
-setuid <%= node['kibana']['user'] %>
-setgid <%= node['kibana']['group'] %>
+setuid <%= @user %>
+setgid <%= @group %>
 <% end %>
 respawn limit 15 5
 umask 0077
 
 pre-start script
-  test -d <%= node['kibana']['base_dir'] %> || { stop; exit 0; }
+  test -d <%= @base_dir %> || { stop; exit 0; }
 end script
 
-chdir <%= node['kibana']['base_dir'] %>
+chdir <%= @base_dir %>
 <%
   command = case @version
             when /^3/
@@ -33,5 +33,5 @@ chdir <%= node['kibana']['base_dir'] %>
 <% if @recent_upstart %>
 exec <%= command %>
 <% else %>
-exec su -s /bin/sh -c 'exec "$0" "$@"' <%= node['kibana']['user'] %> -- <%= command %>
+exec su -s /bin/sh -c 'exec "$0" "$@"' <%= @user %> -- <%= command %>
 <% end %>

@@ -16,7 +16,7 @@ end
 
 desc 'Foodcritic linter'
 task :foodcritic do
-  sh 'foodcritic -f any -t ~FC007 .'
+  sh 'foodcritic -f any .'
 end
 
 desc 'Run Test Kitchen integration tests'
@@ -44,7 +44,7 @@ desc 'Run chefspec unit tests'
 RSpec::Core::RakeTask.new(:unit) do |t|
   t.rspec_opts = [].tap do |a|
     a.push('--color')
-    a.push('--format progress')
+    a.push('--format documentation')
   end.join(' ')
   t.pattern = 'test/unit/spec/*_spec.rb'
 end
