@@ -32,7 +32,7 @@ class Kibana
       return '' if @node['os'] == 'windows'
       case @node['kernel']['machine']
       when 'x86_64'
-        '-x64'
+        '-x86_64'
       else
         '-x86'
       end
