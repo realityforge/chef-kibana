@@ -174,3 +174,9 @@ default['kibana']['logging_option'] = ''
 if node['kibana']['log_to_file'] == 'true'
   default['kibana']['logging_option'] = "log_file: #{node['kibana']['logfile']}"
 end
+
+default['kibana']['plugins'] = [
+  # example:
+  # ES 2.x: { :name => 'marvel', :url => 'elasticsearch/marvel/2.4.1' }
+  # ES 5.x: { :name => 'x-pack', :url => 'x-pack' }
+]
