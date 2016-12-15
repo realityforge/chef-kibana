@@ -2,3 +2,15 @@
 driver:
   name: docker
   privileged: true
+
+platforms:
+  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+    driver_config:
+      run_command: /sbin/init
+  - name: centos-6.4
+  - name: centos-7.2
+    driver_config:
+      image: centos:7
+      provision_command: yum -y install initscripts
+      run_command: /usr/sbin/init
