@@ -167,12 +167,16 @@ default['kibana']['service']['options'] = ''
 default['kibana']['defaultapp'] = 'discover'
 
 # Logging options. Logs to stdout by default.
-default['kibana']['log_to_file'] = 'false'
+default['kibana']['log_to_file'] = false
 default['kibana']['logfile'] = "#{node['kibana']['base_dir']}/kibana.log"
 default['kibana']['logging_option'] = ''
 
-if node['kibana']['log_to_file'] == 'true'
-  default['kibana']['logging_option'] = "log_file: #{node['kibana']['logfile']}"
+if node['kibana']['log_to_file']
+  if node['kibana']['version'] == '3' ||  node['kibana']['version'] == '4'
+    default['kibana']['logging_option'] = "log_file: #{node['kibana']['logfile']}"
+  elsif node['kibana']['version'] == '5'
+    default['kibana']['logging_option'] = "logging.dest: #{node['kibana']['logfile']}"
+  end
 end
 
 default['kibana']['plugins'] = [
