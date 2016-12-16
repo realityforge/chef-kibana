@@ -37,7 +37,7 @@ include_recipe 'kibana::_service'
 # Apply config template
 template File.join(node['kibana']['base_dir'], config_path) do
   cookbook node['kibana']['config']['cookbook']
-  source node['kibana']['config']['source']
+  source 'kibana4.yml.erb'
   owner node['kibana']['user']
   group node['kibana']['group']
   mode '0644'
