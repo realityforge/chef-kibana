@@ -44,6 +44,8 @@ template File.join(node['kibana']['base_dir'], config_path) do
   variables(
     bind:           node['kibana']['interface'],
     port:           node['kibana']['port'],
+    es_user:        node['kibana']['elasticsearch']['user'] || 'kibana',
+    es_pass:        node['kibana']['elasticsearch']['password'] || 'kibana',
     es_host:        node['kibana']['elasticsearch']['hosts'].first,
     es_port:        node['kibana']['elasticsearch']['port'],
     index:          node['kibana']['index'],
