@@ -3,7 +3,7 @@ source 'https://supermarket.chef.io/'
 metadata
 
 group :vagrant do
-    cookbook 'ark', '= 2.1.0'
+    cookbook 'ark', '= 2.2.1'
     cookbook 'apt'
     cookbook 'apache2'
     cookbook 'elasticsearch', '~ 2.4.0'
