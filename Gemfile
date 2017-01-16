@@ -4,24 +4,24 @@ gem 'berkshelf'
 gem 'stove'
 
 group :test do
-  gem 'rake',               '~> 11.2.2'
-  gem 'test-kitchen',       '~> 1.10.2'
-  gem 'foodcritic',         '~> 7.0.1'
-  gem 'rubocop',            '~> 0.41.2'
-  gem 'chefspec',           '~> 4.7.0'
-  gem 'buff-extensions',    '~> 1.0.0'
+  gem 'rake'
+  gem 'test-kitchen'
+  gem 'foodcritic'
+  gem 'rubocop'
+  gem 'chefspec'
+  gem 'buff-extensions'
 end
 
 group :vagrant do
-  gem 'kitchen-vagrant',    '~> 0.20.0'
+  gem 'kitchen-vagrant'
 end
 
 group :development do
-  gem 'knife-cookbook-doc', '~> 0.7.0'
+  gem 'knife-cookbook-doc'
   gem 'kitchen-openstack'
   gem 'kitchen-transport-rsync'
 end
 
 group :integration_docker do
-  gem 'kitchen-docker', '~> 2.3'
+  gem 'kitchen-docker'
 end
