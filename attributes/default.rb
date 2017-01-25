@@ -166,6 +166,9 @@ default['kibana']['service']['options'] = ''
 #<> The kibana 4 default application on load
 default['kibana']['defaultapp'] = 'discover'
 
+# Extra config options for kibana.yml (key: value)
+default['kibana']['extra_config'] = {}
+
 # Logging options. Logs to stdout by default.
 default['kibana']['log_to_file'] = false
 default['kibana']['logfile'] = "#{node['kibana']['base_dir']}/kibana.log"

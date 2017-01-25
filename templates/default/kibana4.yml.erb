@@ -81,3 +81,9 @@ bundled_plugin_ids:
  - plugins/table_vis/index
  - plugins/vis_types/index
  - plugins/visualize/index
+
+
+# Extra config
+<% @extra_config.each do |k,v| %>
+<%= k %>: <%= v %>
+<% end %>
