@@ -69,16 +69,7 @@ elasticsearch.ssl.verify: true
 # logging.dest: ./kibana.log
 <%= @logging_option -%>
 
-
-# Plugins that are included in the build, and no longer found in the plugins/ folder
-bundled_plugin_ids:
- - plugins/dashboard/index
- - plugins/discover/index
- - plugins/doc/index
- - plugins/kibana/index
- - plugins/markdown_vis/index
- - plugins/metric_vis/index
- - plugins/settings/index
- - plugins/table_vis/index
- - plugins/vis_types/index
- - plugins/visualize/index
+# Extra config
+<% @extra_config.each do |k,v| %>
+<%= k %>: <%= v %>
+<% end %>

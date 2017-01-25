@@ -48,7 +48,8 @@ template File.join(node['kibana']['base_dir'], config_path) do
     es_port:        node['kibana']['elasticsearch']['port'],
     index:          node['kibana']['index'],
     defaultapp:     node['kibana']['defaultapp'],
-    logging_option: node['kibana']['logging_option']
+    logging_option: node['kibana']['logging_option'],
+    extra_config:   node['kibana']['extra_config']
   )
   notifies :restart, 'service[kibana]'
 end
