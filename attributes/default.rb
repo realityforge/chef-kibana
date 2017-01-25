@@ -72,7 +72,7 @@ default['kibana']['nginx']['ssl_session_timeout'] = '10m'
 default['kibana']['nginx']['server_name'] = 'kibana'
 
 #<> The nginx configuration source
-default['kibana']['nginx']['source'] = node['kibana']['version'] == '4' ? 'nginx4.conf.erb' : 'nginx.conf.erb'
+default['kibana']['nginx']['source'] = node['kibana']['version'] == '4' ? 'nginx4.conf.erb' : 'nginx5.conf.erb'
 default['kibana']['nginx']['cookbook'] = 'kibana'
 
 #<> Redirect requests to kibana service

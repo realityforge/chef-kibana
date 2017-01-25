@@ -1,0 +1,44 @@
+<% if @ssl %>
+server {
+  listen      <%= @listen_http %>;
+  server_name <%= @server_name %>;
+  rewrite     ^(.*) https://<%= @server_name %><% unless @listen_https == 443 %>:<%= @listen_https %><% end %>/;
+}
+<% end %>
+
+server {
+  listen       <% if @ssl %><%= @listen_https %><% else %><%= @listen_http %><% end %>;
+  server_name  <%= @server_name %>;
+
+  <% if @ssl %>
+  ssl on;
+  ssl_certificate     <%= @ssl_certificate %>;
+  ssl_certificate_key <%= @ssl_certificate_key %>;
+  ssl_protocols       <%= @ssl_protocols %>;
+  ssl_ciphers         <%= @ssl_ciphers %>;
+  ssl_session_cache   <%= @ssl_session_cache %>;
+  ssl_session_timeout <%= @ssl_session_timeout %>;
+  <% end %>
+
+  client_max_body_size <%= @client_max_body %>;
+
+  error_log   <%= @log_dir %>/<%= @server_name %>-errors.log;
+  access_log  <%= @log_dir %>/<%= @server_name %>.log;
+
+
+  location ~ (/|/app/kibana|/bundles/|/kibana4|/status|/plugins) {
+    proxy_set_header        Host $host;
+    proxy_set_header        X-Real-IP $remote_addr;
+    proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header        X-Forwarded-Proto $scheme;
+    <% if @auth %>
+    auth_basic "Kibana Auth";
+    auth_basic_user_file <%= @auth_file %>;
+    <% end %>
+    <% if @kibana_service %>
+    proxy_pass <%= @kibana_service %>;
+    <% end %>
+    proxy_read_timeout  90;
+    rewrite /kibana4/(.*)$ /$1 break;
+  }
+}
