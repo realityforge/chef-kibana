@@ -16,7 +16,7 @@ class KibanaCookbook::ConfigureProvider < Chef::Provider::LWRPBase
 
     default_configuration = new_resource.default_configuration.dup
     merged_configuration = default_configuration.merge(new_resource.configuration.dup)
-    merged_configuration = default_configuration.merge(new_resource.plugins.dup)
+    merged_configuration = merged_configuration.merge(new_resource.plugins.dup)
     yml_template = template 'kibana.yml' do
       path "#{new_resource.path_conf[kb_install.type]}/kibana.yml"
       source new_resource.template_kibana_yml
