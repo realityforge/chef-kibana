@@ -20,8 +20,8 @@ end script
 chdir <%= @base_dir %>
 <%
   command = case @version
-            when /^3/
-              raise "kibana 3 cannot be started as a service"
+            when /^5/
+              "#{@bin_path}/kibana/kibana #{@options}"
             when /^4/
               "#{@bin_path}/kibana #{@options}"
             end
