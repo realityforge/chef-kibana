@@ -16,12 +16,12 @@ class KibanaCookbook::ServiceProvider < Chef::Provider::LWRPBase
     kb_user = find_kb_resource(run_context, :kibana_user, new_resource)
     # Create service
     #
-    if kb_install.type == 'tarball'
+    if kb_install.type.to_s == 'tarball'
       init_r = template "/etc/init/#{new_resource.service_name}.conf" do
         source new_resource.init_source
         cookbook new_resource.init_cookbook
         owner 'root'
-        mode 0o0755
+        mode 0o0644
         variables(
           version: kb_install.version,
           base_dir: kb_install.dir[kb_install.type],
