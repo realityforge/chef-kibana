@@ -1,11 +1,23 @@
 # Encoding: utf-8
 
 #<> Kibana major version
-default['kibana']['version'] = '3'
+default['kibana']['version'] = '5'
+
 #<> Kibana3 exact version
-default['kibana']['kibana3_version'] = '3.0.0'
+default['kibana']['kibana3_version'] = '3.1.2'
+default['kibana']['kibana3_checksum'] = '480562733c2c941525bfa26326b6fae5faf83109b452a6c4e283a5c37e3086ee'
+default['kibana']['kibana3_url'] = 'https://download.elastic.co/kibana/kibana/kibana-3.1.2.tar.gz'
+
 #<> Kibana4 exact version
-default['kibana']['kibana4_version'] = '4.2.0'
+default['kibana']['kibana4_version'] = '4.6.3'
+default['kibana']['kibana4_checksum'] = '483d49d7d03052f4885c88d905b602f3fa432cb12e2c2cbdab82bb0d259d00c7'
+default['kibana']['kibana4_url'] = 'https://download.elastic.co/kibana/kibana/kibana-4.6.3-linux-x86_64.tar.gz'
+
+#<> Kibana5 exact version, checksum, URL
+default['kibana']['kibana5_version'] = '5.1.1',
+default['kibana']['kibana5_checksum'] = 'da0383be8a12936c7d2a0a145e7bf0eb15abf972e585e0115ed8742032c79245',
+default['kibana']['kibana5_url'] = 'https://artifacts.elastic.co/downloads/kibana/kibana-5.1.1-linux-x86_64.tar.gz',
+
 #<> The base directory of kibana.
 default['kibana']['base_dir'] = '/opt/kibana'
 #<> The user under which Kibana is installed.
@@ -18,20 +30,11 @@ default['kibana']['install_method'] = 'release'
 default['kibana']['repository_url'] = 'http://packages.elastic.co/kibana/4.5/debian'
 #<> Kibana repository Public Signing Key
 default['kibana']['repository_key'] = 'https://packages.elastic.co/GPG-KEY-elasticsearch'
-
-url_version = node['kibana']["kibana#{node['kibana']['version']}_version"] || node['kibana']['version']
-#<> Url of tarball
-default['kibana']['url'] = Kibana::Url.new(node, url_version).get
-#<> Checksum of the tarball
-default['kibana']['checksum'] = 'df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8'
-#<> Checksum of the tarball (for Kibana4)
-default['kibana']['kibana4_checksum'] = '67d586e43a35652adeb6780eaa785d3d785ce60cc74fbf3b6a9a53b753c8f985'
-
 #<> The URL to Kibana repository.
 default['kibana']['git']['url'] = 'https://github.com/elasticsearch/kibana.git'
 
 #<> The git reference in the Kibana repository.
-default['kibana']['git']['reference'] = 'v' + node['kibana']['kibana3_version']
+default['kibana']['git']['reference'] = 'v' + node['kibana']['kibana5_version']
 
 #<> The version of Ruby and Gems to use for Kibana.
 case node['platform_family']
@@ -42,7 +45,7 @@ when 'rhel'
 end
 
 #<> The interface on which to bind.
-default['kibana']['interface'] = '127.0.0.1'
+default['kibana']['interface'] = '0.0.0.0'
 
 #<> The port on which to bind.
 default['kibana']['port'] = 5601
