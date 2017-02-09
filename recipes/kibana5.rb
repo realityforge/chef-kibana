@@ -4,7 +4,7 @@ include_recipe 'kibana'
 
 if node['kibana']['install_method'] == 'release'
   ark 'kibana' do
-    url node['kibana']['url']
+    url node['kibana']['kibana5_url']
     version node['kibana']['kibana5_version']
     checksum node['kibana']['kibana5_checksum']
     path node['kibana']['base_dir']
