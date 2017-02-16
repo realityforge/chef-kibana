@@ -6,15 +6,23 @@ default['kibana']['version'] = '5.1.1'
 default['kibana']['install_method'] = 'package'
 #<> Kibana repository url for package method install
 # default['kibana']['repository_url'] = 'http://packages.elastic.co/kibana/4.5/debian'
-default['kibana']['repository_url'] = 'https://artifacts.elastic.co/packages/5.x/apt'
-#<> Checksum of the tarball (for Kibana4)
+default['kibana']['repository_url'] = if node['platform_family'] == 'debian'
+                                        'https://artifacts.elastic.co/packages/5.x/apt'
+                                      elsif node['platform_family'] == 'rhel'
+                                        'https://artifacts.elastic.co/packages/5.x/yum'
+                                      else
+                                        ''
+                                      end
+#<> Checksum of the tarball (for Kibana4/5)
 default['kibana']['checksum']['4.6.3']['tar'] = '483d49d7d03052f4885c88d905b602f3fa432cb12e2c2cbdab82bb0d259d00c7'
+default['kibana']['checksum']['5.1.1']['tar'] = 'da0383be8a12936c7d2a0a145e7bf0eb15abf972e585e0115ed8742032c79245'
 
 #<> The interface on which to bind.
 default['kibana']['interface'] = '127.0.0.1'
 
 #<> The port on which to bind.
 default['kibana']['port'] = 5601
+default['kibana']['elasticsearch']['port'] = 9200 # used in apache recipe
 
 #<> The host to create apache vhost for.
 default['kibana']['apache']['host'] = node['fqdn']
@@ -83,7 +91,7 @@ end
 
 # kibana service configurations - defaults to settings for Ubuntu 14.04
 case node['platform']
-when 'centos'
+when 'centos', 'redhat'
   if node['platform_version'] < '6.9'
     default['kibana']['service']['provider'] = Chef::Provider::Service::Init::Redhat
     default['kibana']['service']['source'] = 'initd.kibana.erb'

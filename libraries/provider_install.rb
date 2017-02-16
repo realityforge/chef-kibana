@@ -69,8 +69,14 @@ class KibanaCookbook::InstallProvider < Chef::Provider::LWRPBase
                 key kibana_key
                 action :nothing
               end
+            elsif node['platform_family'] == 'rhel'
+              yum_repository 'kibana' do
+                baseurl repository_url
+                gpgkey kibana_key
+                action :nothing # :add, remove
+              end
             else
-              raise "#{node['platform_family']} is not a support"
+              raise "#{node['platform_family']} is not supported"
             end
     rep_r.run_action(:add)
     new_resource.updated_by_last_action(true) if rep_r.updated_by_last_action?

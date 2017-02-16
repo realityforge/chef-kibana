@@ -18,7 +18,7 @@ Dir['./test/unit/spec/support/**/*.rb'].sort.each { |f| require f }
 }.freeze
 ::CENTOS_OPTS = {
   platform: 'centos',
-  version: '6.0'
+  version: '6.8'
 }.freeze
 ::CENTOS7_OPTS = {
   platform: 'centos',

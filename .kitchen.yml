@@ -1,7 +1,7 @@
 ---
 driver_plugin: vagrant
 driver_config:
-  require_chef_omnibus: 12.4.1
+  require_chef_omnibus: 12.16.42
   network:
     - ["forwarded_port", {guest: 8080, host: 8080, auto_correct: true}]
 
@@ -15,10 +15,10 @@ platforms:
 - name: ubuntu-16.04
   run_list:
     - recipe[apt]
-- name: centos-6.4
+- name: centos-6.8
   driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+    box: opscode-centos-6.8
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.8_chef-provisionerless.box
   attributes:
     yum:
       epel:
@@ -112,3 +112,19 @@ suites:
         listen_http: 8080
     java:
       jdk_version: '8'
+
+- name: kibana5
+  run_list:
+    - 'recipe[kibana]'
+  attributes:
+    kibana:
+      version: '5.1.1'
+- name: tarball_kibana5
+  run_list:
+    - 'recipe[kibana]'
+  attributes:
+    kibana:
+      version: '5.1.1'
+      install_method: 'tarball'
+      service:
+        bin_path: 'kibana/bin'

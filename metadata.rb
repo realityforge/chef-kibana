@@ -12,6 +12,7 @@ issues_url 'https://github.com/realityforge/chef-kibana/issues'
 
 supports 'ubuntu'
 supports 'debian'
+supports 'centos'
 
 depends 'build-essential'
 depends 'ark'
