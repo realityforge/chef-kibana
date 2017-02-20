@@ -21,7 +21,7 @@ class KibanaCookbook::ServiceProvider < Chef::Provider::LWRPBase
         source new_resource.init_source
         cookbook new_resource.init_cookbook
         owner 'root'
-        mode new_resource.init_template == '/etc/init.d/kibana' ? 00755 : 00644
+        mode new_resource.init_template == '/etc/init.d/kibana' ? 0o0755 : 0o0644
         variables(
           version: kb_install.version,
           base_dir: kb_install.dir[kb_install.type],

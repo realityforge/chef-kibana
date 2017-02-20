@@ -1,7 +1,6 @@
 # Encoding: utf-8
 require 'spec_helper'
 
-# package install only supported on Debian currently
 describe 'kibana' do
   describe package('kibana') do
     it { should be_installed }
