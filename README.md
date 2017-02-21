@@ -28,22 +28,19 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 
 # Attributes
 
-* `node['kibana']['version']` - Kibana version. Defaults to `3`.
-* `node['kibana']['kibana3_version']` - Kibana3 exact version. Defaults to `3.0.0`.
-* `node['kibana']['kibana4_version']` - Kibana4 exact version. Defaults to `4.2.0`.
+* `node['kibana']['version']` - Kibana version. Defaults to `5.1.1`.
 * `node['kibana']['base_dir']` - The base directory of kibana. Defaults to `/opt/kibana`.
 * `node['kibana']['user']` - The user under which Kibana is installed. Defaults to `kibana`.
 * `node['kibana']['group']` - The group under which Kibana is installed. Defaults to `kibana`.
-* `node['kibana']['install_method']` - Install method. Can be source or release. Defaults to `release`.
-* `node['kibana']['url']` - Url of tarball. Defaults to `https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz`.
-* `node['kibana']['checksum']` - Checksum of the tarball. Defaults to `df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8`.
-* `node['kibana']['kibana4_checksum']` - Checksum of the tarball. Defaults to `67d586e43a35652adeb6780eaa785d3d785ce60cc74fbf3b6a9a53b753c8f985`.
+* `node['kibana']['install_method']` - Install method. Can be tarball or package. Defaults to `package`.
+* `node['kibana']['repository_url']` - Url of package. Defaults to `https://arifacts.elastic.co/packages/5.x/[apt|yum]` (depending on OS family).
+* `node['kibana']['checksum']['4.6.3']['tar']` - Checksum of the kibana 4.6.3 tarball. Defaults to `67d586e43a35652adeb6780eaa785d3d785ce60cc74fbf3b6a9a53b753c8f985`.
+* `node['kibana']['checksum']['5.1.1']['tar']` - Checksum of the kibana 5.1.1 tarball. Defaults to `da0383be8a12936c7d2a0a145e7bf0eb15abf972e585e0115ed8742032c79245`.
 * `node['kibana']['git']['url']` - The URL to Kibana repository. Defaults to `https://github.com/elasticsearch/kibana.git`.
 * `node['kibana']['git']['reference']` - The git reference in the Kibana repository. Defaults to `'v' + node['kibana']['kibana3_version']`.
 * `node['kibana']['rubyversion']` - The version of Ruby and Gems to use for Kibana. Defaults to `1.9.1`.
 * `node['kibana']['interface']` - The interface on which to bind. Defaults to `127.0.0.1`.
 * `node['kibana']['port']` - The port on which to bind. Defaults to `5601`.
-* `node['kibana']['elasticsearch']['hosts']` - An Array of the elasticsearch service hosts. Defaults to `['127.0.0.1']`.
 * `node['kibana']['elasticsearch']['port']` - The port of the elasticsearch http service. Defaults to `9200`.
 * `node['kibana']['default_fields']` - The which fields are shown by default. Defaults to `["@message"]`.
 * `node['kibana']['default_operator']` - The operator used if no explicit operator is specified. Defaults to `OR`.
@@ -79,9 +76,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 
 * [kibana::apache](#kibanaapache) - Setup vhost for apache that rewrites to Kibana.
 * [kibana::default](#kibanadefault) - Install Kibana.
-* kibana::kibana3
-* kibana::kibana4
-* kibana::nginx
+* [kibana::nginx](#kibananginx) - Setup Nginx configuration to act as a reverse proxy to Kibana
 
 ## kibana::apache
 
@@ -90,6 +85,10 @@ Setup vhost for apache that rewrites to Kibana.
 ## kibana::default
 
 Install Kibana.
+
+## kibana::nginx
+
+Install & configure Nginx to act as a reverse proxy to Kibana.
 
 # License and Maintainers
 
