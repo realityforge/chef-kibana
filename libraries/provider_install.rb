@@ -82,6 +82,7 @@ class KibanaCookbook::InstallProvider < Chef::Provider::LWRPBase
     new_resource.updated_by_last_action(true) if rep_r.updated_by_last_action?
 
     pkg_r = package 'kibana' do
+      version new_resource.version
       action :nothing
     end
     pkg_r.run_action(:install)
