@@ -1,74 +1,20 @@
 # Encoding: utf-8
 
 #<> Kibana major version
-default['kibana']['version'] = '3'
-#<> Kibana3 exact version
-default['kibana']['kibana3_version'] = '3.0.0'
-#<> Kibana4 exact version
-default['kibana']['kibana4_version'] = '4.2.0'
-#<> The base directory of kibana.
-default['kibana']['base_dir'] = '/opt/kibana'
-#<> The user under which Kibana is installed.
-default['kibana']['user'] = 'kibana'
-#<> The group under which Kibana is installed.
-default['kibana']['group'] = 'kibana'
-#<> Install method. Can be source, release or package
-default['kibana']['install_method'] = 'release'
+default['kibana']['version'] = '5.1.1'
+#<> Install method. Can be tarball or package
+default['kibana']['install_method'] = 'package'
 #<> Kibana repository url for package method install
-default['kibana']['repository_url'] = 'http://packages.elastic.co/kibana/4.5/debian'
-#<> Kibana repository Public Signing Key
-default['kibana']['repository_key'] = 'https://packages.elastic.co/GPG-KEY-elasticsearch'
-
-url_version = node['kibana']["kibana#{node['kibana']['version']}_version"] || node['kibana']['version']
-#<> Url of tarball
-default['kibana']['url'] = Kibana::Url.new(node, url_version).get
-#<> Checksum of the tarball
-default['kibana']['checksum'] = 'df25bc0cc02385edcac446ef8cbd83b896cdc910a0fa1b0a7bd2a958164593a8'
+# default['kibana']['repository_url'] = 'http://packages.elastic.co/kibana/4.5/debian'
+default['kibana']['repository_url'] = 'https://artifacts.elastic.co/packages/5.x/apt'
 #<> Checksum of the tarball (for Kibana4)
-default['kibana']['kibana4_checksum'] = '67d586e43a35652adeb6780eaa785d3d785ce60cc74fbf3b6a9a53b753c8f985'
-
-#<> The URL to Kibana repository.
-default['kibana']['git']['url'] = 'https://github.com/elasticsearch/kibana.git'
-
-#<> The git reference in the Kibana repository.
-default['kibana']['git']['reference'] = 'v' + node['kibana']['kibana3_version']
-
-#<> The version of Ruby and Gems to use for Kibana.
-case node['platform_family']
-when 'debian'
-  default['kibana']['rubyversion'] = '1.9.1'
-when 'rhel'
-  default['kibana']['rubyversion'] = nil
-end
+default['kibana']['checksum']['4.6.3']['tar'] = '483d49d7d03052f4885c88d905b602f3fa432cb12e2c2cbdab82bb0d259d00c7'
 
 #<> The interface on which to bind.
 default['kibana']['interface'] = '127.0.0.1'
 
 #<> The port on which to bind.
 default['kibana']['port'] = 5601
-#<> An Array of the elasticsearch service hosts.
-default['kibana']['elasticsearch']['hosts'] = ['127.0.0.1']
-#<> The port of the elasticsearch http service.
-default['kibana']['elasticsearch']['port'] = 9200
-
-default['kibana']['index'] = if node['kibana']['version'] > '3'
-                               '.kibana'
-                             else
-                               'kibana-int'
-                             end
-
-#<> The which fields are shown by default.
-default['kibana']['default_fields'] = '["@message"]'
-#<> The operator used if no explicit operator is specified.
-default['kibana']['default_operator'] = 'OR'
-#<> The cookbook from which configuration template is taken
-default['kibana']['config']['cookbook'] = nil
-#<> The template from which configuration is generated from
-default['kibana']['config']['source'] = nil
-#<> Fields specifiers which default to @message (may need to be changed for newer logstash)
-default['kibana']['highlighted_field'] = '@message'
-default['kibana']['primary_field'] = '@message'
-default['kibana']['default_index'] = '@message'
 
 #<> The host to create apache vhost for.
 default['kibana']['apache']['host'] = node['fqdn']
@@ -126,7 +72,7 @@ default['kibana']['nginx']['ssl_session_timeout'] = '10m'
 default['kibana']['nginx']['server_name'] = 'kibana'
 
 #<> The nginx configuration source
-default['kibana']['nginx']['source'] = node['kibana']['version'] == '4' ? 'nginx4.conf.erb' : 'nginx.conf.erb'
+default['kibana']['nginx']['source'] = node['kibana']['version'] =~ /^4/ ? 'nginx4.conf.erb' : 'nginx5.conf.erb'
 default['kibana']['nginx']['cookbook'] = 'kibana'
 
 #<> Redirect requests to kibana service
@@ -160,7 +106,7 @@ when 'ubuntu'
   end
 end
 default['kibana']['service']['cookbook'] = 'kibana'
-default['kibana']['service']['bin_path'] = 'current/bin'
+default['kibana']['service']['bin_path'] = 'bin'
 default['kibana']['service']['options'] = ''
 
 #<> The kibana 4 default application on load

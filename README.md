@@ -6,6 +6,8 @@ A cookbook that installs [Kibana](https://github.com/elastic/kibana).
 
 Kibana requires ElasticSearch index to be configured to work as per logstash requirements.
 
+[Kibana](https://www.elastic.co/products/kibana) - This cookbook is being written and tested to support Kibana 5.x and greater. If you must have a cookbook that works with older versions of Kibana, please test and then pin to a specific, older major.minor version of this cookbook and only leave the patch release to float. Older versions can be found via Git tags or on Chef Supermarket. 
+
 # Requirements
 
 * Chef 11+
