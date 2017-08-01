@@ -34,7 +34,7 @@ default['kibana']['repository_key'] = 'https://packages.elastic.co/GPG-KEY-elast
 default['kibana']['git']['url'] = 'https://github.com/elasticsearch/kibana.git'
 
 #<> The git reference in the Kibana repository.
-default['kibana']['git']['reference'] = 'v' + node['kibana']['kibana5_version']
+default['kibana']['git']['reference'] = "v#{node['kibana']['kibana5_version']}"
 
 #<> The version of Ruby and Gems to use for Kibana.
 case node['platform_family']
