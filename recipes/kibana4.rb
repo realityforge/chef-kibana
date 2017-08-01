@@ -58,7 +58,7 @@ end
 node['kibana']['plugins'].each do |plugin|
   execute "install #{plugin[:name]}" do
     command "/usr/local/kibana-#{node['kibana']['kibana4_version']}/bin/kibana plugin --install #{plugin[:url]}"
-    not_if { ::Dir.exists?("/usr/local/kibana-#{node['kibana']['kibana4_version']}/installedPlugins/#{plugin[:name]}") }
+    not_if { ::Dir.exist?("/usr/local/kibana-#{node['kibana']['kibana4_version']}/installedPlugins/#{plugin[:name]}") }
     notifies :restart, 'service[kibana]'
   end
 end
