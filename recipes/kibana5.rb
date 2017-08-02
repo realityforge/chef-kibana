@@ -55,13 +55,3 @@ template File.join(node['kibana']['base_dir'], config_path) do
   )
   notifies :restart, 'service[kibana]'
 end
-
-# Install plugins
-node['kibana']['plugins'].each do |plugin|
-  execute "install #{plugin[:name]}" do
-    command "/usr/local/kibana-#{node['kibana']['kibana5_version']}/bin/kibana-plugin install #{plugin[:url]}"
-    user node['kibana']['user'] || 'root'
-    not_if { ::Dir.exist?("/usr/local/kibana-#{node['kibana']['kibana5_version']}/plugins/#{plugin[:name]}") }
-    notifies :restart, 'service[kibana]'
-  end
-end
