@@ -14,12 +14,12 @@ default['kibana']['kibana4_checksum'] = '483d49d7d03052f4885c88d905b602f3fa432cb
 default['kibana']['kibana4_url'] = 'https://download.elastic.co/kibana/kibana/kibana-4.6.3-linux-x86_64.tar.gz'
 
 #<> Kibana5 exact version, checksum, URL
-default['kibana']['kibana5_version'] = '5.1.1',
-                                       default['kibana']['kibana5_checksum'] = 'da0383be8a12936c7d2a0a145e7bf0eb15abf972e585e0115ed8742032c79245',
-                                       default['kibana']['kibana5_url'] = 'https://artifacts.elastic.co/downloads/kibana/kibana-5.1.1-linux-x86_64.tar.gz',
+default['kibana']['kibana5_version'] = '5.5.1'
+default['kibana']['kibana5_checksum'] = 'a6473f6f404715c52acba0e3fec1a93f7745d52a1cb20906e803b229d2a2e475'
+default['kibana']['kibana5_url'] = "https://artifacts.elastic.co/downloads/kibana/kibana-#{node['kibana']['kibana5_version']}-linux-x86_64.tar.gz"
 
-                                       #<> The base directory of kibana.
-                                       default['kibana']['base_dir'] = '/opt/kibana'
+#<> The base directory of kibana.
+default['kibana']['base_dir'] = '/opt/kibana'
 #<> The user under which Kibana is installed.
 default['kibana']['user'] = 'kibana'
 #<> The group under which Kibana is installed.
