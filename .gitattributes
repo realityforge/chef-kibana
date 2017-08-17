@@ -1,5 +1,12 @@
+# DO NOT EDIT: File is auto-generated
 * -text
-*.rb text -crlf -binary
-*.rdoc text -crlf -binary
-*.erb text -crlf -binary
-*.xml text -crlf -binary
+*.erb text
+*.md text
+*.rb text
+*.yml text
+.gitattributes text
+.gitignore text
+.ruby-version text
+Gemfile text
+Rakefile text
+Vagrantfile text

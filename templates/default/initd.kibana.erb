@@ -37,7 +37,7 @@ fi
 
 # Function library
 . /etc/init.d/functions
- 
+
 start() {
         echo -n "Starting $DESC : "
 
@@ -74,7 +74,7 @@ stop() {
 	echo
         [ $RETVAL = 0 ] && rm -f $PID_FILE $LOCK_FILE
 }
- 
+
 case "$1" in
   start)
         start
