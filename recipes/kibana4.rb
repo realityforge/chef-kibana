@@ -4,7 +4,7 @@ include_recipe 'kibana'
 
 if node['kibana']['install_method'] == 'release'
   ark 'kibana' do
-    url node['kibana']['url']
+    url node['kibana']['kibana4_url']
     version node['kibana']['kibana4_version']
     checksum node['kibana']['kibana4_checksum']
     path node['kibana']['base_dir']
@@ -37,7 +37,7 @@ include_recipe 'kibana::_service'
 # Apply config template
 template File.join(node['kibana']['base_dir'], config_path) do
   cookbook node['kibana']['config']['cookbook']
-  source node['kibana']['config']['source']
+  source 'kibana4.yml.erb'
   owner node['kibana']['user']
   group node['kibana']['group']
   mode '0644'
@@ -48,7 +48,17 @@ template File.join(node['kibana']['base_dir'], config_path) do
     es_port:        node['kibana']['elasticsearch']['port'],
     index:          node['kibana']['index'],
     defaultapp:     node['kibana']['defaultapp'],
-    logging_option: node['kibana']['logging_option']
+    logging_option: node['kibana']['logging_option'],
+    extra_config:   node['kibana']['extra_config']
   )
   notifies :restart, 'service[kibana]'
+end
+
+# Install plugins
+node['kibana']['plugins'].each do |plugin|
+  execute "install #{plugin[:name]}" do
+    command "/usr/local/kibana-#{node['kibana']['kibana4_version']}/bin/kibana plugin --install #{plugin[:url]}"
+    not_if { ::Dir.exists?("/usr/local/kibana-#{node['kibana']['kibana4_version']}/installedPlugins/#{plugin[:name]}") }
+    notifies :restart, 'service[kibana]'
+  end
 end
