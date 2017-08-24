@@ -15,9 +15,9 @@ if node['kibana']['install_method'] == 'source'
   config_path = 'current/src/config.js'
 else
   ark 'kibana' do
-    url node['kibana']['url']
+    url node['kibana']['kibana3_url']
     version node['kibana']['kibana3_version']
-    checksum node['kibana']['checksum']
+    checksum node['kibana']['kibana3_checksum']
     path node['kibana']['base_dir']
     home_dir File.join(node['kibana']['base_dir'], 'current')
     owner node['kibana']['user']
