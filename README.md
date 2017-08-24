@@ -89,6 +89,52 @@ Setup vhost for apache that rewrites to Kibana.
 
 Install Kibana.
 
+# Resources
+
+## kibana_plugin
+
+Resource to manage plugins
+
+### Definition
+
+```
+resource_name :kibana_plugin
+
+property :name, String, name_property: true
+property :url, String
+property :plugin_dir, String, default: ::File.join(node['kibana']['base_dir'],'current','installedPlugins')
+property :kibana_home, String, default: ::File.join(node['kibana']['base_dir'],'current')
+property :plugins_registry, String, default: ::File.join(node['kibana']['base_dir'],'installedPugins.json')
+
+default_action :install
+```
+
+### Actions
+
+#### install
+Install plugin if not installed
+
+#### update
+If plugin source changed, remove installed and install new version
+The resource keeps track of plugins in a json file `plugins_registry` in the form
+```
+{
+  "foo": "http:\\path\to\foo-version.gz",
+  "bar": "http:\\path\to\bar-version.gz"
+}
+```
+
+#### remove
+Remove plugin if already installed
+
+### Example
+```
+kibana_plugin 'foo' do
+  action :update
+  url 'http:\\url\to\foo-version.gz'
+end
+```
+
 # License and Maintainers
 
 Maintainers:: Peter Donald (<peter@realityforge.org>), Dimitry Ryobryshkin (@cyberflow), Scott Nelson Windels (<scott@drenalin.com>)
