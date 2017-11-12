@@ -1,7 +1,7 @@
 # Encoding: utf-8
 
 #<> Kibana major version
-default['kibana']['version'] = '5'
+default['kibana']['version'] = 5
 
 #<> Kibana3 exact version
 default['kibana']['kibana3_version'] = '3.1.2'
@@ -54,7 +54,7 @@ default['kibana']['elasticsearch']['hosts'] = ['127.0.0.1']
 #<> The port of the elasticsearch http service.
 default['kibana']['elasticsearch']['port'] = 9200
 
-default['kibana']['index'] = if node['kibana']['version'] > '3'
+default['kibana']['index'] = if node['kibana']['version'] > 3
                                '.kibana'
                              else
                                'kibana-int'
@@ -129,12 +129,12 @@ default['kibana']['nginx']['ssl_session_timeout'] = '10m'
 default['kibana']['nginx']['server_name'] = 'kibana'
 
 #<> The nginx configuration source
-default['kibana']['nginx']['source'] = node['kibana']['version'] == '4' ? 'nginx4.conf.erb' : 'nginx.conf.erb'
+default['kibana']['nginx']['source'] = node['kibana']['version'] == 4 ? 'nginx4.conf.erb' : 'nginx.conf.erb'
 default['kibana']['nginx']['cookbook'] = 'kibana'
 
 #<> Redirect requests to kibana service
 default['kibana']['kibana_service'] = nil
-unless node['kibana']['version'] =~ /^3/
+unless node['kibana']['version'] == 3
   default['kibana']['kibana_service'] = "http://#{node['kibana']['interface']}:#{node['kibana']['port']}"
 end
 
@@ -178,9 +178,9 @@ default['kibana']['logfile'] = "#{node['kibana']['base_dir']}/kibana.log"
 default['kibana']['logging_option'] = ''
 
 if node['kibana']['log_to_file']
-  if node['kibana']['version'] == '3' ||  node['kibana']['version'] == '4'
+  if node['kibana']['version'] <= 4
     default['kibana']['logging_option'] = "log_file: #{node['kibana']['logfile']}"
-  elsif node['kibana']['version'] == '5'
+  elsif node['kibana']['version'] >= 5
     default['kibana']['logging_option'] = "logging.dest: #{node['kibana']['logfile']}"
   end
 end

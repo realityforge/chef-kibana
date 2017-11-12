@@ -26,7 +26,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 
 # Attributes
 
-* `node['kibana']['version']` - Kibana version. Defaults to `5`.
+* `node['kibana']['version']` - Kibana major version used. Defaults to `5`.
 * `node['kibana']['kibana3_version']` - Kibana3 exact version.
 * `node['kibana']['kibana4_version']` - Kibana4 exact version.
 * `node['kibana']['kibana5_version']` - Kibana5 exact version.
