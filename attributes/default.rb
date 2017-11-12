@@ -9,13 +9,13 @@ default['kibana']['kibana3_checksum'] = '480562733c2c941525bfa26326b6fae5faf8310
 default['kibana']['kibana3_url'] = 'https://download.elastic.co/kibana/kibana/kibana-3.1.2.tar.gz'
 
 #<> Kibana4 exact version
-default['kibana']['kibana4_version'] = '4.6.3'
-default['kibana']['kibana4_checksum'] = '483d49d7d03052f4885c88d905b602f3fa432cb12e2c2cbdab82bb0d259d00c7'
-default['kibana']['kibana4_url'] = 'https://download.elastic.co/kibana/kibana/kibana-4.6.3-linux-x86_64.tar.gz'
+default['kibana']['kibana4_version'] = '4.6.6'
+default['kibana']['kibana4_checksum'] = '8c3c1808349ac9645836cae35c5570a53091b44b2212c0826907efae1a865d17'
+default['kibana']['kibana4_url'] = "https://download.elastic.co/kibana/kibana/kibana-#{node['kibana']['kibana4_version']}-linux-x86_64.tar.gz"
 
 #<> Kibana5 exact version, checksum, URL
-default['kibana']['kibana5_version'] = '5.5.1'
-default['kibana']['kibana5_checksum'] = 'a6473f6f404715c52acba0e3fec1a93f7745d52a1cb20906e803b229d2a2e475'
+default['kibana']['kibana5_version'] = '5.6.4'
+default['kibana']['kibana5_checksum'] = '253dea10f0fa535c6c984981c4012559b43907d4bc6f21668b43295428cef21d'
 default['kibana']['kibana5_url'] = "https://artifacts.elastic.co/downloads/kibana/kibana-#{node['kibana']['kibana5_version']}-linux-x86_64.tar.gz"
 
 #<> The base directory of kibana.
