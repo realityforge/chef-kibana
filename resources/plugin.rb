@@ -16,7 +16,7 @@ load_current_value do
 end
 
 def plugin_exists?(name)
-  list_arg = node['kibana']['version'][0].to_i > 4 ? 'bin/kibana-plugin list' : 'bin/kibana plugin -l'
+  list_arg = node['kibana']['version'] > 4 ? 'bin/kibana-plugin list' : 'bin/kibana plugin -l'
   cmd_line = "#{list_arg}"
   cmd = Mixlib::ShellOut.new(cmd_line, cwd: kibana_home)
   cmd.run_command
@@ -35,7 +35,7 @@ def update_plugin_reg(action)
 end
 
 action :install do
-  install_arg = node['kibana']['version'][0].to_i > 4 ? "bin/kibana-plugin install #{url}" : "bin/kibana plugin -i #{name} -u #{url}"
+  install_arg = node['kibana']['version'] > 4 ? "bin/kibana-plugin install #{url}" : "bin/kibana plugin -i #{name} -u #{url}"
   plugin_install = "#{install_arg}"
   execute 'plugin-install' do
     cwd kibana_home
@@ -46,7 +46,7 @@ action :install do
 end
 
 action :remove do
-  remove_arg = node['kibana']['version'][0].to_i > 4 ? "bin/kibana-plugin remove #{name}" : "bin/kibana plugin --remove #{name}"
+  remove_arg = node['kibana']['version'] > 4 ? "bin/kibana-plugin remove #{name}" : "bin/kibana plugin --remove #{name}"
   plugin_remove = "#{remove_arg}"
   execute 'plugin-remove' do
     cwd kibana_home
