@@ -1,4 +1,5 @@
 # Encoding: utf-8
+# frozen_string_literal: true
 
 #<> Kibana major version
 default['kibana']['version'] = 5

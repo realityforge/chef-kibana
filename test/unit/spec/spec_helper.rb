@@ -1,4 +1,5 @@
 # encoding: UTF-8
+# frozen_string_literal: true
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -27,7 +28,6 @@ require 'support/matchers'
   version: '7.0'
 }.freeze
 
-def stub_resources
-end
+def stub_resources; end
 
 at_exit { ChefSpec::Coverage.report! }

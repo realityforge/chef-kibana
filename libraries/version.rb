@@ -1,4 +1,5 @@
 # Encoding: utf-8
+# frozen_string_literal: true
 
 class Kibana
   # All to find correct url to download kibana
