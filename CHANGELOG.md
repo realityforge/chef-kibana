@@ -1,3 +1,7 @@
+## 0.2.3:
+* Further test fixes
+* Run unit tests on multiple platforms (@mburns)
+
 ## 0.2.2:
 * Update to fix travis runs for CentOS7 and Ubuntu 16.04. #102 (@drenalin23)
 * Update `ark` #103 (@drenalin23)

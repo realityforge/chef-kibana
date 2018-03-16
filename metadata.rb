@@ -10,7 +10,7 @@ version '0.2.2'
 source_url 'https://github.com/realityforge/chef-kibana'
 issues_url 'https://github.com/realityforge/chef-kibana/issues'
 
-chef_version '>= 12' if respond_to?(:chef_version)
+chef_version '>= 12.7.2' if respond_to?(:chef_version)
 
 supports 'ubuntu'
 supports 'debian'
