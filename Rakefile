@@ -1,4 +1,3 @@
-# Encoding: utf-8
 # frozen_string_literal: true
 
 require 'rake'
@@ -50,4 +49,4 @@ RSpec::Core::RakeTask.new(:unit) do |t|
   t.pattern = 'test/unit/spec/*_spec.rb'
 end
 
-task default: [:rubocop, :foodcritic, :unit]
+task default: %i[rubocop foodcritic unit]

@@ -1,4 +1,3 @@
-# Encoding: utf-8
 # frozen_string_literal: true
 
 template node['kibana']['service']['template_file'] do
@@ -17,5 +16,5 @@ end
 service 'kibana' do
   provider node['kibana']['service']['provider']
   supports start: true, restart: true, stop: true, status: true
-  action [:enable, :start]
+  action %i[enable start]
 end

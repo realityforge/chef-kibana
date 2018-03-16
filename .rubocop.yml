@@ -17,3 +17,9 @@ LeadingCommentSpace:
 
 LineLength:
   Enabled: false
+
+Style/FileName:
+  Exclude:
+    - 'Berksfile'
+    - 'Gemfile'
+    - 'Vagrantfile'

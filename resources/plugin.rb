@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 resource_name :kibana_plugin
 
 property :name, String, name_property: true
@@ -17,7 +19,7 @@ end
 
 def plugin_exists?(name)
   list_arg = node['kibana']['version'] > 4 ? 'bin/kibana-plugin list' : 'bin/kibana plugin -l'
-  cmd_line = "#{list_arg}"
+  cmd_line = list_arg.to_s
   cmd = Mixlib::ShellOut.new(cmd_line, cwd: kibana_home)
   cmd.run_command
   cmd.stdout.include? name
@@ -36,7 +38,7 @@ end
 
 action :install do
   install_arg = node['kibana']['version'] > 4 ? "bin/kibana-plugin install #{url}" : "bin/kibana plugin -i #{name} -u #{url}"
-  plugin_install = "#{install_arg}"
+  plugin_install = install_arg.to_s
   execute 'plugin-install' do
     cwd kibana_home
     command plugin_install
@@ -47,7 +49,7 @@ end
 
 action :remove do
   remove_arg = node['kibana']['version'] > 4 ? "bin/kibana-plugin remove #{name}" : "bin/kibana plugin --remove #{name}"
-  plugin_remove = "#{remove_arg}"
+  plugin_remove = remove_arg.to_s
   execute 'plugin-remove' do
     cwd kibana_home
     command plugin_remove
