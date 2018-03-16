@@ -2,7 +2,6 @@
 
 resource_name :kibana_plugin
 
-property :name, String, name_property: true
 property :url, String
 property :kibana_home, String, default: ::File.join(node['kibana']['base_dir'], 'current')
 property :plugins_registry, String, default: ::File.join(node['kibana']['base_dir'], 'installedPugins.json')
