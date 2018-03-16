@@ -5,6 +5,7 @@ require 'rake/testtask'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 require 'bundler/setup'
+require 'foodcritic'
 
 require 'stove/rake_task'
 Stove::RakeTask.new
@@ -14,9 +15,14 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
 end
 
-desc 'Foodcritic linter'
-task :foodcritic do
-  sh 'foodcritic -f any -t ~FC007 .'
+FoodCritic::Rake::LintTask.new do |t|
+  t.options = {
+    fail_tags: ['any'],
+    tags: [
+      '~FC007', # Don't reflect recipe dependencies
+      '~FC071'  # Don't require LICENSE file
+    ]
+  }
 end
 
 desc 'Run Test Kitchen integration tests'
