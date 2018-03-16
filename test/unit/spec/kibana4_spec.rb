@@ -8,6 +8,7 @@ describe 'kibana::kibana4' do
 
   let(:chef_run) do
     ChefSpec::SoloRunner.new(UBUNTU_OPTS) do |node|
+      node.normal['kibana']['version'] = 4
       node.default['kibana']['install_method'] = 'release'
     end.converge(described_recipe, 'kibana::_service')
   end
