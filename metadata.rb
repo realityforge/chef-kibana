@@ -15,6 +15,7 @@ chef_version '>= 12' if respond_to?(:chef_version)
 
 supports 'ubuntu'
 supports 'debian'
+supports 'centos'
 
 depends 'build-essential'
 depends 'ark'
