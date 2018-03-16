@@ -140,6 +140,6 @@ end
 
 # License and Maintainers
 
-Maintainers:: Peter Donald (<peter@realityforge.org>), Dimitry Ryobryshkin (@cyberflow), Scott Nelson Windels (<scott@drenalin.com>)
+Maintainers:: Peter Donald (<peter@realityforge.org>), Dimitry Ryobryshkin (@cyberflow), Scott Nelson Windels (<scott@drenalin.com>), Michael Burns (@mburns)
 
 License:: Apache 2.0
