@@ -8,8 +8,8 @@ describe 'kibana::kibana4' do
 
   let(:chef_run) do
     ChefSpec::SoloRunner.new(UBUNTU_OPTS) do |node|
-      node.normal['kibana']['version'] = 4
-      node.default['kibana']['install_method'] = 'release'
+      node.override['kibana']['version'] = 4
+      node.override['kibana']['install_method'] = 'release'
     end.converge(described_recipe, 'kibana::_service')
   end
   let(:template) { chef_run.template('/opt/kibana/current/config/kibana.yml') }
