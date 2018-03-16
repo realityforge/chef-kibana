@@ -81,6 +81,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * [kibana::default](#kibanadefault) - Install Kibana.
 * kibana::kibana3
 * kibana::kibana4
+* kibana::kibana5
 * kibana::nginx
 
 ## kibana::apache
