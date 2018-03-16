@@ -12,7 +12,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 
 ## Platform:
 
-* Ubuntu 12.04, 14.04.
+* Ubuntu 14.04, 16.04
 * CentOS 6, 7
 
 ## Cookbooks:
