@@ -39,10 +39,10 @@ end
 describe 'kibana::_service' do
   before { stub_resources }
   let(:chef_run) { ChefSpec::SoloRunner.new(CENTOS_OPTS).converge(described_recipe) }
-  let(:template) { chef_run.template('/etc/init.d/kibana') }
+  let(:template) { chef_run.template('/usr/lib/systemd/system/kibana.service') }
 
-  it 'creates an init.d template at /etc/init.d/kibana' do
-    expect(chef_run).to create_template('/etc/init.d/kibana')
+  it 'creates an init.d template at /usr/lib/systemd/system/kibana.service' do
+    expect(chef_run).to create_template('/usr/lib/systemd/system/kibana.service')
   end
   it 'enables a kibana service' do
     expect(chef_run).to enable_service('kibana')
