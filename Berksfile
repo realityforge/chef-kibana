@@ -5,7 +5,7 @@ source 'https://supermarket.chef.io/'
 metadata
 
 group :vagrant do
-  cookbook 'ark', '>= 2.2.1'
+  cookbook 'ark'
   cookbook 'apt'
   cookbook 'apache2'
   cookbook 'build-essential'
@@ -13,5 +13,5 @@ group :vagrant do
   cookbook 'java'
   cookbook 'netstat'
   cookbook 'ohai'
-  cookbook 'chef_nginx', '~ 2.9.0'
+  cookbook 'nginx', '>= 7.0'
 end

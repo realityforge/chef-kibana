@@ -23,6 +23,6 @@ depends 'apt'
 # Suggests is not officially valid, that is why these are commented out
 # suggests 'apache2', '>= 2.0'
 # suggests 'authbind'
-# suggests 'chef_nginx'
+# suggests 'nginx'
 # suggests 'java'
 # suggests 'elasticsearch'
