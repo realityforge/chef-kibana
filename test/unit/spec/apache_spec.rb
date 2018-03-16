@@ -10,4 +10,8 @@ describe 'kibana::apache' do
 
   # TODO: creates a template /etc/apache2/htpasswd
   # TODO: creates a template /etc/apache2/sites-available/kibana.conf
+
+  it 'converges successfully' do
+    expect { :chef_run }.to_not raise_error
+  end
 end
