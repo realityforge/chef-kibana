@@ -1,4 +1,4 @@
-# Encoding: utf-8
+# frozen_string_literal: true
 
 include_recipe 'kibana'
 
@@ -14,11 +14,11 @@ if node['kibana']['install_method'] == 'release'
   config_path = 'current/config/kibana.yml'
 elsif node['kibana']['install_method'] == 'package'
   node.default['kibana']['service']['bin_path'] = 'bin'
-  if node.platform_family? 'debian'
+  if platform_family? 'debian'
     apt_repository 'kibana' do
       uri node['kibana']['repository_url']
       distribution ''
-      components %w(stable main)
+      components %w[stable main]
       key node['kibana']['repository_key']
     end
   else

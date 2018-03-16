@@ -12,7 +12,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 
 ## Platform:
 
-* Ubuntu 12.04, 14.04.
+* Ubuntu 14.04, 16.04
 * CentOS 6, 7
 
 ## Cookbooks:
@@ -33,7 +33,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * `node['kibana']['base_dir']` - The base directory of kibana. Defaults to `/opt/kibana`.
 * `node['kibana']['user']` - The user under which Kibana is installed. Defaults to `kibana`.
 * `node['kibana']['group']` - The group under which Kibana is installed. Defaults to `kibana`.
-* `node['kibana']['install_method']` - Install method. Can be source or release. Defaults to `release`.
+* `node['kibana']['install_method']` - Install method. Can be `package` or `release`. Defaults to `release`.
 * `node['kibana']['url']` - Url of tarball. Defaults to `https://download.elasticsearch.org/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz`.
 * `node['kibana']['kibana3_checksum']` - Checksum of the tarball.
 * `node['kibana']['kibana4_checksum']` - Checksum of the tarball.
@@ -81,6 +81,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * [kibana::default](#kibanadefault) - Install Kibana.
 * kibana::kibana3
 * kibana::kibana4
+* kibana::kibana5
 * kibana::nginx
 
 ## kibana::apache
@@ -139,6 +140,6 @@ end
 
 # License and Maintainers
 
-Maintainers:: Peter Donald (<peter@realityforge.org>), Dimitry Ryobryshkin (@cyberflow), Scott Nelson Windels (<scott@drenalin.com>)
+Maintainers:: Peter Donald (<peter@realityforge.org>), Dimitry Ryobryshkin (@cyberflow), Scott Nelson Windels (<scott@drenalin.com>), Michael Burns (@mburns)
 
 License:: Apache 2.0

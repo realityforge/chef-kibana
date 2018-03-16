@@ -1,4 +1,3 @@
-# Encoding: utf-8
 # frozen_string_literal: true
 
 #<> Kibana major version
@@ -7,7 +6,7 @@ default['kibana']['version'] = 5
 #<> Kibana3 exact version
 default['kibana']['kibana3_version'] = '3.1.2'
 default['kibana']['kibana3_checksum'] = '480562733c2c941525bfa26326b6fae5faf83109b452a6c4e283a5c37e3086ee'
-default['kibana']['kibana3_url'] = 'https://download.elastic.co/kibana/kibana/kibana-3.1.2.tar.gz'
+default['kibana']['kibana3_url'] = "https://download.elastic.co/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz"
 
 #<> Kibana4 exact version
 default['kibana']['kibana4_version'] = '4.6.6'

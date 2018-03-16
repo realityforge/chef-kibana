@@ -1,3 +1,11 @@
+## 0.2.2:
+* Update to fix travis runs for CentOS7 and Ubuntu 16.04. #102 (@drenalin23)
+* Update `ark` #103 (@drenalin23)
+* `kibana_plugin` resource to manage plugins #106 (@InformatiQ)
+* Kibana5, Amazon Linux fixes #107 (@InformatiQ)
+* switch `node['kibana']['version']` to integer #109 (@InformatiQ)
+* Lint fixes #104  (@drenalin23)
+
 ## 0.2.1:
 * fix issue with bin_path for package installs (@drenalin23)
 * update the nginx source attribute so it is easier to override in wrapper cookbooks (@drenalin23)

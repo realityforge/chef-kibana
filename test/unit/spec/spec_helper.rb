@@ -1,5 +1,5 @@
-# encoding: UTF-8
 # frozen_string_literal: true
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -21,11 +21,11 @@ require 'support/matchers'
 }.freeze
 ::CENTOS_OPTS = {
   platform: 'centos',
-  version: '6.0'
+  version: '6.9'
 }.freeze
 ::CENTOS7_OPTS = {
   platform: 'centos',
-  version: '7.0'
+  version: '7.4.1708'
 }.freeze
 
 def stub_resources; end
