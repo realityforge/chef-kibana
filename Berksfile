@@ -4,6 +4,8 @@ source 'https://supermarket.chef.io/'
 
 metadata
 
+cookbook 'compat_resource'
+
 group :vagrant do
   cookbook 'ark'
   cookbook 'apt'
