@@ -14,7 +14,7 @@ if node['kibana']['install_method'] == 'release'
   config_path = 'current/config/kibana.yml'
 elsif node['kibana']['install_method'] == 'package'
   node.default['kibana']['service']['bin_path'] = 'bin'
-  if node.platform_family? 'debian'
+  if platform_family? 'debian'
     apt_repository 'kibana' do
       uri node['kibana']['repository_url']
       distribution ''
