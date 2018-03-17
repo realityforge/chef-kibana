@@ -55,7 +55,7 @@ describe 'kibana::kibana3' do
           expect(chef_run).to install_package('git')
         end
         it 'checks out /opt/kibana' do
-          expect(chef_run).to checkout_git('/opt/kibana/current').with(repository: 'https://github.com/elasticsearch/kibana.git')
+          expect(chef_run).to checkout_git('/opt/kibana/current').with(repository: 'https://github.com/elastic/kibana.git')
         end
 
         it 'creates a template for kibana' do
