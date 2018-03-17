@@ -38,7 +38,7 @@ suites:
 - name: kibana3_nginx
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[chef_nginx]'
+    - 'recipe[nginx]'
     - 'recipe[kibana]'
     - 'recipe[kibana::nginx]'
   attributes: {}
@@ -73,7 +73,7 @@ suites:
 - name: kibana4_nginx
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[chef_nginx]'
+    - 'recipe[nginx]'
     - 'recipe[java]'
     - 'recipe[elasticsearch]'
     - 'recipe[kibana]'
@@ -106,7 +106,7 @@ suites:
 - name: kibana4_nginx_package
   run_list:
     - 'recipe[netstat]'
-    - 'recipe[chef_nginx]'
+    - 'recipe[nginx]'
     - 'recipe[java]'
     - 'recipe[elasticsearch]'
     - 'recipe[kibana]'
