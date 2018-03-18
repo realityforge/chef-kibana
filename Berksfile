@@ -5,6 +5,7 @@ source 'https://supermarket.chef.io/'
 metadata
 
 cookbook 'compat_resource'
+cookbook 'chef-sugar'
 
 group :vagrant do
   cookbook 'ark'
