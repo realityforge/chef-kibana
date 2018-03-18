@@ -64,7 +64,7 @@ suites:
       listen:
        - '*:8080'
     kibana:
-      version: '4'
+      version: 4
       apache:
         port: 8080
       interface: '0.0.0.0'
@@ -80,7 +80,7 @@ suites:
     - 'recipe[kibana::nginx]'
   attributes:
     kibana:
-      version: '4'
+      version: 4
       interface: '0.0.0.0'
       nginx:
         listen_http: 8080
@@ -97,7 +97,7 @@ suites:
        - '*:8080'
     kibana:
       install_method: 'package'
-      version: '4'
+      version: 4
       apache:
         port: 8080
       interface: '0.0.0.0'
@@ -114,7 +114,7 @@ suites:
   attributes:
     kibana:
       install_method: 'package'
-      version: '4'
+      version: 4
       interface: '0.0.0.0'
       nginx:
         listen_http: 8080
