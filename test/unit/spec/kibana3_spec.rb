@@ -11,6 +11,7 @@ describe 'kibana::kibana3' do
           ChefSpec::ServerRunner.new(platform: platform, version: version) do |node, server|
             node_resources(node)
             stub_chef_zero(platform, version, server)
+            node.override['kibana']['version'] = 3
           end.converge(described_recipe)
         end
 
@@ -46,6 +47,8 @@ describe 'kibana::kibana3' do
           ChefSpec::ServerRunner.new(platform: platform, version: version) do |node, server|
             node_resources(node)
             stub_chef_zero(platform, version, server)
+            node.override['kibana']['version'] = 3
+            node.override['kibana']['install_method'] = 'source'
           end.converge(described_recipe)
         end
 
