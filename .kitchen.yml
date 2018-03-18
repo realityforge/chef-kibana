@@ -15,17 +15,14 @@ platforms:
 - name: ubuntu-16.04
   run_list:
     - recipe[apt]
-- name: centos-6.4
-  driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+- name: centos-6.9
   attributes:
     yum:
       epel:
         mirrorlist: http://mirrors.fedoraproject.org/metalink?repo=epel-6&arch=$basearch
         gpgkey: http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6
         sslverify: false
-- name: centos-7.2
+- name: centos-7.4.1708
 
 suites:
 - name: kibana3_apache
