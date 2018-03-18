@@ -141,7 +141,7 @@ end
 # kibana service configurations - defaults to settings for Ubuntu 14.04
 case node['platform']
 when 'centos', 'amazon'
-  if node['platform_version'] < '6.9'
+  if node['platform_version'] < '7.0'
     default['kibana']['service']['provider'] = Chef::Provider::Service::Init::Redhat
     default['kibana']['service']['source'] = 'initd.kibana.erb'
     default['kibana']['service']['template_file'] = '/etc/init.d/kibana'
