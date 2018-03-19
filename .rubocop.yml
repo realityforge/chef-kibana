@@ -9,13 +9,41 @@ AllCops:
 
 BlockComments:
   Enabled: false
-BlockLength:
-  Enabled: false
+
+Style/RescueModifier:
+  Exclude:
+    - 'Rakefile'
+    - 'libraries/helpers.rb'
 
 LeadingCommentSpace:
   Enabled: false
 
 LineLength:
+  Enabled: false
+
+# Longer classes are okay.
+Metrics/BlockLength:
+  Max: 41
+Metrics/LineLength:
+  Max: 172
+Metrics/MethodLength:
+  Max: 30
+Metrics/ModuleLength:
+  Max: 150
+
+# We're not against complexity.
+Metrics/AbcSize:
+  Max: 55
+Metrics/CyclomaticComplexity:
+  Max: 20
+Metrics/PerceivedComplexity:
+  Max: 20
+
+# Mixlib::ShellOut is nice to have as an older hash syntax
+Style/HashSyntax:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/FileName:

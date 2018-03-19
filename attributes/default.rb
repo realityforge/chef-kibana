@@ -31,7 +31,7 @@ default['kibana']['repository_url'] = 'http://packages.elastic.co/kibana/4.5/deb
 #<> Kibana repository Public Signing Key
 default['kibana']['repository_key'] = 'https://packages.elastic.co/GPG-KEY-elasticsearch'
 #<> The URL to Kibana repository.
-default['kibana']['git']['url'] = 'https://github.com/elasticsearch/kibana.git'
+default['kibana']['git']['url'] = 'https://github.com/elastic/kibana.git'
 
 #<> The git reference in the Kibana repository.
 default['kibana']['git']['reference'] = "v#{node['kibana']['kibana5_version']}"
@@ -141,7 +141,7 @@ end
 # kibana service configurations - defaults to settings for Ubuntu 14.04
 case node['platform']
 when 'centos', 'amazon'
-  if node['platform_version'] < '6.9'
+  if node['platform_version'] < '7.0'
     default['kibana']['service']['provider'] = Chef::Provider::Service::Init::Redhat
     default['kibana']['service']['source'] = 'initd.kibana.erb'
     default['kibana']['service']['template_file'] = '/etc/init.d/kibana'

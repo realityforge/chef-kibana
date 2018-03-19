@@ -4,12 +4,15 @@ source 'https://supermarket.chef.io/'
 
 metadata
 
+cookbook 'compat_resource'
+cookbook 'chef-sugar'
+
 group :vagrant do
   cookbook 'ark'
   cookbook 'apt'
   cookbook 'apache2'
   cookbook 'build-essential'
-  cookbook 'elasticsearch', '~ 2.4.0'
+  cookbook 'elasticsearch', '~> 3.4'
   cookbook 'java'
   cookbook 'netstat'
   cookbook 'ohai'

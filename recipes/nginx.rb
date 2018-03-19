@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+apt_update 'update apt' if node['platform_family'] == 'debian'
+
 include_recipe 'nginx'
 
 template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do

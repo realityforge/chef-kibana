@@ -7,6 +7,7 @@ gem 'stove'
 
 group :test do
   gem 'buff-extensions'
+  gem 'chef-sugar'
   gem 'chefspec'
   gem 'foodcritic'
   gem 'rake'
