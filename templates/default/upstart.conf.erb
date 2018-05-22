@@ -20,9 +20,9 @@ end script
 chdir <%= node['kibana']['base_dir'] %>
 <%
   command = case @version
-            when /^3/
+            when 3
               raise "kibana 3 cannot be started as a service"
-            when /^4/
+            when 4
               "#{@bin_path}/kibana #{@options}"
             end
   if node['kibana']['port'] < 1024
