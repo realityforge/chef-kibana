@@ -45,7 +45,11 @@ module KibanaCookbook
       if new_resource.download_url
         new_resource.download_url
       elsif install_type.to_s == 'tar' || install_type.to_s == 'tarball'
-        prefix = 'https://download.elastic.co/kibana/kibana/kibana-'
+        prefix = if version.to_s =~ /^5/
+                   'https://artifacts.elastic.co/downloads/kibana/kibana-'
+                 else
+                   'https://download.elastic.co/kibana/kibana/kibana-'
+                 end
         suffix = "#{version}-#{node['os']}-#{arch}.#{ext}"
         prefix + suffix
       else

@@ -20,4 +20,5 @@ class KibanaCookbook::ServiceResource < Chef::Resource::LWRPBase
   attribute(:bin_path, kind_of: String, default: 'bin')
   attribute(:init_source, kind_of: String, default: 'upstart.conf.erb')
   attribute(:init_cookbook, kind_of: String, default: 'kibana')
+  attribute(:init_template, kind_of: String, default: '/etc/init/kibana.conf')
 end

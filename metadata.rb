@@ -12,13 +12,11 @@ issues_url 'https://github.com/realityforge/chef-kibana/issues'
 
 supports 'ubuntu'
 supports 'debian'
+supports 'centos'
 
 depends 'build-essential'
 depends 'ark'
 depends 'apt'
-
-# For compatibility with 12.X versions of Chef
-depends 'compat_resource'
 
 # Suggests is not officially valid, that is why these are commented out
 # suggests 'apache2', '>= 2.0'
