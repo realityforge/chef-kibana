@@ -18,6 +18,11 @@ default['kibana']['kibana5_version'] = '5.6.4'
 default['kibana']['kibana5_checksum'] = '253dea10f0fa535c6c984981c4012559b43907d4bc6f21668b43295428cef21d'
 default['kibana']['kibana5_url'] = "https://artifacts.elastic.co/downloads/kibana/kibana-#{node['kibana']['kibana5_version']}-linux-x86_64.tar.gz"
 
+#<> Kibana6 exact version, checksum, URL
+default['kibana']['kibana6_version'] = '6.3.0'
+default['kibana']['kibana6_checksum'] = 'f3d89d6d7239138e57ca87e834c52057db97a7acd7b6c0e6ac2ea642674c6992'
+default['kibana']['kibana6_url'] = "https://artifacts.elastic.co/downloads/kibana/kibana-#{node['kibana']['kibana6_version']}-linux-x86_64.tar.gz"
+
 #<> The base directory of kibana.
 default['kibana']['base_dir'] = '/opt/kibana'
 #<> The user under which Kibana is installed.

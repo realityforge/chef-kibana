@@ -30,6 +30,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * `node['kibana']['kibana3_version']` - Kibana3 exact version.
 * `node['kibana']['kibana4_version']` - Kibana4 exact version.
 * `node['kibana']['kibana5_version']` - Kibana5 exact version.
+* `node['kibana']['kibana6_version']` - Kibana6 exact version.
 * `node['kibana']['base_dir']` - The base directory of kibana. Defaults to `/opt/kibana`.
 * `node['kibana']['user']` - The user under which Kibana is installed. Defaults to `kibana`.
 * `node['kibana']['group']` - The group under which Kibana is installed. Defaults to `kibana`.
@@ -38,6 +39,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * `node['kibana']['kibana3_checksum']` - Checksum of the tarball.
 * `node['kibana']['kibana4_checksum']` - Checksum of the tarball.
 * `node['kibana']['kibana5_checksum']` - Checksum of the tarball.
+* `node['kibana']['kibana6_checksum']` - Checksum of the tarball.
 * `node['kibana']['git']['url']` - The URL to Kibana repository. Defaults to `https://github.com/elasticsearch/kibana.git`.
 * `node['kibana']['git']['reference']` - The git reference in the Kibana repository. Defaults to `'v' + node['kibana']['kibana3_version']`.
 * `node['kibana']['rubyversion']` - The version of Ruby and Gems to use for Kibana. Defaults to `1.9.1`.
@@ -82,6 +84,7 @@ Kibana requires ElasticSearch index to be configured to work as per logstash req
 * kibana::kibana3
 * kibana::kibana4
 * kibana::kibana5
+* kibana::kibana6
 * kibana::nginx
 
 ## kibana::apache
