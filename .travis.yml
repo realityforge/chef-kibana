@@ -47,7 +47,7 @@ env:
 script:
   - chef exec cookstyle
   - chef exec foodcritic --progress -f any .
-  - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml chef exec kitchen test ${INSTANCE}
+  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml chef exec kitchen test ${INSTANCE}
   - cat .kitchen/logs/kitchen.log
 
 # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888

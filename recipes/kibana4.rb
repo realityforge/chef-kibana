@@ -18,7 +18,7 @@ elsif node['kibana']['install_method'] == 'package'
     apt_repository 'kibana' do
       uri node['kibana']['repository_url']
       distribution ''
-      components %w[stable main]
+      components %w(stable main)
       key node['kibana']['repository_key']
     end
   else
