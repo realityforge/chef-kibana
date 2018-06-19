@@ -5,10 +5,10 @@ source 'https://rubygems.org'
 
 group :test do
   gem 'berkshelf'
-  gem 'chefspec'
-  gem 'foodcritic'
-  gem 'rake'
-  gem 'cookstyle'
+  # gem 'chefspec'
+  # gem 'foodcritic'
+  # gem 'rake'
+  # gem 'cookstyle'
   gem 'test-kitchen'
 end
 
