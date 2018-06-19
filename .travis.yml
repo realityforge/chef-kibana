@@ -21,8 +21,8 @@ env:
   - TESTS="integration:docker[kibana4-apache-centos-741708]"
   - TESTS="integration:docker[kibana4-nginx-centos-741708]"
 
-before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 1.3.43
-install: chef exec bundle install --jobs=3 --retry=3 --without='vagrant'
+before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 2.4.17
+install: chef exec bundle install --jobs=3 --retry=3 --without='vagrant development'
 
 # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
 before_script: sudo iptables -L DOCKER || sudo iptables -N DOCKER
