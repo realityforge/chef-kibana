@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.3.5
+  - 2.4.0
 
 sudo: required
 services: docker
@@ -10,16 +10,12 @@ env:
   - TESTS="unit"
   - TESTS="rubocop"
   - TESTS="foodcritic"
-  - TESTS="integration:docker[kibana3-apache-ubuntu-1404]"
-  - TESTS="integration:docker[kibana3-nginx-ubuntu-1404]"
   - TESTS="integration:docker[kibana4-apache-ubuntu-1404]"
   - TESTS="integration:docker[kibana4-nginx-ubuntu-1404]"
   - TESTS="integration:docker[kibana4-apache-package-ubuntu-1404]"
   - TESTS="integration:docker[kibana4-apache-ubuntu-1604]"
   - TESTS="integration:docker[kibana4-nginx-ubuntu-1604]"
   - TESTS="integration:docker[kibana4-apache-package-ubuntu-1604]"
-  - TESTS="integration:docker[kibana3-apache-centos-69]"
-  - TESTS="integration:docker[kibana3-nginx-centos-69]"
   - TESTS="integration:docker[kibana4-apache-centos-69]"
   - TESTS="integration:docker[kibana4-nginx-centos-69]"
   - TESTS="integration:docker[kibana4-apache-centos-741708]"
