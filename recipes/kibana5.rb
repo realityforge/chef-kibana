@@ -26,7 +26,7 @@ elsif node['kibana']['install_method'] == 'package'
   end
 
   package 'kibana'
-  config_path = 'config/kibana.yml'
+  config_path = 'kibana.yml'
 else
   Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release' or 'package'")
 end

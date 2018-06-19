@@ -1,3 +1,6 @@
+## 0.3.0
+* Remove support for kibana 3
+
 ## 0.2.3:
 * Further test fixes
 * Run unit tests on multiple platforms (@mburns)

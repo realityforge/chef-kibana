@@ -16,10 +16,11 @@ env:
   - TESTS="integration:docker[kibana4-apache-ubuntu-1604]"
   - TESTS="integration:docker[kibana4-nginx-ubuntu-1604]"
   - TESTS="integration:docker[kibana4-apache-package-ubuntu-1604]"
-  - TESTS="integration:docker[kibana4-apache-centos-69]"
-  - TESTS="integration:docker[kibana4-nginx-centos-69]"
-  - TESTS="integration:docker[kibana4-apache-centos-741708]"
-  - TESTS="integration:docker[kibana4-nginx-centos-741708]"
+  # - TESTS="integration:docker[kibana4-apache-centos-69]"
+  # - TESTS="integration:docker[kibana4-nginx-centos-69]"
+  # - TESTS="integration:docker[kibana4-apache-centos-741708]"
+  # - TESTS="integration:docker[kibana4-nginx-centos-741708]"
+  - TESTS="integration:docker[kibana5-nginx-package-ubuntu-1404]"
 
 before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 2.4.17
 install: chef exec bundle install --jobs=3 --retry=3 --without='vagrant development'

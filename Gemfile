@@ -2,16 +2,13 @@
 
 source 'https://rubygems.org'
 
-gem 'berkshelf'
-gem 'stove'
 
 group :test do
-  gem 'buff-extensions'
-  gem 'chef-sugar'
+  gem 'berkshelf'
   gem 'chefspec'
   gem 'foodcritic'
   gem 'rake'
-  gem 'rubocop'
+  gem 'cookstyle'
   gem 'test-kitchen'
 end
 

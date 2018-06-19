@@ -26,29 +26,6 @@ platforms:
 - name: centos-7.4.1708
 
 suites:
-- name: kibana3_apache
-  run_list:
-    - 'recipe[netstat]'
-    - 'recipe[apache2]'
-    - 'recipe[kibana]'
-    - 'recipe[kibana::apache]'
-  attributes: {}
-- name: kibana3_nginx
-  run_list:
-    - 'recipe[netstat]'
-    - 'recipe[nginx]'
-    - 'recipe[kibana]'
-    - 'recipe[kibana::nginx]'
-  attributes: {}
-- name: kibana3_source
-  run_list:
-    - 'recipe[netstat]'
-    - 'recipe[apache2]'
-    - 'recipe[kibana]'
-    - 'recipe[kibana::apache]'
-  attributes:
-    kibana:
-      install_method: 'source'
 - name: kibana4_apache
   run_list:
     - 'recipe[netstat]'
@@ -113,6 +90,23 @@ suites:
     kibana:
       install_method: 'package'
       version: 4
+      interface: '0.0.0.0'
+      nginx:
+        listen_http: 8080
+    java:
+      jdk_version: '8'
+- name: kibana5_nginx_package
+  run_list:
+    - 'recipe[netstat]'
+    - 'recipe[nginx]'
+    - 'recipe[java]'
+    - 'recipe[elasticsearch]'
+    - 'recipe[kibana]'
+    - 'recipe[kibana::nginx]'
+  attributes:
+    kibana:
+      install_method: 'package'
+      version: 5
       interface: '0.0.0.0'
       nginx:
         listen_http: 8080

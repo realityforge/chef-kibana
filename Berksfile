@@ -4,6 +4,8 @@ source 'https://supermarket.chef.io/'
 
 metadata
 
+solver :ruby, :preferred
+
 cookbook 'compat_resource'
 cookbook 'chef-sugar'
 
