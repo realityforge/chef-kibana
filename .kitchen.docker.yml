@@ -3,6 +3,12 @@ driver:
   name: dokken
   privileged: true
 
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+
 platforms:
   - name: ubuntu-14.04
     driver:
