@@ -25,7 +25,7 @@ describe 'kibana::nginx' do
 
         it 'installs included recipes' do
           %w(
-            chef_nginx
+            nginx
           ).each do |recipe|
             expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with(recipe)
             chef_run
