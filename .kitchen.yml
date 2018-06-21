@@ -39,6 +39,7 @@ suites:
       listen:
        - '*:8080'
     kibana:
+      base_dir: '/opt/kibana'
       version: 4
       apache:
         port: 8080
