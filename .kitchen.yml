@@ -31,7 +31,6 @@ suites:
     - 'recipe[netstat]'
     - 'recipe[apache2]'
     - 'recipe[java]'
-    - 'recipe[elasticsearch]'
     - 'recipe[kibana]'
     - 'recipe[kibana::apache]'
   attributes:
@@ -40,6 +39,8 @@ suites:
        - '*:8080'
     kibana:
       base_dir: '/opt/kibana'
+      repository_url: 'http://packages.elastic.co/kibana/4.5/debian'
+      repository_key: 'https://packages.elastic.co/GPG-KEY-elasticsearch'
       version: 4
       apache:
         port: 8080
@@ -51,11 +52,13 @@ suites:
     - 'recipe[netstat]'
     - 'recipe[nginx]'
     - 'recipe[java]'
-    - 'recipe[elasticsearch]'
     - 'recipe[kibana]'
     - 'recipe[kibana::nginx]'
   attributes:
     kibana:
+      repository_url: 'http://packages.elastic.co/kibana/4.5/debian'
+      repository_key: 'https://packages.elastic.co/GPG-KEY-elasticsearch'
+      base_dir: '/opt/kibana'
       version: 4
       interface: '0.0.0.0'
       nginx:
@@ -72,6 +75,8 @@ suites:
       listen:
        - '*:8080'
     kibana:
+      repository_url: 'http://packages.elastic.co/kibana/4.5/debian'
+      repository_key: 'https://packages.elastic.co/GPG-KEY-elasticsearch'
       base_dir: '/opt/kibana'
       install_method: 'package'
       version: 4
@@ -85,11 +90,13 @@ suites:
     - 'recipe[netstat]'
     - 'recipe[nginx]'
     - 'recipe[java]'
-    - 'recipe[elasticsearch]'
     - 'recipe[kibana]'
     - 'recipe[kibana::nginx]'
   attributes:
     kibana:
+      repository_url: 'http://packages.elastic.co/kibana/4.5/debian'
+      repository_key: 'https://packages.elastic.co/GPG-KEY-elasticsearch'
+      base_dir: '/opt/kibana'
       install_method: 'package'
       version: 4
       interface: '0.0.0.0'
@@ -102,7 +109,6 @@ suites:
     - 'recipe[netstat]'
     - 'recipe[nginx]'
     - 'recipe[java]'
-    - 'recipe[elasticsearch]'
     - 'recipe[kibana]'
     - 'recipe[kibana::nginx]'
   attributes:
