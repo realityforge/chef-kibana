@@ -24,12 +24,12 @@ script:
 services: docker
 env:
   matrix:
-  # - TESTS="integration:docker[kibana4-apache-ubuntu-1404]"
-  # - TESTS="integration:docker[kibana4-nginx-ubuntu-1404]"
-  # - TESTS="integration:docker[kibana4-apache-package-ubuntu-1404]"
-  # - TESTS="integration:docker[kibana4-apache-ubuntu-1604]"
-  # - TESTS="integration:docker[kibana4-nginx-ubuntu-1604]"
-  # - TESTS="integration:docker[kibana4-apache-package-ubuntu-1604]"
+  - INSTANCE=kibana4-apache-ubuntu-1404
+  - INSTANCE=kibana4-nginx-ubuntu-1404
+  - INSTANCE=kibana4-apache-package-ubuntu-1404
+  - INSTANCE=kibana4-apache-ubuntu-1604
+  - INSTANCE=kibana4-nginx-ubuntu-1604
+  - INSTANCE=kibana4-apache-package-ubuntu-1604
   # - TESTS="integration:docker[kibana4-apache-centos-69]"
   # - TESTS="integration:docker[kibana4-nginx-centos-69]"
   # - TESTS="integration:docker[kibana4-apache-centos-741708]"
