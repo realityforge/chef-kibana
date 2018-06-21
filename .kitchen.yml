@@ -112,3 +112,5 @@ suites:
         listen_http: 8080
     java:
       jdk_version: '8'
+    nginx:
+      default_site_enabled: false
