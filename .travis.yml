@@ -24,9 +24,6 @@ script:
 services: docker
 env:
   matrix:
-  # - TESTS="unit"
-  # - TESTS="rubocop"
-  # - TESTS="foodcritic"
   # - TESTS="integration:docker[kibana4-apache-ubuntu-1404]"
   # - TESTS="integration:docker[kibana4-nginx-ubuntu-1404]"
   # - TESTS="integration:docker[kibana4-apache-package-ubuntu-1404]"
@@ -37,7 +34,7 @@ env:
   # - TESTS="integration:docker[kibana4-nginx-centos-69]"
   # - TESTS="integration:docker[kibana4-apache-centos-741708]"
   # - TESTS="integration:docker[kibana4-nginx-centos-741708]"
-  - TESTS="integration:docker[kibana5-nginx-package-ubuntu-1404]"
+  - TESTS="integration:docker[kibana5-nginx-package-ubuntu-1604]"
 
 # before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 2.4.17
 # install: chef exec bundle install --jobs=3 --retry=3 --without='vagrant development'
@@ -47,7 +44,7 @@ env:
 script:
   - chef exec cookstyle
   - chef exec foodcritic --progress -f any .
-  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml chef exec kitchen test ${INSTANCE}
+  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml chef exec kitchen test ${TESTS}
   - cat .kitchen/logs/kitchen.log
 
 # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
