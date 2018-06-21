@@ -1,5 +1,5 @@
 # Encoding: utf-8
-include_recipe 'chef_nginx'
+include_recipe 'nginx'
 
 template File.join(node['nginx']['dir'], 'sites-available', 'kibana') do
   source node['kibana']['nginx']['source']
