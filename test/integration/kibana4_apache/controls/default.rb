@@ -22,12 +22,13 @@ control 'apache' do
     it { should be_listening }
   end
   if os.debian?
-    describe service('apache2'), if: os[:family] == 'ubuntu' do
+    describe service('apache2') do
       it { should be_enabled }
       it { should be_running }
     end
-  else os.redhat?
-    describe service('httpd'), if: os[:family] == 'redhat' do
+  end
+  if os.redhat?
+    describe service('httpd') do
       it { should be_enabled }
       it { should be_running }
     end
