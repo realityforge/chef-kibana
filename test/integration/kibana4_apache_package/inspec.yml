@@ -1,0 +1,9 @@
+name: kibana
+title: Default inspec profile
+maintainer: Dmitry Rebryshkin
+copyright: Dmitry Rebryshkin
+copyright_email: dr@servers.com
+license: MIT
+summary: Verify install/configure kibana package
+version: 1.0.0
+supports:

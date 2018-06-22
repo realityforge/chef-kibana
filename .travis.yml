@@ -34,6 +34,9 @@ env:
   # - TESTS="integration:docker[kibana4-nginx-centos-69]"
   # - TESTS="integration:docker[kibana4-apache-centos-741708]"
   # - TESTS="integration:docker[kibana4-nginx-centos-741708]"
+  - INSTANCE=kibana5-nginx-ubuntu-1404
+  - INSTANCE=kibana5-nginx-ubuntu-1604
+  - INSTANCE=kibana5-nginx-package-ubuntu-1404
   - INSTANCE=kibana5-nginx-package-ubuntu-1604
 
 # before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 2.4.17

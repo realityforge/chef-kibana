@@ -2,7 +2,6 @@
 driver_plugin: vagrant
 driver_config:
   product_name: chefdk
-  product_version: 1.3.43
   network:
     - ["forwarded_port", {guest: 8080, host: 8080, auto_correct: true}]
 
@@ -24,6 +23,9 @@ platforms:
         gpgkey: http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6
         sslverify: false
 - name: centos-7.4.1708
+
+verifier:
+  name: inspec
 
 suites:
 - name: kibana4_apache
@@ -58,13 +60,17 @@ suites:
     kibana:
       repository_url: 'http://packages.elastic.co/kibana/4.5/debian'
       repository_key: 'https://packages.elastic.co/GPG-KEY-elasticsearch'
-      base_dir: '/opt/kibana'
       version: 4
+      base_dir: '/opt/kibana'
+      service:
+        bin_path: '/bin'
       interface: '0.0.0.0'
       nginx:
         listen_http: 8080
     java:
       jdk_version: '8'
+    nginx:
+      default_site_enabled: false
 - name: kibana4_apache_package
   run_list:
     - 'recipe[kibana]'
@@ -104,6 +110,8 @@ suites:
         listen_http: 8080
     java:
       jdk_version: '8'
+    nginx:
+      default_site_enabled: false
 - name: kibana5_nginx_package
   run_list:
     - 'recipe[netstat]'
@@ -115,6 +123,7 @@ suites:
     kibana:
       install_method: 'package'
       version: 5
+      base_dir: '/usr/share/kibana/'
       interface: '0.0.0.0'
       nginx:
         listen_http: 8080

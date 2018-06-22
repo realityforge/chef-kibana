@@ -125,9 +125,7 @@ default['kibana']['nginx']['cookbook'] = 'kibana'
 
 #<> Redirect requests to kibana service
 default['kibana']['kibana_service'] = nil
-unless node['kibana']['version'] == 3
-  default['kibana']['kibana_service'] = "http://#{node['kibana']['interface']}:#{node['kibana']['port']}"
-end
+default['kibana']['kibana_service'] = "http://#{node['kibana']['interface']}:#{node['kibana']['port']}"
 
 # kibana service configurations - defaults to settings for Ubuntu 14.04
 case node['platform']
@@ -178,6 +176,5 @@ end
 
 default['kibana']['plugins'] = [
   # example:
-  # ES 2.x: { :name => 'marvel', :url => 'elasticsearch/marvel/2.4.1' }
   # ES 5.x: { :name => 'x-pack', :url => 'x-pack' }
 ]
