@@ -6,11 +6,6 @@ control 'kibana' do
   describe package('kibana') do
     it { should be_installed }
   end
-  describe service('kibana') do
-    it { should be_enabled }
-    # TODO: This test fails in Travis but was working with a local kitchen verify
-    # it { should be_running }
-  end
 end
 
 control 'nginx' do

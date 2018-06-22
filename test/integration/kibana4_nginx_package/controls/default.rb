@@ -9,11 +9,6 @@ control 'kibana' do
   describe file('/opt/kibana') do
     it { should be_directory }
   end
-  describe service('kibana') do
-    it { should be_enabled }
-    # TODO: This test fails in Travis but was working with a local kitchen verify
-    # it { should be_running }
-  end
 end
 
 control 'nginx' do
