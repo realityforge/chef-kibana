@@ -112,6 +112,24 @@ suites:
       jdk_version: '8'
     nginx:
       default_site_enabled: false
+- name: kibana5_nginx
+  run_list:
+    - 'recipe[netstat]'
+    - 'recipe[nginx]'
+    - 'recipe[java]'
+    - 'recipe[kibana]'
+    - 'recipe[kibana::nginx]'
+  attributes:
+    kibana:
+      version: 5
+      base_dir: '/usr/share/kibana/'
+      interface: '0.0.0.0'
+      nginx:
+        listen_http: 8080
+    java:
+      jdk_version: '8'
+    nginx:
+      default_site_enabled: false
 - name: kibana5_nginx_package
   run_list:
     - 'recipe[netstat]'
