@@ -25,7 +25,9 @@ elsif node['kibana']['install_method'] == 'package'
     Chef::Log.warn "I do not support your platform: #{node['platform_family']}"
   end
 
-  package 'kibana'
+  package 'kibana' do
+    version node['kibana']['kibana4_version']
+  end
   config_path = 'config/kibana.yml'
 else
   Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release' or 'package'")
