@@ -22,7 +22,7 @@ class KibanaCookbook::UserProvider < Chef::Provider::LWRPBase
       shell   new_resource.shell
       uid     new_resource.uid
       gid     new_resource.groupname
-      supports(manage_home: false)
+      manage_home false
       action :nothing
       system true
     end
