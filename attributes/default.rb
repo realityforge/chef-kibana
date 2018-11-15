@@ -195,3 +195,4 @@ default['kibana']['plugins'] = [
   # ES 2.x: { :name => 'marvel', :url => 'elasticsearch/marvel/2.4.1' }
   # ES 5.x: { :name => 'x-pack', :url => 'x-pack' }
 ]
+default['kibana']['timezone'] = 'user'

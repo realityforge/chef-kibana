@@ -36,7 +36,7 @@ module KibanaConfig
   # Otherwise, set a timezone string
   # Examples: 'UTC', 'America/Phoenix', 'Europe/Athens', MST
   # You can use `date +%Z` on linux to get your timezone string
-  Timezone = 'user'
+  Timezone = '<%= node['kibana']['timezone'] %>'
 
   # Format for timestamps. Defaults to mm/dd HH:MM:ss.
   # For syntax see: http://blog.stevenlevithan.com/archives/date-time-format
