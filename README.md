@@ -1,6 +1,6 @@
 # Description
 
-[![Build Status](https://secure.travis-ci.org/realityforge/chef-kibana.png?branch=master)](http://travis-ci.org/realityforge/chef-kibana)
+[![Build Status](https://secure.travis-ci.org/realityforge/chef-kibana.svg?branch=master)](http://travis-ci.org/realityforge/chef-kibana)
 
 A cookbook that installs [Kibana](https://github.com/elastic/kibana).
 
