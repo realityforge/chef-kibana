@@ -16,5 +16,5 @@ end
 service 'kibana' do
   provider node['kibana']['service']['provider']
   supports start: true, restart: true, stop: true, status: true
-  action %i[enable start]
+  action %i(enable start)
 end

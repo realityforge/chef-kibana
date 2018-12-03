@@ -4,7 +4,7 @@ Description="Kibana <%= node['kibana']['version'] %>"
 [Service]
 User=<%= node['kibana']['user'] %>
 Restart=always
-ExecStart=<%= File.join(node['kibana']['base_dir'], 'current/bin/kibana') %>
+ExecStart=<%= File.join(node['kibana']['base_dir'], "#{node['kibana']['service']['bin_path']}/kibana") %>
 
 [Install]
 WantedBy=multi-user.target

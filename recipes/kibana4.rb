@@ -18,14 +18,16 @@ elsif node['kibana']['install_method'] == 'package'
     apt_repository 'kibana' do
       uri node['kibana']['repository_url']
       distribution ''
-      components %w[stable main]
+      components %w(stable main)
       key node['kibana']['repository_key']
     end
   else
     Chef::Log.warn "I do not support your platform: #{node['platform_family']}"
   end
 
-  package 'kibana'
+  package 'kibana' do
+    version node['kibana']['kibana4_version']
+  end
   config_path = 'config/kibana.yml'
 else
   Chef::Application.fatal!("Since Kibana version 4, install method can only be only 'release' or 'package'")

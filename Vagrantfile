@@ -77,15 +77,15 @@ Vagrant.configure('2') do |config|
     chef.json = {
       'kibana' => {
         'apache' => {
-          'basic_auth' => 'on'
-        }
-      }
+          'basic_auth' => 'on',
+        },
+      },
     }
 
     chef.run_list = [
       'recipe[apt::default]',
       'recipe[kibana::default]',
-      'recipe[kibana::apache]'
+      'recipe[kibana::apache]',
     ]
   end
 end

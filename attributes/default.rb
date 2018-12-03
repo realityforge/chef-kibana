@@ -3,11 +3,6 @@
 #<> Kibana major version
 default['kibana']['version'] = 5
 
-#<> Kibana3 exact version
-default['kibana']['kibana3_version'] = '3.1.2'
-default['kibana']['kibana3_checksum'] = '480562733c2c941525bfa26326b6fae5faf83109b452a6c4e283a5c37e3086ee'
-default['kibana']['kibana3_url'] = "https://download.elastic.co/kibana/kibana/kibana-#{node['kibana']['kibana3_version']}.tar.gz"
-
 #<> Kibana4 exact version
 default['kibana']['kibana4_version'] = '4.6.6'
 default['kibana']['kibana4_checksum'] = '8c3c1808349ac9645836cae35c5570a53091b44b2212c0826907efae1a865d17'
@@ -19,7 +14,7 @@ default['kibana']['kibana5_checksum'] = '253dea10f0fa535c6c984981c4012559b43907d
 default['kibana']['kibana5_url'] = "https://artifacts.elastic.co/downloads/kibana/kibana-#{node['kibana']['kibana5_version']}-linux-x86_64.tar.gz"
 
 #<> The base directory of kibana.
-default['kibana']['base_dir'] = '/opt/kibana'
+default['kibana']['base_dir'] = '/etc/kibana'
 #<> The user under which Kibana is installed.
 default['kibana']['user'] = 'kibana'
 #<> The group under which Kibana is installed.
@@ -27,9 +22,9 @@ default['kibana']['group'] = 'kibana'
 #<> Install method. Can be source, release or package
 default['kibana']['install_method'] = 'release'
 #<> Kibana repository url for package method install
-default['kibana']['repository_url'] = 'http://packages.elastic.co/kibana/4.5/debian'
+default['kibana']['repository_url'] = 'https://artifacts.elastic.co/packages/5.x/apt'
 #<> Kibana repository Public Signing Key
-default['kibana']['repository_key'] = 'https://packages.elastic.co/GPG-KEY-elasticsearch'
+default['kibana']['repository_key'] = 'https://artifacts.elastic.co/GPG-KEY-elasticsearch'
 #<> The URL to Kibana repository.
 default['kibana']['git']['url'] = 'https://github.com/elastic/kibana.git'
 
@@ -54,11 +49,7 @@ default['kibana']['elasticsearch']['hosts'] = ['127.0.0.1']
 #<> The port of the elasticsearch http service.
 default['kibana']['elasticsearch']['port'] = 9200
 
-default['kibana']['index'] = if node['kibana']['version'] > 3
-                               '.kibana'
-                             else
-                               'kibana-int'
-                             end
+default['kibana']['index'] = '.kibana'
 
 #<> The which fields are shown by default.
 default['kibana']['default_fields'] = '["@message"]'
@@ -129,14 +120,12 @@ default['kibana']['nginx']['ssl_session_timeout'] = '10m'
 default['kibana']['nginx']['server_name'] = 'kibana'
 
 #<> The nginx configuration source
-default['kibana']['nginx']['source'] = node['kibana']['version'] == 4 ? 'nginx4.conf.erb' : 'nginx.conf.erb'
+default['kibana']['nginx']['source'] = 'nginx.conf.erb'
 default['kibana']['nginx']['cookbook'] = 'kibana'
 
 #<> Redirect requests to kibana service
 default['kibana']['kibana_service'] = nil
-unless node['kibana']['version'] == 3
-  default['kibana']['kibana_service'] = "http://#{node['kibana']['interface']}:#{node['kibana']['port']}"
-end
+default['kibana']['kibana_service'] = "http://#{node['kibana']['interface']}:#{node['kibana']['port']}"
 
 # kibana service configurations - defaults to settings for Ubuntu 14.04
 case node['platform']
@@ -187,6 +176,5 @@ end
 
 default['kibana']['plugins'] = [
   # example:
-  # ES 2.x: { :name => 'marvel', :url => 'elasticsearch/marvel/2.4.1' }
   # ES 5.x: { :name => 'x-pack', :url => 'x-pack' }
 ]

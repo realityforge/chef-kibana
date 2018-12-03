@@ -1,9 +1,3 @@
-upstream elasticsearch {
-  <% node['kibana']['elasticsearch']['hosts'].each do |ip| %>
-  server <%= ip %>:<%= @elasticserach_port %> fail_timeout=0;
-  <% end %>
-}
-
 <% if @ssl %>
 server {
   listen      <%= @listen_http %>;
@@ -43,36 +37,4 @@ server {
     proxy_pass <%= @kibana_service %>;
     <% end %>
   }
-
-  <% if @proxy %>
-  location ~ ^/_aliases$ {
-    proxy_pass http://elasticsearch;
-    proxy_read_timeout 90;
-  }
-  location ~ ^/.*/_aliases$ {
-    proxy_pass http://elasticsearch;
-    proxy_read_timeout 90;
-  }
-  location ~ ^/_nodes$ {
-    proxy_pass http://elasticsearch;
-    proxy_read_timeout 90;
-  }
-  location ~ ^/.*/_search$ {
-    proxy_pass http://elasticsearch;
-    proxy_read_timeout 90;
-  }
-  location ~ ^/.*/_mapping {
-    proxy_pass http://elasticsearch;
-    proxy_read_timeout 90;
-  }
-
-  location ~ ^/<%= @index %>/dashboard/.*$ {
-    proxy_pass http://elasticsearch;
-    proxy_read_timeout 90;
-  }
-  location ~ ^/<%= @index %>/temp.*$ {
-    proxy_pass http://elasticsearch;
-    proxy_read_timeout 90;
-  }
-  <% end %>
 }
