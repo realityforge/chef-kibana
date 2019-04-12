@@ -129,7 +129,7 @@ default['kibana']['kibana_service'] = "http://#{node['kibana']['interface']}:#{n
 
 # kibana service configurations - defaults to settings for Ubuntu 14.04
 case node['platform']
-when 'centos', 'amazon'
+when 'centos', 'amazon', 'redhat'
   if node['platform_version'] < '7.0'
     default['kibana']['service']['provider'] = Chef::Provider::Service::Init::Redhat
     default['kibana']['service']['source'] = 'initd.kibana.erb'
